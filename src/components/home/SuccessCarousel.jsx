@@ -16,7 +16,7 @@ const SuccessCarousel = () => {
   ];
 
   return (
-    <section className="px-[37px] font-Nunito border border-[#4D4D4D] rounded-2xl py-10 mb-10">
+    <section className="px-[37px] font-Nunito border border-[#4D4D4D] rounded-2xl py-10">
       <div className="flex items-center gap-4 pb-6">
         <img src="/icons/arrow-right.svg" alt="success-stories" className="" />
         <h2 className="text-sm font-bold gradient-main uppercase">
@@ -24,10 +24,7 @@ const SuccessCarousel = () => {
         </h2>
       </div>
       <div>
-        <Swiper
-          spaceBetween={50}
-          slidesPerView={1.3}
-        >
+        <Swiper spaceBetween={50} slidesPerView={1.3}>
           {carouselImages.map((src, index) => (
             <SwiperSlide key={index}>
               <img
