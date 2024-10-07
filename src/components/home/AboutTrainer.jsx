@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import useGetTrainer from "../../hooks/useGetTrainer";
 const AboutTrainer = () => {
-
   const { data, error, isLoading } = useGetTrainer();
 
   if (isLoading) {
@@ -13,34 +12,39 @@ const AboutTrainer = () => {
   }
 
   return (
-    <section className="pb-10 px-[37px] pt-10">
-      <h1 className="text-sm font-bold uppercase leading-normal gradient-main pb-4">
+    <section className="pb-10 px-[37px] pt-10 max-w-[1281px] mx-auto">
+      <h1 className="text-sm font-bold uppercase leading-normal gradient-main pb-4 md:text-2xl">
         ABOUT ME
       </h1>
 
       {data.aboutTrainer.map((data) => {
         return (
-          <div className="font-Nunito flex flex-col gap-4" key={data.id}>
+          <div
+            className="font-Nunito flex flex-col gap-4 lg:flex-row lg:justify-between lg:gap-16"
+            key={data.id}
+          >
             <div
-              className={`h-[212.581px] bg-cover max-w-[295px] rounded-[16px]`}
+              className={`h-[212.581px] bg-cover max-w-[295px] rounded-[16px] md:max-w-[587px] md:h-[423px] lg:max-w-[630px] lg:w-full lg:h-[423px]`}
               style={{
                 backgroundImage: `url(${data.image})`,
                 backgroundPosition: `center -30px`,
               }}
             ></div>
-            <div className="flex flex-col gap-4">
-              <p className="text-primary-paragraph text-xs max-w-xs">
+            <div className="flex flex-col gap-4 lg:justify-between">
+              <p className="text-primary-paragraph text-xs max-w-xs md:text-xl md:max-w-xl">
                 {data.story}
               </p>
-              <Link to="/stories" className="w-fit">
-                <button
-                  type="button"
-                  className="bg-[#B8D44A] rounded-lg text-[#000] text-sm px-[38.5px] py-[8.5px] 
-                    hover:brightness-105 hover:bg-opacity-40 transition-all duration-500 ease-in-out"
-                >
-                  See More
-                </button>
-              </Link>
+              <div className="lg:flex lg:justify-end">
+                <Link to="/stories" className="w-fit">
+                  <button
+                    type="button"
+                    className="bg-[#B8D44A] rounded-lg text-[#000] text-sm px-[38.5px] py-[8.5px] 
+                    hover:brightness-105 hover:bg-opacity-40 transition-all duration-500 ease-in-out md:text-base lg:px-[60px] lg:py-[10px]"
+                  >
+                    See More
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         );
