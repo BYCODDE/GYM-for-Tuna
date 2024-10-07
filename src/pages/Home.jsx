@@ -2,6 +2,7 @@ import React from "react";
 import AboutTrainer from "../components/home/AboutTrainer";
 import SuccessCarousel from "../components/home/SuccessCarousel";
 import FitnessJourney from "../components/home/FitnessJourney";
+import ContactForm from "../components/home/ContactForm";
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
       <FitnessJourney />
       <AboutTrainer />
       <SuccessCarousel />
+      <ContactForm />
     </main>
   );
 };
