@@ -12,7 +12,7 @@ const AboutTrainer = () => {
   }
 
   return (
-    <section className="pb-10 px-[37px] pt-10 max-w-[1281px] mx-auto">
+    <section className="pb-10 px-[37px] pt-10 md:max-w-[1281px] md:mx-auto 2xl:px-0">
       <h1 className="text-sm font-bold uppercase leading-normal gradient-main pb-4 md:text-2xl">
         ABOUT ME
       </h1>
@@ -20,7 +20,7 @@ const AboutTrainer = () => {
       {data.aboutTrainer.map((data) => {
         return (
           <div
-            className="font-Nunito flex flex-col gap-4 lg:flex-row lg:justify-between lg:gap-16"
+            className="font-Nunito flex flex-col gap-4 xl:flex-row xl:justify-between xl:gap-16"
             key={data.id}
           >
             <div
@@ -34,7 +34,7 @@ const AboutTrainer = () => {
               <p className="text-primary-paragraph text-xs max-w-xs md:text-xl md:max-w-xl">
                 {data.story}
               </p>
-              <div className="lg:flex lg:justify-end">
+              <div className="xl:flex xl:justify-end">
                 <Link to="/stories" className="w-fit">
                   <button
                     type="button"
