@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         Nunito: ["Nunito", "sans-serif"],
+        BebasNeue: ["Bebas Neue", "sans-serif"],
       },
       backgroundColor: {
         "primary-bg": "#121212",

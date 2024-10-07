@@ -11,7 +11,7 @@ const Header = () => {
   const { burgerValue, setBurgerValue } = useContext(MyContext);
   return (
     <header className="bg-no-repeat bg-cover bg-center bg-header-girl px-[37px] py-10 font-Nunito flex justify-between h-screen max-h-[375px]">
-      <h1 className="tiny:text-[14px] smaller:text-[20px] font-bold gradient-header uppercase text-center">
+      <h1 className="tiny:text-[14px] smaller:text-[20px] font-bold gradient-header uppercase text-center font-BebasNeue">
         TRANSFORM <br /> WITH TUNA
       </h1>
 
