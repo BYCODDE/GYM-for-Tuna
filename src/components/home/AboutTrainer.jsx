@@ -38,7 +38,7 @@ const AboutTrainer = () => {
                 <Link to="/stories" className="w-fit">
                   <button
                     type="button"
-                    className="bg-[#B8D44A] rounded-lg text-[#000] text-sm px-[38.5px] py-[8.5px] 
+                    className="bg-[#B8D44A] rounded-lg text-[#000] text-sm px-[38.5px] py-[8.5px]
                     hover:brightness-105 hover:bg-opacity-40 transition-all duration-500 ease-in-out md:text-base lg:px-[60px] lg:py-[10px]"
                   >
                     See More

@@ -1,4 +1,3 @@
-import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useGetStory from "../../hooks/useGetStory";
 import { Grid } from "swiper/modules";
@@ -18,7 +17,7 @@ const SuccessCarousel = () => {
 
   return (
     <section
-      className="px-[37px] font-Nunito border border-[#4D4D4D] 
+      className="px-[37px] font-Nunito border border-[#4D4D4D]
     rounded-2xl py-10 md:max-w-[1281px]  xl:mx-auto md:mx-[37px]"
     >
       <div className="flex items-center gap-4 pb-6">

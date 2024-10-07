@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         Nunito: ["Nunito", "sans-serif"],
+        BebasNeue: ["Bebas Neue", "sans-serif"],
       },
       backgroundColor: {
         "primary-bg": "#121212",
@@ -16,6 +17,9 @@ export default {
       colors: {
         "primary-paragraph": "#C4C4C4",
         "form-main": "rgba(196, 196, 196, 0.60)",
+      },
+      backgroundImage: {
+        "header-girl": "url('/home/mobile/header-img-girl.png')",
       },
     },
   },
