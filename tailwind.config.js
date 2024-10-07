@@ -16,6 +16,9 @@ export default {
       colors: {
         "primary-paragraph": "#C4C4C4",
       },
+      backgroundImage: {
+        "header-girl": "url('/home/mobile/header-img-girl.png')",
+      },
     },
   },
   plugins: [

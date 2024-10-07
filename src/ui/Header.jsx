@@ -10,7 +10,7 @@ const navItems = [
 const Header = () => {
   const { burgerValue, setBurgerValue } = useContext(MyContext);
   return (
-    <header className="bg-primary-bg px-[37px] py-10 font-Nunito flex justify-between ">
+    <header className="bg-no-repeat bg-cover bg-center bg-header-girl px-[37px] py-10 font-Nunito flex justify-between h-screen max-h-[375px]">
       <h1 className="tiny:text-[14px] smaller:text-[20px] font-bold gradient-header uppercase text-center">
         TRANSFORM <br /> WITH TUNA
       </h1>
@@ -24,10 +24,10 @@ const Header = () => {
         />
         {burgerValue && (
           <>
-            <div className="mt-[10px]  w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-[#222222] mx-auto"></div>
+            <div className="mt-[10px]  w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-[#D7FD44] mx-auto"></div>
 
-            <div className="flex w-full h-full py-[20px] px-[10px] justify-between items-center border-t border-[#4D4D4D] bg-[#222222] mt-[5px]">
-              <nav className="text-center flex flex-col text-[#FFF] text-[20px]">
+            <div className="tiny:h-[50%]  flex w-full h-full py-[20px] px-[10px] justify-between items-center border-t border-[#4D4D4D] bg-[#222222] mt-[5px]">
+              <nav className="tiny:text-[14px]  smaller:text-[20px]  text-center flex flex-col text-[#FFF] ">
                 {navItems.map((item) => (
                   <NavLink
                     key={item.path}
