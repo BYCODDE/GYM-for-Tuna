@@ -12,38 +12,34 @@ const FitnessJourney = () => {
     return <p>something went wrong:{error}</p>;
   }
   return (
-    <section className="px-[37px] md:max-w-[1281px] xl:mx-auto 2xl:px-[0]">
+    <section className="px-[37px] md:w-[1281px] md:max-w-[100%] xl:mx-auto 2xl:px-[0]">
       <h1 className="text-sm font-bold gradient-main uppercase pb-6">
         Your Fitness Journey Starts Here
       </h1>
       <div className="">
         <Swiper
-          spaceBetween={25}
+          spaceBetween={30} // Increase base spacing
           slidesPerView={1.1}
           breakpoints={{
             456: {
               slidesPerView: 1.8,
-              spaceBetween: 50,
+              spaceBetween: 30, // Adequate space for small screens
             },
             640: {
               slidesPerView: 2.3,
-              spaceBetween: 50,
+              spaceBetween: 40,
             },
             768: {
-              slidesPerView: 3,
-              spaceBetween: 300,
+              slidesPerView: 2.3,
+              spaceBetween: 50, // Ensure enough space between cards
             },
             1024: {
-              slidesPerView: 3.5,
-              spaceBetween: 300,
+              slidesPerView: 3,
+              spaceBetween: 50,
             },
             1280: {
-              slidesPerView: 4.5,
-              spaceBetween: 300,
-            },
-            1536: {
-              slidesPerView: 5,
-              spaceBetween: 300,
+              slidesPerView: 4,
+              spaceBetween: 50, // Larger space for larger screens
             },
           }}
         >
