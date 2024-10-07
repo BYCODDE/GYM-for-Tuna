@@ -35,6 +35,14 @@ export default {
           "background-position": "center",
         },
       });
+
+      addUtilities({
+        ".gradient-header": {
+          background: " linear-gradient(180deg, #D7FD44 0%, #5C6B20 100%)",
+          "-webkit-background-clip": "text",
+          "-webkit-text-fill-color": "transparent",
+        },
+      });
     },
   ],
 };
