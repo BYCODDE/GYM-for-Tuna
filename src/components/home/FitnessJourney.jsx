@@ -18,12 +18,12 @@ const FitnessJourney = () => {
       </h1>
       <div className="">
         <Swiper
-          spaceBetween={30} // Increase base spacing
+          spaceBetween={30} 
           slidesPerView={1.1}
           breakpoints={{
             456: {
               slidesPerView: 1.8,
-              spaceBetween: 30, // Adequate space for small screens
+              spaceBetween: 30, 
             },
             640: {
               slidesPerView: 2.3,
@@ -31,7 +31,7 @@ const FitnessJourney = () => {
             },
             768: {
               slidesPerView: 2.3,
-              spaceBetween: 50, // Ensure enough space between cards
+              spaceBetween: 50, 
             },
             1024: {
               slidesPerView: 3,
@@ -39,7 +39,7 @@ const FitnessJourney = () => {
             },
             1280: {
               slidesPerView: 4,
-              spaceBetween: 50, // Larger space for larger screens
+              spaceBetween: 50, 
             },
           }}
         >
