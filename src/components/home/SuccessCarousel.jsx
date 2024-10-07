@@ -19,7 +19,7 @@ const SuccessCarousel = () => {
   return (
     <section
       className="px-[37px] font-Nunito border border-[#4D4D4D] 
-    rounded-2xl py-10 md:max-w-[1281px] 2xl:mx-auto lg:mx-[37px] md:mx-[37px]"
+    rounded-2xl py-10 md:max-w-[1281px]  xl:mx-auto md:mx-[37px]"
     >
       <div className="flex items-center gap-4 pb-6">
         <img src="/icons/arrow-right.svg" alt="success-stories" />
