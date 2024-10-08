@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import useGetTrainer from "../../hooks/useGetTrainer";
+import AboutTrainerSkeleton from "../skeletons/AboutTrainerSkeleton";
 const AboutTrainer = () => {
   const { data, error, isLoading } = useGetTrainer();
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <AboutTrainerSkeleton />;
   }
 
   if (error) {
