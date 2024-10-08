@@ -13,12 +13,12 @@ export const MyContext = createContext();
 const App = () => {
   const [burgerValue, setBurgerValue] = useState(false);
 
-  
+
 
   return (
 
     <MyContext.Provider value={{ burgerValue, setBurgerValue }}>
-      <div>
+      <div className="w-screen">
         <Routes>
           <Route element={<Layout />}>
             <Route index element={<Home />} />

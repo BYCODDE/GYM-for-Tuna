@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <header className="bg-no-repeat bg-cover bg-center bg-header-girl px-[37px] py-10 font-Nunito flex justify-between h-screen max-h-[375px]">
-      <h1 className="tiny:text-[14px] text-[20px] font-bold gradient-header uppercase text-center font-BebasNeue">
+      <h1 className="md:text-[30px] tiny:text-[14px] text-[20px] font-bold gradient-header uppercase text-center font-BebasNeue">
         TRANSFORM <br /> WITH TUNA
       </h1>
 
@@ -50,7 +50,7 @@ const Header = () => {
           >
             X
           </button>
-          <nav className="tiny:text-[14px] smaller:text-[20px] text-center flex flex-col text-[#FFF]">
+          <nav className="gap-[20px] w-full tiny:text-[14px] smaller:text-[20px] text-center flex flex-col text-[#FFF]">
             {navItems.map((item) => (
               <NavLink
                 key={item.path}

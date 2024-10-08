@@ -11,10 +11,10 @@ const Footer = () => {
   return (
     <footer className="bg-[#242424] p-[40px] flex flex-col justify-center  font-Nunito text-[#C4C4C4] w-screen h-full">
       <div className="flex items-center gap-4">
-        <span className="tiny:text-[14px] smaller:text-[20px] font-bold gradient-header uppercase  font-BebasNeue">
+        <span className="md:text-[30px] tiny:text-[14px] smaller:text-[20px] font-bold gradient-header uppercase  font-BebasNeue">
           TRANSFORM <br /> WITH TUNA
         </span>
-        <img src="/icons/gym-svg.svg" alt="gym-svg" />
+        <img  className=""  src="/icons/gym-svg.svg" alt="gym-svg" />
       </div>
       <div className="mt-[50px]">
         <nav className=" tiny:text-[14px] smaller:text-[18px] flex flex-col justify-center items-start  gap-2">
