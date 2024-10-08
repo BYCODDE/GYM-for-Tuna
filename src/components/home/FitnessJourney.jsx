@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import useGetFitnessJourney from "../../hooks/useGetFitnessJourney";
 import FitnessJourneySkeleton from "../skeletons/FitnessJourneySkeleton";
+import ErorrDisplay from "../erorr/ErorrDisplay";
 
 const FitnessJourney = () => {
   const { data, isLoading, error } = useGetFitnessJourney();
@@ -10,7 +11,7 @@ const FitnessJourney = () => {
     return <FitnessJourneySkeleton />;
   }
   if (error) {
-    return <p>something went wrong:{error}</p>;
+    return <ErorrDisplay error={error.message} />;
   }
   return (
     <section className="px-[37px] md:w-[1281px] md:max-w-[100%] xl:mx-auto 2xl:px-[0]">

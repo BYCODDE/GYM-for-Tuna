@@ -4,6 +4,7 @@ import { Grid } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/grid";
 import SuccessCarouselSkeleton from "../skeletons/SuccessCarouselSkeleton";
+import ErorrDisplay from "../erorr/ErorrDisplay";
 
 const SuccessCarousel = () => {
   const { data, isLoading, error } = useGetStory();
@@ -13,7 +14,7 @@ const SuccessCarousel = () => {
   }
 
   if (error) {
-    return <p>Error fetching data: {error.message}</p>;
+    return <ErorrDisplay error={error.message} />;
   }
 
   return (

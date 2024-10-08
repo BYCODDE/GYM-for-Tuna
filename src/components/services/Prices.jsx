@@ -1,6 +1,7 @@
 import PricesContainer from "./PricesContainer";
 import useGetServices from "../../hooks/useGetServices";
 import PricesSkeleton from "../skeletons/PricesSkeleton";
+import ErorrDisplay from "../erorr/ErorrDisplay";
 const Prices = () => {
   const { data, isLoading, error } = useGetServices();
 
@@ -9,7 +10,7 @@ const Prices = () => {
   }
 
   if (error) {
-    return <p>Error fetching data: {error.message}</p>;
+    return <ErorrDisplay error={error.message} />;
   }
 
   return (
