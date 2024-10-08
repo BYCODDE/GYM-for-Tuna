@@ -104,7 +104,8 @@ const ContactForm = () => {
           <div className="text-right">
             <button
               type="submit"
-              className="border border-[#4D4D4D] opacity-80 rounded-[8px] bg-primary-bg py-[8.5px] px-[46px]"
+              className="border border-[#4D4D4D] opacity-80 rounded-[8px]
+               bg-primary-bg py-[8.5px] px-[46px] hover:bg-[#B8D44A] duration-500 ease-in-out hover:text-[#000]"
             >
               Submit
             </button>
