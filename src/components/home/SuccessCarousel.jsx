@@ -3,12 +3,13 @@ import useGetStory from "../../hooks/useGetStory";
 import { Grid } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/grid";
+import SuccessCarouselSkeleton from "../skeletons/SuccessCarouselSkeleton";
 
 const SuccessCarousel = () => {
   const { data, isLoading, error } = useGetStory();
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <SuccessCarouselSkeleton />;
   }
 
   if (error) {
