@@ -22,8 +22,22 @@ const SuccessCarousel = () => {
     rounded-2xl py-10 md:max-w-[1281px]  xl:mx-auto md:mx-[37px]"
     >
       <div className="flex items-center gap-4 pb-6">
-        <img src="/icons/arrow-right.svg" alt="success-stories" />
-        <h2 className="text-sm font-bold gradient-main uppercase">
+        <img
+          src="/icons/arrow-right.svg"
+          alt="success-stories"
+          className="md:hidden"
+        />
+        <img
+          src="/icons/three-arrow-right.svg"
+          alt="success-stories"
+          className="hidden md:block 2xl:hidden"
+        />
+        <img
+          src="/icons/four-arrow-right.svg"
+          alt="success-stories"
+          className="hidden 2xl:block"
+        />
+        <h2 className="text-sm font-bold gradient-main uppercase md:text-[24px] 2xl:text-[32px] 2xl:leading-normal">
           Success Story
         </h2>
       </div>
@@ -70,7 +84,21 @@ const SuccessCarousel = () => {
       </div>
 
       <div className="pt-6 flex justify-end">
-        <img src="/icons/arrow-left.svg" alt="success-stories" />
+        <img
+          src="/icons/arrow-left.svg"
+          alt="success-stories"
+          className="md:hidden"
+        />
+        <img
+          src="/icons/three-arrow-left.svg"
+          alt="success-stories"
+          className="hidden md:block 2xl:hidden"
+        />
+        <img
+          src="/icons/four-arrow-left.svg"
+          alt="success-stories"
+          className="hidden 2xl:block"
+        />
       </div>
     </section>
   );
