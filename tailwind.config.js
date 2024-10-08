@@ -13,6 +13,7 @@ export default {
       screens: {
         tiny: { max: "300px" },
         smaller: { min: "301px", max: "410px" },
+        small: { min: "410px", max: "640px" },
       },
       colors: {
         "primary-paragraph": "#C4C4C4",
@@ -46,6 +47,14 @@ export default {
           background: " linear-gradient(180deg, #D7FD44 0%, #5C6B20 100%)",
           "-webkit-background-clip": "text",
           "-webkit-text-fill-color": "transparent",
+        },
+      });
+    },
+    function ({ addUtilities }) {
+      addUtilities({
+        ".stories-banner": {
+          background:
+            "url('/stories/stories-running.png') lightgray 50% / cover no-repeat",
         },
       });
     },
