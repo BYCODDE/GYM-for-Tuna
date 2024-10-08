@@ -1,5 +1,11 @@
+import StoriesBanner from "../components/stories/StoriesBanner";
+
 const Stories = () => {
-  return <h1>stories</h1>;
+  return (
+    <section className="bg-primary-bg">
+      <StoriesBanner />
+    </section>
+  );
 };
 
 export default Stories;
