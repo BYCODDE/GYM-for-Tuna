@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import useGetTrainer from "../../hooks/useGetTrainer";
 import AboutTrainerSkeleton from "../skeletons/AboutTrainerSkeleton";
+import ErorrDisplay from "../erorr/ErorrDisplay";
 const AboutTrainer = () => {
   const { data, error, isLoading } = useGetTrainer();
 
@@ -9,11 +10,11 @@ const AboutTrainer = () => {
   }
 
   if (error) {
-    return <p>Error fetching data: {error.message}</p>;
+    return <ErorrDisplay error={error.message} />;
   }
 
   return (
-    <section className="pb-10 px-[37px] pt-10 md:max-w-[1281px] md:mx-auto 2xl:px-0">
+    <section className="pb-10 px-[37px] md:max-w-[1281px] md:mx-auto 2xl:px-0">
       <h1 className="text-sm font-bold uppercase leading-normal gradient-main pb-4 md:text-2xl">
         ABOUT ME
       </h1>

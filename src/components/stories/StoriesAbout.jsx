@@ -1,4 +1,5 @@
 import useGetTrainer from "../../hooks/useGetTrainer";
+import ErorrDisplay from "../erorr/ErorrDisplay";
 import StoryAboutSkeleton from "../skeletons/StoryAboutSkeleton";
 
 const StoriesAbout = () => {
@@ -9,7 +10,7 @@ const StoriesAbout = () => {
   }
 
   if (error) {
-    return <p>Error fetching data: {error.message}</p>;
+    return <ErorrDisplay error={error.message} />;
   }
 
   return (
