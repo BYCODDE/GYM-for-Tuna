@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { MyContext } from "../App";
-import { useContext } from "react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const navItems = [
   { path: "/", label: "HOME" },
@@ -11,7 +10,7 @@ const navItems = [
 ];
 
 const Header = () => {
-  const { burgerValue, setBurgerValue } = useContext(MyContext);
+  const [burgerValue, setBurgerValue] = useState(false);
 
   const menuVariants = {
     open: {
