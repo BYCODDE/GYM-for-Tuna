@@ -7,28 +7,22 @@ import NoPage from "./pages/NoPage";
 import Layout from "./ui/Layout";
 import { createContext, useState } from "react";
 
-
 export const MyContext = createContext();
 
 const App = () => {
   const [burgerValue, setBurgerValue] = useState(false);
 
-
-
   return (
-
     <MyContext.Provider value={{ burgerValue, setBurgerValue }}>
-      <div className="w-screen">
-        <Routes>
-          <Route element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="/stories" element={<Stories />} />
-            <Route path="/services" element={<Service />} />
-            <Route path="/contact" element={<Contact />} />
-          </Route>
-          <Route path="*" element={<NoPage />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/stories" element={<Stories />} />
+          <Route path="/services" element={<Service />} />
+          <Route path="/contact" element={<Contact />} />
+        </Route>
+        <Route path="*" element={<NoPage />} />
+      </Routes>
     </MyContext.Provider>
   );
 };

@@ -9,7 +9,7 @@ const navItems = [
 ];
 const Footer = () => {
   return (
-    <footer className="bg-[#242424] p-[40px] flex flex-col justify-center  font-Nunito text-[#C4C4C4] w-screen h-full">
+    <footer className="bg-[#242424] p-[40px] flex flex-col justify-center  font-Nunito text-[#C4C4C4] h-full">
       <div className="flex items-center gap-4">
         <span className="md:text-[30px] tiny:text-[14px] smaller:text-[20px] font-bold gradient-header uppercase  font-BebasNeue">
           TRANSFORM <br /> WITH TUNA
