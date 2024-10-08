@@ -26,13 +26,13 @@ const Header = () => {
 
   return (
     <header className="bg-no-repeat bg-cover bg-center bg-header-girl px-[37px] py-10 font-Nunito flex justify-between h-screen max-h-[375px]">
-      <h1 className="tiny:text-[14px] smaller:text-[20px] font-bold gradient-header uppercase text-center font-BebasNeue">
+      <h1 className="tiny:text-[14px] text-[20px] font-bold gradient-header uppercase text-center font-BebasNeue">
         TRANSFORM <br /> WITH TUNA
       </h1>
 
       <div className="flex flex-col items-center">
         <img
-          className="w-full h-full cursor-pointer tiny:max-w-[30px] tiny:max-h-[30px] smaller:max-w-[40px] smaller:max-h-[40px]"
+          className="w-full h-full cursor-pointer tiny:max-w-[30px] tiny:max-h-[30px] max-w-[40px] max-h-[40px]"
           src="/icons/burger.svg"
           alt="burger_menu"
           onClick={() => setBurgerValue(!burgerValue)}
