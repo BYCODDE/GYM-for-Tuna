@@ -1,10 +1,11 @@
 import useGetTrainer from "../../hooks/useGetTrainer";
+import StoryAboutSkeleton from "../skeletons/StoryAboutSkeleton";
 
 const StoriesAbout = () => {
   const { data, isLoading, error } = useGetTrainer();
 
   if (isLoading) {
-    return <p>Loading ...</p>;
+    return <StoryAboutSkeleton />;
   }
 
   if (error) {
