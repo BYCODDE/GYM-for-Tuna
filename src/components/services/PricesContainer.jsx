@@ -10,7 +10,7 @@ const PricesContainer = ({ name }) => {
   };
 
   return (
-    <div className="px-[37px]">
+    <div className="px-[37px] 2xl:px-0">
       <div
         className="flex items-center gap-2 justify-between bg-[#222] rounded-[147px] pr-4 pl-6 py-2 cursor-pointer"
         onClick={handleShowPrices}
