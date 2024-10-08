@@ -2,7 +2,7 @@ import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { motion, AnimatePresence } from "framer-motion";
 
-const PricesContainer = () => {
+const PricesContainer = ({ name }) => {
   const [showPrices, setShowPrices] = useState(false);
 
   const handleShowPrices = () => {
@@ -16,7 +16,7 @@ const PricesContainer = () => {
         onClick={handleShowPrices}
       >
         <p className="text-[#C4C4C4] font-Nunito text-sm font-bold leading-normal uppercase">
-          private personal training
+          {name}
         </p>
         <motion.img
           src="/icons/service-arrow.svg"
