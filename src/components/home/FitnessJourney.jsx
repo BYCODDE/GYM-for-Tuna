@@ -1,12 +1,13 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import useGetFitnessJourney from "../../hooks/useGetFitnessJourney";
+import FitnessJourneySkeleton from "../skeletons/FitnessJourneySkeleton";
 
 const FitnessJourney = () => {
   const { data, isLoading, error } = useGetFitnessJourney();
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <FitnessJourneySkeleton />;
   }
   if (error) {
     return <p>something went wrong:{error}</p>;
@@ -18,12 +19,12 @@ const FitnessJourney = () => {
       </h1>
       <div className="">
         <Swiper
-          spaceBetween={30} 
+          spaceBetween={30}
           slidesPerView={1.1}
           breakpoints={{
             456: {
               slidesPerView: 1.8,
-              spaceBetween: 30, 
+              spaceBetween: 30,
             },
             640: {
               slidesPerView: 2.3,
@@ -31,7 +32,7 @@ const FitnessJourney = () => {
             },
             768: {
               slidesPerView: 2.3,
-              spaceBetween: 50, 
+              spaceBetween: 50,
             },
             1024: {
               slidesPerView: 3,
@@ -39,7 +40,7 @@ const FitnessJourney = () => {
             },
             1280: {
               slidesPerView: 4,
-              spaceBetween: 50, 
+              spaceBetween: 50,
             },
           }}
         >
