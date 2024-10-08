@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -11,6 +11,7 @@ const navItems = [
 
 const Header = () => {
   const [burgerValue, setBurgerValue] = useState(false);
+  const location = useLocation();
 
   const menuVariants = {
     open: {
@@ -24,12 +25,22 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-no-repeat bg-cover bg-center bg-header-girl px-[37px] py-10 font-Nunito flex justify-between h-screen max-h-[375px]">
-      <h1 className="md:text-[30px] tiny:text-[14px] text-[20px] font-bold gradient-header uppercase text-center font-BebasNeue">
+    <header
+      className={`relative ${
+        location.pathname !== "/"
+          ? "bg-[#121212] h-full items-center"
+          : "h-screen"
+      } sm:max-h-[500px] bg-no-repeat bg-cover bg-center px-[37px] py-10 font-Nunito flex justify-between smaller:max-h-[300px] small:max-h-[400px] tiny:max-h-[200px]`}
+    >
+      {location.pathname === "/" && (
+        <div className="absolute inset-0 z-0 bg-no-repeat bg-cover bg-center bg-header-girl filter blur-[1px] brightness-75"></div>
+      )}
+
+      <h1 className="md:text-[30px] tiny:text-[14px] text-[20px] font-bold gradient-header uppercase text-center font-BebasNeue z-10">
         TRANSFORM <br /> WITH TUNA
       </h1>
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center z-10">
         <img
           className="w-full h-full cursor-pointer tiny:max-w-[30px] tiny:max-h-[30px] max-w-[40px] max-h-[40px]"
           src="/icons/burger.svg"
@@ -38,7 +49,7 @@ const Header = () => {
         />
 
         <motion.div
-          className="fixed top-0 right-0 w-[100%] h-full bg-[#222222] z-50 p-[20px] flex flex-col items-center"
+          className="fixed top-0 right-0 w-[100%] h-full bg-[#222222] z-50 p-[20px] flex flex-col items-end"
           initial="closed"
           animate={burgerValue ? "open" : "closed"}
           variants={menuVariants}
@@ -55,12 +66,11 @@ const Header = () => {
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
-                  `flex items-center justify-center h-[35px] rounded-[71px]
-                ${
-                  isActive
-                    ? "bg-[#D7FD44] p-2 text-[#000000] font-bold"
-                    : "p-0 font-[400]"
-                } gap-2 flex-1`
+                  `flex items-center justify-center h-[35px] rounded-[71px] ${
+                    isActive
+                      ? "bg-[#D7FD44] p-2 text-[#000000] font-bold"
+                      : "p-0 font-[400]"
+                  } gap-2 flex-1`
                 }
                 onClick={() => setBurgerValue(false)}
               >
