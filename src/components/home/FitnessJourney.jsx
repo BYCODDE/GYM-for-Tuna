@@ -45,7 +45,7 @@ const FitnessJourney = () => {
           }}
         >
           {data.fitnessJourney.map((data) => (
-            <SwiperSlide key={data.id}>
+            <SwiperSlide key={data.id} className="pb-20">
               <div className="border border-[#4D4D4D] rounded-[14px] p-5  flex flex-col justify-end items-center w-fit">
                 <div>
                   <img

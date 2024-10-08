@@ -13,7 +13,7 @@ const AboutTrainer = () => {
   }
 
   return (
-    <section className="pb-10 px-[37px] pt-10 md:max-w-[1281px] md:mx-auto 2xl:px-0">
+    <section className="pb-10 px-[37px] md:max-w-[1281px] md:mx-auto 2xl:px-0">
       <h1 className="text-sm font-bold uppercase leading-normal gradient-main pb-4 md:text-2xl">
         ABOUT ME
       </h1>
