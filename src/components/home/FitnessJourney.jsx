@@ -14,7 +14,7 @@ const FitnessJourney = () => {
   }
   return (
     <section className="px-[37px] md:w-[1281px] md:max-w-[100%] xl:mx-auto 2xl:px-[0]">
-      <h1 className="text-sm font-bold gradient-main uppercase pb-6">
+      <h1 className="text-sm font-bold gradient-main uppercase pb-6 pt-20">
         Your Fitness Journey Starts Here
       </h1>
       <div className="">
