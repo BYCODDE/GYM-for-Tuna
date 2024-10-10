@@ -2,15 +2,17 @@ import { NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Experience from "../components/home/Experience";
-
-const navItems = [
-  { path: "/", label: "HOME" },
-  { path: "/stories", label: "STORIES" },
-  { path: "/services", label: "SERVICES" },
-  { path: "/contact", label: "CONTACT" },
-];
+import HeaderNav from "../components/HeaderNav/HeaderNav.jsx";
+// import navItems from "../components/HeaderNav/navItems.jsx";
 
 const Header = () => {
+  const navItems = [
+    { path: "/", label: "HOME" },
+    { path: "/stories", label: "STORIES" },
+    { path: "/services", label: "SERVICES" },
+    { path: "/contact", label: "CONTACT" },
+  ];
+
   const [burgerValue, setBurgerValue] = useState(false);
   const location = useLocation();
 
@@ -37,12 +39,20 @@ const Header = () => {
         {location.pathname === "/" && (
           <div className="absolute inset-0 z-0 bg-no-repeat bg-cover bg-center bg-header-girl filter blur-[1px] brightness-75"></div>
         )}
+        <div className="flex z-10 gap-[16px]">
+          <h1 className="md:text-[24px] tiny:text-[14px] text-[20px] font-bold gradient-header uppercase text-center font-BebasNeue z-10">
+            TRANSFORM <br /> WITH TUNA
+          </h1>
+          <img
+            className="md:block hidden mt-[15px] h-[50px]"
+            src="/icons/gym-svg.svg"
+            alt="gym-svg"
+          />
+        </div>
 
-        <h1 className="md:text-[30px] tiny:text-[14px] text-[20px] font-bold gradient-header uppercase text-center font-BebasNeue z-10">
-          TRANSFORM <br /> WITH TUNA
-        </h1>
+        <HeaderNav />
 
-        <div className="flex flex-col items-center z-10">
+        <div className="md:hidden flex flex-col items-center z-10">
           <img
             className="w-full h-full cursor-pointer tiny:max-w-[30px] tiny:max-h-[30px] max-w-[40px] max-h-[40px]"
             src="/icons/burger.svg"

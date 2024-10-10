@@ -15,7 +15,7 @@ function Certification() {
     <div className="text-white px-[37px] flex flex-col justify-center">
       <div className="flex gap-[9px] items-center ml-[10px]">
         <img src="/icons/arrow-right.svg" alt="" />
-        <h3 className="tiny:text-[14px] text-[20px] font-bold uppercase font-Nunito  certification-header leading-5">
+        <h3 className="text-[14px]  font-bold uppercase font-Nunito  certification-header leading-5">
           Certification
         </h3>
       </div>

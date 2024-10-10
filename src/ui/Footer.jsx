@@ -15,9 +15,10 @@ const Footer = () => {
           TRANSFORM <br /> WITH TUNA
         </span>
         <img  className=""  src="/icons/gym-svg.svg" alt="gym-svg" />
+        
       </div>
       <div className="mt-[50px]">
-        <nav className=" tiny:text-[14px] smaller:text-[18px] flex flex-col justify-center items-start  gap-2">
+        <nav className=" tiny:text-[12px] smaller:text-[14px] flex flex-col justify-center items-start  gap-2">
           {navItems.map((item) => (
             <NavLink key={item.path} to={item.path} className={`text-`}>
               {item.label}
@@ -25,7 +26,7 @@ const Footer = () => {
           ))}
         </nav>
       </div>
-      <span className="tiny:text-[10px] smaller:text-[16px] font-Nunito  font-normal mt-[50px]  text-center ">
+      <span className="tiny:text-[10px] smaller:text-[12px] font-Nunito  font-normal mt-[50px]  text-center ">
         © 2024 Transform with Tuna. All rights reserved.
       </span>
     </footer>
