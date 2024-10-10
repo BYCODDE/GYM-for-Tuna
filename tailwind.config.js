@@ -15,6 +15,7 @@ export default {
         tiny: { max: "300px" },
         smaller: { min: "301px", max: "410px" },
         small: { min: "410px", max: "640px" },
+        huge: { min: "1980px" },
       },
       colors: {
         "primary-paragraph": "#C4C4C4",

@@ -4,7 +4,7 @@ import useGetFitnessJourney from "../../hooks/useGetFitnessJourney";
 import FitnessJourneySkeleton from "../skeletons/FitnessJourneySkeleton";
 import ErorrDisplay from "../erorr/ErorrDisplay";
 
-const FitnessJourney = () => {
+const FitnessJourney = ({title}) => {
   const { data, isLoading, error } = useGetFitnessJourney();
 
   if (isLoading) {
@@ -16,8 +16,8 @@ const FitnessJourney = () => {
   console.log(data);
   return (
     <section className="px-[37px] md:w-[1281px] md:max-w-[100%] xl:mx-auto 2xl:px-[0]">
-      <h1 className="text-sm font-bold gradient-main uppercase pb-6 pt-20">
-        Your Fitness Journey Starts Here
+      <h1 className="text-sm font-bold gradient-main uppercase pb-6 pt-20 2xl:text-[32px]">
+        {title}
       </h1>
       <div>
         <Swiper

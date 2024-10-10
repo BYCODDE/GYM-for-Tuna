@@ -28,7 +28,7 @@ const StoriesAbout = () => {
             alt="arrow"
             className="hidden xl:block"
           />
-          <h1 className="gradient-main font-Nunito text-sm uppercase font-bold md:text-[24px] xl:text-[32px] 2xl:pt-1">
+          <h1 className="gradient-main font-Nunito text-sm uppercase font-bold md:text-[24px] 2xl:text-[32px] 2xl:pt-1">
             about me
           </h1>
         </div>

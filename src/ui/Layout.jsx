@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
-    <div>
+    <div className="2xl:bg-primary-bg">
       <Header />
       <Outlet />
       <Footer />

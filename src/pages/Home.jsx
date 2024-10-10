@@ -7,7 +7,7 @@ import ContactForm from "../components/home/ContactForm";
 const Home = () => {
   return (
     <main className="bg-primary-bg">
-      <FitnessJourney />
+      <FitnessJourney title={"Your Fitness Journey Starts Here"} />
       <AboutTrainer />
       <SuccessCarousel />
       <ContactForm />

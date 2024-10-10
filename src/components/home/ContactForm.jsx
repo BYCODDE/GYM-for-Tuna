@@ -34,7 +34,7 @@ const ContactForm = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col items-st gap-2 w-[296px] max-w-full font-Nunito text-xs text-form-main md:w-[522px]"
         >
-          <h1 className="text-sm font-bold gradient-main uppercase pb-4">
+          <h1 className="text-sm font-bold gradient-main uppercase pb-4 2xl:text-[32px] 2xl:leading-normal">
             Contact
           </h1>
           <input
