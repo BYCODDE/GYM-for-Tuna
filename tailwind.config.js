@@ -49,6 +49,13 @@ export default {
           "-webkit-text-fill-color": "transparent",
         },
       });
+       addUtilities({
+         ".certification-header": {
+           background: " linear-gradient(180deg, #C4C4C4 0%, #7E7E7E 100%)",
+           "-webkit-background-clip": "text",
+           "-webkit-text-fill-color": "transparent",
+         },
+       });
     },
     function ({ addUtilities }) {
       addUtilities({
@@ -58,5 +65,6 @@ export default {
         },
       });
     },
+
   ],
 };
