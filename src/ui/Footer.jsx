@@ -32,10 +32,14 @@ const Footer = () => {
         © 2024 Transform with Tuna. All rights reserved.
       </span>
       <div className="xl:mt-[50px] xl:flex-row mt-[10px] flex gap-4 w-[24px] h-[24px] flex-col ">
-        <img src="/icons/facebook.svg" alt="facebook" />
-        <img src="/icons/insta.svg" alt="insta" />
-        <img src="/icons/tiktok.svg" alt="tiktok" />
-        <img src="/icons/x.svg" alt="x" />
+        <img
+          className="cursor-pointer"
+          src="/icons/facebook.svg"
+          alt="facebook"
+        />
+        <img className="cursor-pointer" src="/icons/insta.svg" alt="insta" />
+        <img className="cursor-pointer" src="/icons/tiktok.svg" alt="tiktok" />
+        <img className="cursor-pointer" src="/icons/x.svg" alt="x" />
       </div>
     </footer>
   );
