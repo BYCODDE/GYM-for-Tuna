@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import navItems from "../../features/navItems";
 function HeaderNav() {
   return (
-    <div className="md:flex hidden    items-center justify-between w-full h-full max-w-[450px] max-h-[68px] p-[10px] z-10 rounded-[200px] border border-[#4D4D4D] bg-[#222222]">
+    <div className="md:flex hidden items-center justify-between w-full h-full max-w-[450px] max-h-[68px] p-[20px] z-10 rounded-[200px] border border-[#4D4D4D] bg-[#222222]">
       <nav className="gap-[20px] w-full tiny:text-[14px] smaller:text-[20px] text-center flex  text-[#FFF]">
         {navItems.map((item) => (
           <NavLink

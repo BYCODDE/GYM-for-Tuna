@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         Nunito: ["Nunito", "sans-serif"],
         BebasNeue: ["Bebas Neue", "sans-serif"],
+        OpenSans: ["Open Sans", "sans-serif"],
       },
       backgroundColor: {
         "primary-bg": "#121212",
@@ -49,13 +50,21 @@ export default {
           "-webkit-text-fill-color": "transparent",
         },
       });
-       addUtilities({
-         ".certification-header": {
-           background: " linear-gradient(180deg, #C4C4C4 0%, #7E7E7E 100%)",
-           "-webkit-background-clip": "text",
-           "-webkit-text-fill-color": "transparent",
-         },
-       });
+      addUtilities({
+        ".certification-header": {
+          background: " linear-gradient(180deg, #C4C4C4 0%, #7E7E7E 100%)",
+          "-webkit-background-clip": "text",
+          "-webkit-text-fill-color": "transparent",
+        },
+      });
+      addUtilities({
+        ".certification-h2": {
+          background:
+            " linear-gradient(180deg, #FFF 0%, rgba(153, 153, 153, 0.50) 100%)",
+          "-webkit-background-clip": "text",
+          "-webkit-text-fill-color": "transparent",
+        },
+      });
     },
     function ({ addUtilities }) {
       addUtilities({
@@ -65,6 +74,5 @@ export default {
         },
       });
     },
-
   ],
 };

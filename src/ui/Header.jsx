@@ -27,12 +27,12 @@ const Header = () => {
           location.pathname !== "/"
             ? "bg-[#121212] h-full items-center"
             : "h-screen"
-        } sm:max-h-[500px] bg-no-repeat bg-cover bg-center px-[37px] py-10 font-Nunito flex justify-between smaller:max-h-[300px] small:max-h-[400px] tiny:max-h-[200px]`}
+        } md:max-h-[600px]  sm:max-h-[500px] bg-no-repeat bg-cover bg-center px-[37px] py-10 font-Nunito flex justify-between smaller:max-h-[300px] small:max-h-[400px] tiny:max-h-[200px]`}
       >
         {location.pathname === "/" && (
           <div className="absolute inset-0 z-0 bg-no-repeat bg-cover bg-center bg-header-girl filter blur-[1px] brightness-75"></div>
         )}
-        <div className="flex z-10 gap-[16px]">
+        <div className="flex z-10 gap-[16px] relative">
           <h1 className="md:text-[24px] tiny:text-[14px] text-[20px] font-bold gradient-header uppercase text-center font-BebasNeue z-10">
             TRANSFORM <br /> WITH TUNA
           </h1>
@@ -42,6 +42,11 @@ const Header = () => {
             alt="gym-svg"
           />
         </div>
+        {location.pathname === "/" && (
+          <h2 className="md:block hidden absolute mt-[150px] w-[551px] md:text-[36px] font-bold inline-[6.84px] z-10 uppercase certification-h2 font-OpenSans">
+            Stronger every day, <br /> inside and out
+          </h2>
+        )}
 
         <HeaderNav />
 
