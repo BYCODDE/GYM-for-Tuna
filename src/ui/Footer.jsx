@@ -9,7 +9,7 @@ const navItems = [
 ];
 const Footer = () => {
   return (
-    <footer className="md:gap-[50px]  md:justify-between md:flex-row bg-[#242424] p-[40px] flex flex-col justify-center  font-Nunito text-[#C4C4C4] h-full">
+    <footer className="xl:justify-evenly md:gap-[50px]  md:justify-between md:flex-row bg-[#242424] p-[40px] flex flex-col justify-center  font-Nunito text-[#C4C4C4] h-full">
       <div className="md:mt-[50px] flex items-center gap-4">
         <div className="flex flex-col  md:text-[24px] tiny:text-[14px] text-[20px] font-bold gradient-header uppercase text-center font-BebasNeue ">
           <span>TRANSFORM</span> <span>WITH TUNA</span>
@@ -17,21 +17,21 @@ const Footer = () => {
         <img className="" src="/icons/gym-svg.svg" alt="gym-svg" />
       </div>
       <div className="md:flex md:flex-col md:justify-center md:items-center mt-[50px]">
-        <nav className="md:gap-[21px] md:flex-row tiny:text-[12px] smaller:text-[14px] flex flex-col justify-center items-start  gap-2">
+        <nav className="xl:text-[20px] xl:gap-[41px] md:gap-[22px] md:flex-row tiny:text-[12px] smaller:text-[14px] flex flex-col justify-center items-start  gap-2">
           {navItems.map((item) => (
             <NavLink key={item.path} to={item.path} className={`text-`}>
               {item.label}
             </NavLink>
           ))}
         </nav>
-        <span className=" tiny:text-[10px] smaller:text-[12px] font-Nunito  font-normal mt-[50px]  text-center ">
+        <span className="xl:text-[20px] tiny:text-[10px] smaller:text-[12px] font-Nunito  font-normal mt-[50px]  text-center ">
           © 2024 Transform with Tuna. All rights reserved.
         </span>
       </div>
       <span className="md:hidden tiny:text-[10px] smaller:text-[12px] font-Nunito  font-normal mt-[50px]  text-center ">
         © 2024 Transform with Tuna. All rights reserved.
       </span>
-      <div className="mt-[10px] flex gap-4 w-[24px] h-[24px] flex-col ">
+      <div className="xl:mt-[50px] xl:flex-row mt-[10px] flex gap-4 w-[24px] h-[24px] flex-col ">
         <img src="/icons/facebook.svg" alt="facebook" />
         <img src="/icons/insta.svg" alt="insta" />
         <img src="/icons/tiktok.svg" alt="tiktok" />
