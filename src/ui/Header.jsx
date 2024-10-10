@@ -33,8 +33,8 @@ const Header = () => {
           <div className="absolute inset-0 z-0 bg-no-repeat bg-cover bg-center bg-header-girl filter blur-[1px] brightness-75"></div>
         )}
         <div className="flex z-10 gap-[16px] relative">
-          <h1 className="md:text-[24px] tiny:text-[14px] text-[20px] font-bold gradient-header uppercase text-center font-BebasNeue z-10">
-            TRANSFORM <br /> WITH TUNA
+          <h1 className="flex flex-col  md:text-[24px] tiny:text-[14px] text-[20px] font-bold gradient-header uppercase text-center font-BebasNeue z-10">
+            <span>TRANSFORM</span> <span>WITH TUNA</span>
           </h1>
           <img
             className="md:block hidden mt-[15px] h-[50px]"
@@ -43,8 +43,9 @@ const Header = () => {
           />
         </div>
         {location.pathname === "/" && (
-          <h2 className="md:block hidden absolute mt-[150px] w-[551px] md:text-[36px] font-bold inline-[6.84px] z-10 uppercase certification-h2 font-OpenSans">
-            Stronger every day, <br /> inside and out
+          <h2 className=" md:flex-col md:flex hidden absolute mt-[150px] w-[551px] md:text-[36px] font-bold tracking-[2.84px] z-10 uppercase certification-h2 font-OpenSans ">
+            <span>Stronger every day,</span>
+            <span>inside and out</span>
           </h2>
         )}
 
