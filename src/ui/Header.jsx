@@ -27,8 +27,9 @@ const Header = () => {
           location.pathname !== "/"
             ? "bg-[#121212] h-full items-center"
             : "h-screen"
-        } md:max-h-[600px]  sm:max-h-[500px] bg-no-repeat bg-cover bg-center px-[37px] py-10 font-Nunito flex justify-between 
-        smaller:max-h-[300px] small:max-h-[400px] tiny:max-h-[200px] huge:max-w-[2150px] huge:mx-auto`}
+        }  md:max-h-[600px]  sm:max-h-[500px] bg-no-repeat bg-cover bg-center px-[37px] py-10 
+        font-Nunito flex justify-between smaller:max-h-[300px] small:max-h-[400px] 
+        tiny:max-h-[200px] huge:max-w-[2150px] huge:mx-auto`}
       >
         {location.pathname === "/" && (
           <div className="absolute inset-0 z-0 bg-no-repeat bg-cover bg-center bg-header-girl filter blur-[1px] brightness-75"></div>
@@ -44,7 +45,7 @@ const Header = () => {
           />
         </div>
         {location.pathname === "/" && (
-          <h2 className=" md:flex-col md:flex hidden absolute mt-[150px] w-[551px] md:text-[36px] font-bold tracking-[2.84px] z-10 uppercase certification-h2 font-OpenSans ">
+          <h2 className="xl:w-[719px] xl:text-[48px] md:flex-col md:flex hidden absolute mt-[150px] w-[551px] md:text-[36px] font-[800] tracking-[2.84px] z-10 uppercase certification-h2 font-OpenSans ">
             <span>Stronger every day,</span>
             <span>inside and out</span>
           </h2>
