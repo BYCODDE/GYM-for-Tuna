@@ -6,17 +6,17 @@ function Experience() {
         <span className="md:flex md:text-[32px] font-bold text-[14px]">
           200 +
         </span>{" "}
-        <span>Happy Customers</span>
+        <span className="font-[500]">Happy Customers</span>
       </h3>
       <h3 className="flex flex-col">
         <span className="md:flex md:text-[32px] font-bold text-[14px]">3+</span>
-        <span> Years Of Training Experience</span>
+        <span className="font-[500]"> Years Of Training Experience</span>
       </h3>
       <h3 className="flex flex-col">
         <span className="md:flex md:text-[32px] font-bold text-[14px]">
           98 %
         </span>{" "}
-        <span>Customer Satisfaction</span>
+        <span className="font-[500]">Customer Satisfaction</span>
       </h3>
       <img className="md:block  hidden" src="/icons/Star.svg" alt="star" />
     </div>
