@@ -13,7 +13,6 @@ const AdminLogin = ({ onLogin }) => {
     formState: { errors },
   } = useForm();
 
-
   const secretKey = import.meta.env.VITE_ADMIN_KEY;
 
   const onSubmit = (data) => {
@@ -37,7 +36,7 @@ const AdminLogin = ({ onLogin }) => {
   };
 
   return (
-    <section className="h-screen flex justify-center items-center">
+    <section className="h-screen flex justify-center items-center bg-primary-bg">
       <div className="text-white font-Nunito border border-[#ccc] p-10 rounded-lg">
         <h1 className="gradient-main text-lg pb-8">Admin Panel</h1>
         <form
