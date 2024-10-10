@@ -3,16 +3,9 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Experience from "../components/home/Experience";
 import HeaderNav from "../components/HeaderNav/HeaderNav.jsx";
-// import navItems from "../components/HeaderNav/navItems.jsx";
+import navItems from "../features/navItems.js";
 
 const Header = () => {
-  const navItems = [
-    { path: "/", label: "HOME" },
-    { path: "/stories", label: "STORIES" },
-    { path: "/services", label: "SERVICES" },
-    { path: "/contact", label: "CONTACT" },
-  ];
-
   const [burgerValue, setBurgerValue] = useState(false);
   const location = useLocation();
 
