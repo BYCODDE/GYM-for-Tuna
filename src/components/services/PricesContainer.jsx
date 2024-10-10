@@ -8,7 +8,6 @@ const PricesContainer = ({ name }) => {
   const handleShowPrices = () => {
     setShowPrices((value) => !value);
   };
-
   return (
     <div className="px-[37px] 2xl:px-0">
       <div
@@ -36,7 +35,7 @@ const PricesContainer = ({ name }) => {
             transition={{ duration: 0.3 }}
           >
             <motion.ul
-              className="px-7 py-3"
+              className="px-7 py-3 flex items-center justify-between"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

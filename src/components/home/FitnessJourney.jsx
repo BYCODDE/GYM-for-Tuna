@@ -13,12 +13,13 @@ const FitnessJourney = () => {
   if (error) {
     return <ErorrDisplay error={error.message} />;
   }
+  console.log(data);
   return (
     <section className="px-[37px] md:w-[1281px] md:max-w-[100%] xl:mx-auto 2xl:px-[0]">
       <h1 className="text-sm font-bold gradient-main uppercase pb-6 pt-20">
         Your Fitness Journey Starts Here
       </h1>
-      <div className="">
+      <div>
         <Swiper
           spaceBetween={30}
           slidesPerView={1.1}
@@ -47,17 +48,25 @@ const FitnessJourney = () => {
         >
           {data.fitnessJourney.map((data) => (
             <SwiperSlide key={data.id} className="pb-20">
-              <div className="border border-[#4D4D4D] rounded-[14px] p-5  flex flex-col justify-end items-center w-fit">
-                <div>
+              <div className="group border border-[#4D4D4D] rounded-[14px] p-5 flex flex-col justify-between items-center
+               w-[255px] h-[350px] transition-all duration-300">
+                <div className="w-full">
                   <img
                     src={data.image}
                     alt="carousel-items"
-                    className="w-[255px] h-[225px] object-cover rounded-[7px] object-center md:min-w-[265px] md:h-[244px]"
+                    className="w-full h-[225px] object-cover rounded-[7px] object-center transition-all 
+                    duration-300 group-hover:h-[140px] group-hover:origin-top"
                   />
-
-                  <h2 className="font-nunito text-[#fff]  text-sm font-bold pt-4 flex">
+                </div>
+                <div className="text-center">
+                  <h2 className="font-nunito text-[#fff] text-sm font-bold pt-4 flex">
                     {data.name}
                   </h2>
+                  <div className="text-left overflow-y-clip hidden group-hover:block transition-opacity duration-300 pt-2">
+                    <p className="font-Nunito text-sm text-white">
+                      {data.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             </SwiperSlide>
