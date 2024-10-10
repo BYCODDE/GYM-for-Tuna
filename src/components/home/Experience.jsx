@@ -1,17 +1,24 @@
 function Experience() {
   return (
-    <div className="tiny:gap-[10px]   bg-[#D7FD44] py-[10px] px-[40px] text-[#000000] text-[12px] flex justify-between items-center text-center gap-[15px]">
-      <h3>
-        <span className="font-bold text-[14px]">200 +</span> Happy  Customers
+    <div className="md:text-[14px]    tiny:gap-[10px]   bg-[#D7FD44] py-[10px] px-[40px] text-[#000000] text-[10px] flex justify-between items-center text-center gap-[15px]">
+      <img className="md:block  hidden" src="/icons/Star.svg" alt="star" />
+      <h3 className="flex flex-col">
+        <span className="md:flex md:text-[32px] font-bold text-[14px]">
+          200 +
+        </span>{" "}
+        <span>Happy Customers</span>
       </h3>
-      <h3>
-        <span className="font-bold text-[14px]">3+</span> Years Of Training
-        Experience
+      <h3 className="flex flex-col">
+        <span className="md:flex md:text-[32px] font-bold text-[14px]">3+</span>
+        <span> Years Of Training Experience</span>
       </h3>
-      <h3>
-        <span className="font-bold text-[14px]">98 %</span> Customer
-        Satisfaction
+      <h3 className="flex flex-col">
+        <span className="md:flex md:text-[32px] font-bold text-[14px]">
+          98 %
+        </span>{" "}
+        <span>Customer Satisfaction</span>
       </h3>
+      <img className="md:block  hidden" src="/icons/Star.svg" alt="star" />
     </div>
   );
 }
