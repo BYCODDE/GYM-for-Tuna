@@ -5,6 +5,7 @@ import Service from "./pages/Services";
 import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
 import Layout from "./ui/Layout";
+import Admin from "./pages/Admin";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/stories" element={<Stories />} />
         <Route path="/services" element={<Service />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/admin" element={<Admin />} />
       </Route>
       <Route path="*" element={<NoPage />} />
     </Routes>
