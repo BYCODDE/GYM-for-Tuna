@@ -31,15 +31,35 @@ const Footer = () => {
       <span className="md:hidden tiny:text-[10px] smaller:text-[12px] font-Nunito  font-normal mt-[50px]  text-center ">
         © 2024 Transform with Tuna. All rights reserved.
       </span>
-      <div className="xl:mt-[50px] xl:flex-row mt-[10px] md:flex gap-4 w-[24px] h-[24px] flex-col hidden ">
-        <img
-          className="cursor-pointer"
-          src="/icons/facebook.svg"
-          alt="facebook"
-        />
-        <img className="cursor-pointer" src="/icons/insta.svg" alt="insta" />
-        <img className="cursor-pointer" src="/icons/tiktok.svg" alt="tiktok" />
-        <img className="cursor-pointer" src="/icons/x.svg" alt="x" />
+      <div className="xl:mt-[50px] xl:flex-row mt-[10px] md:flex gap-4  flex-col hidden ">
+        <a
+          href="https://facebook.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            className="cursor-pointer"
+            src="/icons/facebook.svg"
+            alt="facebook"
+          />
+        </a>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img className="cursor-pointer" src="/icons/insta.svg" alt="insta" />
+        </a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
+          <img
+            className="cursor-pointer"
+            src="/icons/tiktok.svg"
+            alt="tiktok"
+          />
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <img className="cursor-pointer" src="/icons/x.svg" alt="x" />
+        </a>
       </div>
     </footer>
   );
