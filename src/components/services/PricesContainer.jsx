@@ -35,7 +35,7 @@ const PricesContainer = ({ name, fivePrice,TenPrice,OnePrice }) => {
             transition={{ duration: 0.3 }}
           >
             <motion.ul
-              className="px-7 py-3 flex items-center justify-between"
+              className="px-7 py-3 flex items-start justify-between flex-col sm:flex-row sm:items-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
