@@ -1,17 +1,18 @@
 import useGetCertification from "../../hooks/useGetCertification";
 import Arrows from "../../ui/Arrows";
+import ErorrDisplay from "../erorr/ErorrDisplay";
+import CertificationSkeleton from "../skeletons/CertificationSkeleton";
 
 function Certification() {
   const { data, isLoading, error } = useGetCertification();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <CertificationSkeleton />;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <ErorrDisplay error={error.message} />;
   }
-
   return (
     <div className=" mt-[10px] pb-10  md:max-w-[1281px] md:mx-auto 2xl:px-0   text-white px-[37px] flex flex-col justify-center">
       <div className="md:gap-[15px]  flex gap-[9px] items-center ml-[10px]">
