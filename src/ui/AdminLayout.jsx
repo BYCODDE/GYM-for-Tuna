@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import AdminLogin from "../components/admin/AdminLogin";
 import CryptoJS from "crypto-js";
-import {Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import AdminHeader from "../components/admin/AdminHeader";
+import AdminNav from "../components/admin/AdminNav";
 const AdminLayout = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
@@ -32,7 +34,8 @@ const AdminLayout = () => {
     <section className="bg-primary-bg">
       {isLoggedIn ? (
         <div>
-            <h2 className="text-red-500">hello im admin page</h2>
+          <AdminHeader />
+          <AdminNav />
           <Outlet />
         </div>
       ) : (
