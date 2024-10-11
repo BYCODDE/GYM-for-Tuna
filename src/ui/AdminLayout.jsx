@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import AdminLogin from "../components/admin/AdminLogin";
 import CryptoJS from "crypto-js";
-const Admin = () => {
+import {Outlet } from "react-router-dom";
+const AdminLayout = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     const encryptedCredentials = localStorage.getItem("adminCredentials");
@@ -31,7 +32,8 @@ const Admin = () => {
     <section className="bg-primary-bg">
       {isLoggedIn ? (
         <div>
-          <h1 className="text-white">Welcome to the Admin Page</h1>
+            <h2 className="text-red-500">hello im admin page</h2>
+          <Outlet />
         </div>
       ) : (
         <AdminLogin onLogin={handleLogin} />
@@ -40,4 +42,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default AdminLayout;
