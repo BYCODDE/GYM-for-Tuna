@@ -7,9 +7,9 @@ import NoPage from "./pages/NoPage";
 import Layout from "./ui/Layout";
 import AdminLayout from "./ui/AdminLayout";
 import Dashboard from "./pages/admin-pages/Dashboard";
-import AdminAbout from "./pages/admin-pages/AdminAbout";
-import AdminPrices from "./pages/admin-pages/AdminPrices";
 import AdminServices from "./pages/admin-pages/AdminServices";
+import AboutMe from "./pages/admin-pages/AboutMe";
+import AddBlogs from "./pages/admin-pages/AddBlogs";
 
 const App = () => {
   return (
@@ -22,8 +22,8 @@ const App = () => {
       </Route>
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="admin-about" element={<AdminAbout />} />
-        <Route path="admin-prices" element={<AdminPrices />} />
+        <Route path="admin-about" element={<AboutMe />} />
+        <Route path="admin-blogs" element={<AddBlogs />} />
         <Route path="admin-services" element={<AdminServices />} />
       </Route>
       <Route path="*" element={<NoPage />} />
