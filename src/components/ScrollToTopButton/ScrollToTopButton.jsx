@@ -6,10 +6,9 @@ function ScrollToTopButton() {
   // Function to handle scrolling
   const handleScroll = () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    setIsVisible(scrollTop > 300); // Show button after scrolling 300px
+    setIsVisible(scrollTop > 300);
   };
 
-  // Scroll to top function
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -17,7 +16,6 @@ function ScrollToTopButton() {
     });
   };
 
-  // Add/remove scroll event listener
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
