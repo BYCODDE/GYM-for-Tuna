@@ -9,7 +9,7 @@ const navItems = [
 ];
 const Footer = () => {
   return (
-    <footer className="xl:justify-evenly md:gap-[50px]  md:justify-between md:flex-row bg-[#242424] p-[40px] flex flex-col justify-center  font-Nunito text-[#C4C4C4] h-full">
+    <footer className="xl:justify-around md:gap-[50px]  md:justify-between md:flex-row bg-[#242424] p-[40px] flex flex-col justify-center  font-Nunito text-[#C4C4C4] h-full">
       <div className="md:mt-[50px] flex items-center gap-4">
         <div className="flex flex-col  md:text-[24px] tiny:text-[14px] text-[20px] font-bold gradient-header uppercase text-center font-BebasNeue ">
           <span>TRANSFORM</span> <span>WITH TUNA</span>
@@ -24,14 +24,14 @@ const Footer = () => {
             </NavLink>
           ))}
         </nav>
-        <span className="xl:text-[20px] tiny:text-[10px] smaller:text-[12px] font-Nunito  font-normal mt-[50px]  text-center ">
+        <span className=" xl:block  xl:text-[20px] tiny:text-[10px] smaller:text-[12px] font-Nunito  font-normal mt-[50px]  text-center hidden ">
           © 2024 Transform with Tuna. All rights reserved.
         </span>
       </div>
       <span className="md:hidden tiny:text-[10px] smaller:text-[12px] font-Nunito  font-normal mt-[50px]  text-center ">
         © 2024 Transform with Tuna. All rights reserved.
       </span>
-      <div className="xl:mt-[50px] xl:flex-row mt-[10px] flex gap-4 w-[24px] h-[24px] flex-col ">
+      <div className="xl:mt-[50px] xl:flex-row mt-[10px] xl:flex gap-4 w-[24px] h-[24px] flex-col hidden ">
         <img
           className="cursor-pointer"
           src="/icons/facebook.svg"
