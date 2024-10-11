@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import emailjs from "emailjs-com";
+import { toast } from "react-hot-toast";
 
 const ContactForm = () => {
   const {
@@ -19,11 +20,11 @@ const ContactForm = () => {
       .then((response) => {
         console.log("SUCCESS!", response.status, response.text);
         reset();
-        alert("Message sent successfully!");
+        toast.success("Message sent successfully!");
       })
       .catch((err) => {
         console.error("Failed to send email. Error: ", err);
-        alert("Message failed to send.");
+        toast.error("Message failed to send.");
       });
   };
 
