@@ -27,8 +27,8 @@ const Header = () => {
           location.pathname !== "/"
             ? "bg-[#121212] h-full items-center"
             : "h-screen"
-        }  md:max-h-[600px]  sm:max-h-[500px] bg-no-repeat bg-cover bg-center px-[37px] py-10 
-        font-Nunito flex justify-between smaller:max-h-[300px] small:max-h-[400px] 
+        } xl:justify-around  md:max-h-[600px]  sm:max-h-[500px] bg-no-repeat bg-cover bg-center px-[37px] py-10
+        font-Nunito flex justify-between smaller:max-h-[300px] small:max-h-[400px]
         tiny:max-h-[200px] huge:max-w-[2150px] huge:mx-auto`}
       >
         {location.pathname === "/" && (
