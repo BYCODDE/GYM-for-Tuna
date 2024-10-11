@@ -1,4 +1,5 @@
 import SuccessCarousel from "../components/home/SuccessCarousel";
+import ScrollToTopButton from "../components/ScrollToTopButton/ScrollToTopButton";
 import Certification from "../components/stories/Certification";
 import StoriesAbout from "../components/stories/StoriesAbout";
 import StoriesBanner from "../components/stories/StoriesBanner";
@@ -10,6 +11,7 @@ const Stories = () => {
       <StoriesAbout />
       <Certification />
       <SuccessCarousel />
+      <ScrollToTopButton />
     </section>
   );
 };
