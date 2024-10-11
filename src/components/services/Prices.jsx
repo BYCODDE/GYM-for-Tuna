@@ -3,7 +3,6 @@ import useGetServices from "../../hooks/useGetServices";
 import PricesSkeleton from "../skeletons/PricesSkeleton";
 import ErorrDisplay from "../erorr/ErorrDisplay";
 const Prices = () => {
-
   const { data, isLoading, error } = useGetServices();
 
   if (isLoading) {
@@ -20,7 +19,12 @@ const Prices = () => {
       </h1>
       {data.services.map((serv) => (
         <div key={serv.id} className="">
-          <PricesContainer name={serv.name} />
+          <PricesContainer
+            name={serv.name}
+            OnePrice={serv.sessions_single}
+            TenPrice={serv.sessions_ten}
+            fivePrice={serv.sessions_five}
+          />
         </div>
       ))}
     </div>

@@ -4,7 +4,7 @@ import useGetFitnessJourney from "../../hooks/useGetFitnessJourney";
 import FitnessJourneySkeleton from "../skeletons/FitnessJourneySkeleton";
 import ErorrDisplay from "../erorr/ErorrDisplay";
 
-const FitnessJourney = ({title}) => {
+const FitnessJourney = ({ title }) => {
   const { data, isLoading, error } = useGetFitnessJourney();
 
   if (isLoading) {
@@ -13,7 +13,6 @@ const FitnessJourney = ({title}) => {
   if (error) {
     return <ErorrDisplay error={error.message} />;
   }
-  console.log(data);
   return (
     <section className="px-[37px] md:w-[1281px] md:max-w-[100%] xl:mx-auto 2xl:px-[0]">
       <h1 className="text-sm font-bold gradient-main uppercase pb-6 pt-20 2xl:text-[32px]">
@@ -48,23 +47,25 @@ const FitnessJourney = ({title}) => {
         >
           {data.fitnessJourney.map((data) => (
             <SwiperSlide key={data.id} className="pb-20">
-              <div className="group border border-[#4D4D4D] rounded-[14px] p-5 flex flex-col justify-between items-center
-               w-[255px] h-[350px] transition-all duration-300">
+              <div
+                className="group border border-[#4D4D4D] rounded-[14px] p-5 flex flex-col items-center
+           w-[255px] h-[300px] transition-all duration-300 overflow-hidden"
+              >
                 <div className="w-full">
                   <img
                     src={data.image}
                     alt="carousel-items"
                     className="w-full h-[225px] object-cover rounded-[7px] object-center transition-all 
-                    duration-300 group-hover:h-[140px] group-hover:origin-top"
+               duration-300 group-hover:h-[140px] group-hover:origin-top"
                   />
                 </div>
                 <div className="text-center">
-                  <h2 className="font-nunito text-[#fff] text-sm font-bold pt-4 flex">
+                  <h2 className="font-nunito text-[#fff] text-sm font-bold pt-3 flex">
                     {data.name}
                   </h2>
-                  <div className="text-left overflow-y-clip hidden group-hover:block transition-opacity duration-300 pt-2">
+                  <div className="text-left max-h-0 overflow-hidden group-hover:max-h-[100px] transition-[max-height] duration-300 pt-2">
                     <p className="font-Nunito text-sm text-white">
-                      {data.description}
+                      {data.description.slice(0, 100) + "..."}
                     </p>
                   </div>
                 </div>

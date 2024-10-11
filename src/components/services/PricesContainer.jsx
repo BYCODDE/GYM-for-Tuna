@@ -2,7 +2,7 @@ import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { motion, AnimatePresence } from "framer-motion";
 
-const PricesContainer = ({ name }) => {
+const PricesContainer = ({ name, fivePrice,TenPrice,OnePrice }) => {
   const [showPrices, setShowPrices] = useState(false);
 
   const handleShowPrices = () => {
@@ -43,15 +43,15 @@ const PricesContainer = ({ name }) => {
             >
               <li className="flex items-center gap-3 text-white font-Nunito text-sm">
                 <RxCross2 className="text-[#D7FD44] font-bold text-[30px]" />
-                <p>5 SESSIONS: 300$</p>
+                <p>5 SESSIONS: ${fivePrice}</p>
               </li>
               <li className="flex items-center gap-3 text-white font-Nunito text-sm">
                 <RxCross2 className="text-[#D7FD44] font-bold text-[30px]" />
-                <p>5 SESSIONS: 300$</p>
+                <p>10 SESSIONS: ${TenPrice}</p>
               </li>
               <li className="flex items-center gap-3 text-white font-Nunito text-sm">
                 <RxCross2 className="text-[#D7FD44] font-bold text-[30px]" />
-                <p>5 SESSIONS: 300$</p>
+                <p>SINGLE SESSIONS: ${OnePrice}</p>
               </li>
             </motion.ul>
           </motion.div>
