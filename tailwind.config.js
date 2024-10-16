@@ -1,3 +1,5 @@
+import scrollbar from "tailwind-scrollbar";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{svelte,js,ts,jsx,tsx}"],
@@ -20,13 +22,19 @@ export default {
       colors: {
         "primary-paragraph": "#C4C4C4",
         "form-main": "rgba(196, 196, 196, 0.60)",
+        scrollbarThumb: "#D7FD44",
+        scrollbarTrack: "rgba(255, 255, 255, 0.2)",
       },
       backgroundImage: {
         "header-girl": "url('/home/mobile/header-img-girl.png')",
       },
+      spacing: {
+        "scrollbar-width": "8px",
+      },
     },
   },
   plugins: [
+    scrollbar(),
     function ({ addUtilities }) {
       addUtilities({
         ".gradient-main": {
