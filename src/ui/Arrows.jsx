@@ -1,21 +1,29 @@
+import { useState, useEffect } from "react";
+
 function Arrows() {
+  const [width, setWidth] = useState(1920);
+  let url = null;
+  useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  if (width >= 768 && width <= 1024) {
+    url = "/icons/three-arrow-right.svg";
+  } else if (width > 1024) {
+    url = "/icons/four-arrow-right.svg";
+  } else {
+    url = "/icons/arrow-right.svg";
+  }
+
   return (
     <>
-      <img
-        className="md:hidden"
-        src="/icons/arrow-right.svg"
-        alt="arrow-right"
-      />
-      <img
-        className="hidden md:block xl:hidden"
-        src="/icons/three-arrow-right.svg"
-        alt="three-arrow-right"
-      />
-      <img
-        className="hidden xl:block"
-        src="/icons/four-arrow-right.svg"
-        alt="four-arrow-right"
-      />
+      <img src={url} alt="arrows" />
     </>
   );
 }

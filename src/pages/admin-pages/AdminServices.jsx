@@ -1,9 +1,5 @@
-import React from 'react'
-
 const AdminServices = () => {
-  return (
-    <div>AdminServices</div>
-  )
-}
+  return <div>AdminServices</div>;
+};
 
-export default AdminServices
+export default AdminServices;
