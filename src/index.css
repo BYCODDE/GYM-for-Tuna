@@ -3,3 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.swiper-scrollbar-drag {
+  background: #d7fd44;
+}
