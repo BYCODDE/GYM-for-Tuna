@@ -1,4 +1,5 @@
 import useGetTrainer from "../../hooks/useGetTrainer";
+import ArrowsRight from "../../ui/ArrowsRight";
 import ErorrDisplay from "../erorr/ErorrDisplay";
 import StoryAboutSkeleton from "../skeletons/StoryAboutSkeleton";
 
@@ -17,17 +18,7 @@ const StoriesAbout = () => {
     <section className="flex flex-col md:max-w-[1280px] md:mx-auto">
       <div className="px-[37px] 2xl:px-0">
         <div className="flex items-center gap-4 pb-6">
-          <img src="/icons/arrow-right.svg" alt="arrow" className="lg:hidden" />
-          <img
-            src="/icons/three-arrow-right.svg"
-            alt="arrow"
-            className="hidden lg:block xl:hidden"
-          />
-          <img
-            src="/icons/four-arrow-right.svg"
-            alt="arrow"
-            className="hidden xl:block"
-          />
+          <ArrowsRight />
           <h1 className="gradient-main font-Nunito text-sm uppercase font-bold md:text-[24px] 2xl:text-[32px] 2xl:pt-1">
             about me
           </h1>
@@ -53,7 +44,7 @@ const StoriesAbout = () => {
                   className="hidden sm:block"
                 />
                 <h2
-                  className="absolute inset-0 flex items-center 
+                  className="absolute inset-0 flex items-center
                 justify-center text-[#000] text-2xl font-bold tracking-wider md:text-[40px]"
                 >
                   3+
