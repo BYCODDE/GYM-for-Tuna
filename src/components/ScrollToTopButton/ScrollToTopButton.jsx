@@ -25,7 +25,7 @@ function ScrollToTopButton() {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="lg:flex hidden w-[50px] h-[50px]   justify-center items-center rounded-[50%] fixed bottom-20 right-3 p-5 bg-[#D7FD44] text-black  shadow-md text-[30px] font-bold"
+          className="md:flex hidden w-[50px] h-[50px]   justify-center items-center rounded-[50%] fixed bottom-20 right-3 p-5 bg-[#D7FD44] text-black  shadow-md text-[30px] font-bold"
         >
           ↑
         </button>
