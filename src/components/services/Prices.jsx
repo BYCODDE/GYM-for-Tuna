@@ -5,6 +5,8 @@ import ErorrDisplay from "../erorr/ErorrDisplay";
 const Prices = () => {
   const { data, isLoading, error } = useGetServices();
 
+
+
   if (isLoading) {
     return <PricesSkeleton />;
   }
