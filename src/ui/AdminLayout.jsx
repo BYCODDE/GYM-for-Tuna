@@ -3,7 +3,7 @@ import AdminLogin from "../components/admin/AdminLogin";
 import CryptoJS from "crypto-js";
 import { Outlet } from "react-router-dom";
 import AdminHeader from "../components/admin/AdminHeader";
-import AdminNav from "../components/admin/AdminNav";
+// import AdminNav from "../components/admin/AdminNav";
 const AdminLayout = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
@@ -35,7 +35,7 @@ const AdminLayout = () => {
       {isLoggedIn ? (
         <div>
           <AdminHeader />
-          <AdminNav />
+          {/* <AdminNav /> */}
           <Outlet />
         </div>
       ) : (

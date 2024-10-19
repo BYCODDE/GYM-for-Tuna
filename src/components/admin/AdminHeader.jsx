@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import AdminBurger from "./AdminBurger";
+// import Header from "../../ui/Header";
 
 const AdminHeader = () => {
   return (
@@ -8,11 +10,13 @@ const AdminHeader = () => {
           <img src="/admin/logo.svg" alt="logo" className="max-w-[78px]" />
         </Link>
         <div className="flex items-center gap-[18px]">
-          <img
+          {/* <img
             src="/admin/search.svg"
             alt="search"
             className="max-w-6 h-6 cursor-pointer"
-          />
+          /> */}
+          {/* <Header /> */}
+          <AdminBurger />
           <img
             src="/admin/notifs.svg"
             alt="search"
