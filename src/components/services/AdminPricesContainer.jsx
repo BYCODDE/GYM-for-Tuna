@@ -38,9 +38,23 @@ const AdminPricesContainer = ({ name, fivePrice, TenPrice, OnePrice }) => {
             transition={{ duration: 0.3 }}
           >
             <div className="flex flex-col gap-3 p-4">
-              <div className="flex  items-center gap-[10px]">
-                <div className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></div>
-                <span className="font-bold text-[20px]">Price</span>
+              <div className="flex  items-center gap-[10px] justify-between">
+                <div className="flex items-center gap-[10px]">
+                  <div className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></div>
+                  <span className="font-bold text-[20px]">Price</span>
+                </div>
+                <div className="flex gap-[10px] items-center">
+                  <motion.img
+                    src="/icons/adminTrashcan_svg.svg"
+                    alt="edit_svg"
+                    className="cursor-pointer w-[30px] h-[30px] hover:scale-110 transition-transform"
+                  />
+                  <motion.img
+                    src="/icons/adminEdit_svg.svg"
+                    alt="edit_svg"
+                    className="cursor-pointer w-[30px] h-[30px] hover:scale-110 transition-transform"
+                  />
+                </div>
               </div>
 
               <div className="text-[#ABABAB] text-[14px]">
@@ -61,7 +75,8 @@ const AdminPricesContainer = ({ name, fivePrice, TenPrice, OnePrice }) => {
                   </li>
                   <li>
                     <span className="font-bold text-[#fff]">10-Session:</span>{" "}
-                    Package 10 one-on-one training sessions  ${TenPrice} (${OnePrice}/session)
+                    Package 10 one-on-one training sessions ${TenPrice} ($
+                    {OnePrice}/session)
                   </li>
                 </ul>
               </div>
