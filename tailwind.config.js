@@ -9,6 +9,7 @@ export default {
         Nunito: ["Nunito", "sans-serif"],
         BebasNeue: ["Bebas Neue", "sans-serif"],
         OpenSans: ["Open Sans", "sans-serif"],
+        SFPro: ["SF Pro Display", "sans-serif"],
       },
       backgroundColor: {
         "primary-bg": "#121212",
