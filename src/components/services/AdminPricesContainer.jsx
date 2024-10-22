@@ -1,12 +1,18 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+// import { GetAddService } from "../../services/apiGetAddService";
+// import { useQuery } from "@tanstack/react-query";
 const AdminPricesContainer = ({ name, fivePrice, TenPrice, OnePrice }) => {
   const [showPrices, setShowPrices] = useState(false);
 
   const handleShowPrices = () => {
     setShowPrices((value) => !value);
   };
+
+  // const { data: service } = useQuery({
+  //   queryKey: ["services"],
+  //   queryFn: GetAddService,
+  // });
 
   return (
     <motion.div
