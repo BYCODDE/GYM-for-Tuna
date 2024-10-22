@@ -59,14 +59,45 @@ function AdminAddingPage({ setAddingOpen, AddingOpen }) {
         </div>
 
         <div className="text-white w-full text-center mt-[41px] gap-[3.25rem] flex flex-col">
-          <div>
-            <input type="text" onChange={(e) => setName(e.target.value)} />
-            <textarea
-              name=""
-              id=""
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
-            <img src="" alt="" />
+          <div className="flex flex-col gap-[50px]">
+            <div className="w-full">
+              <h3 className="flex items-center mb-[20px] gap-[10px]">
+                {" "}
+                <span className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></span>
+                Type name
+              </h3>
+              <input
+                className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="w-full">
+              <h3 className="flex items-center mb-[20px] gap-[10px]">
+                {" "}
+                <span className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></span>
+                Type description
+              </h3>
+              <textarea
+                className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
+                name=""
+                id=""
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+            </div>
+            <div className="w-full">
+              <h3 className="flex items-center mb-[20px] gap-[10px]">
+                {" "}
+                <span className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></span>
+                Choose image
+              </h3>
+              <input
+                type="file"
+                onChange={(e) => setImage(e.target.files[0])}
+                accept="image/*"
+                className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232] cursor-pointer"
+              />
+            </div>
           </div>
           <button
             onSubmit={() => handleSubmit()}
