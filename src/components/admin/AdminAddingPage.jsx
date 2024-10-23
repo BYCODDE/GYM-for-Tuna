@@ -1,18 +1,19 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import useAddService from "../../hooks/useAddService";
-import { useQuery } from "@tanstack/react-query";
-import { GetAddService } from "../../services/apiGetAddService";
+// import { useQuery } from "@tanstack/react-query";
+// import { GetAddService } from "../../services/apiGetAddService";
 
 function AdminAddingPage({ setAddingOpen, AddingOpen }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
 
-  const { refetch } = useQuery({
-    queryKey: ["services"],
-    queryFn: GetAddService,
-  });
+
+  // const { refetch } = useQuery({
+  //   queryKey: ["services"],
+  //   queryFn: GetAddService,
+  // });
 
   const { mutate: addInfo } = useAddService();
 
@@ -25,7 +26,7 @@ function AdminAddingPage({ setAddingOpen, AddingOpen }) {
       },
       {
         onSuccess: () => {
-          refetch();
+          // refetch();
           setName("");
           setDescription("");
           setImage(null);

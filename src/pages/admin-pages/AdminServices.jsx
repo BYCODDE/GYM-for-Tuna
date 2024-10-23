@@ -28,19 +28,20 @@ const AdminServices = () => {
           +
         </button>
       </div>
+      {/* *TODO: ეს გავასწრო! */}
       <div className="flex flex-col justify-between items-center mt-[30px] ">
         {data.services.map((serv) => (
           <div key={serv.id} className="w-full">
-            <AdminPriceContainer
-              name={serv.name}
-              OnePrice={serv.sessions_single}
-              TenPrice={serv.sessions_ten}
-              fivePrice={serv.sessions_five}
-            />
+            <AdminPriceContainer />
           </div>
         ))}
       </div>
-      {AddingOpen && <AdminAddingPage setAddingOpen={setAddingOpen} AddingOpen={AddingOpen} />}
+      {AddingOpen && (
+        <AdminAddingPage
+          setAddingOpen={setAddingOpen}
+          AddingOpen={AddingOpen}
+        />
+      )}
     </div>
   );
 };

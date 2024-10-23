@@ -1,33 +1,33 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { GetAddService } from "../../services/apiGetAddService";
-import { useQuery } from "@tanstack/react-query";
+// import { useState } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
+
+// import useGetServices from "../../hooks/useGetServices";
+// import useGetAdminServices from "../../hooks/useGetAdminServices";
+import useGetServices from "../../hooks/useGetServices";
 
 const AdminPricesContainer = () => {
-  const [visibleServices, setVisibleServices] = useState({});
+  // const [visibleServices, setVisibleServices] = useState({});
 
-  const toggleShowPrices = (id) => {
-    setVisibleServices((prevVisibleServices) => ({
-      ...prevVisibleServices,
-      [id]: !prevVisibleServices[id],
-    }));
-  };
+  const { data, isLoading, isError, error } = useGetServices();
 
-  const {
-    data: service,
-    error,
-    isLoading,
-  } = useQuery({
-    queryKey: ["services"],
-    queryFn: GetAddService,
-  });
+  console.log(data,"componentshi data");
 
-  if (isLoading) return <div className="text-red-600">Loading...</div>;
-  if (error) return <div className="text-red-600">Error loading services</div>;
+  // const toggleShowPrices = (id) => {
+  //   setVisibleServices((prevVisibleServices) => ({
+  //     ...prevVisibleServices,
+  //     [id]: !prevVisibleServices[id],
+  //   }));
+  // };
+
+  // const { data, error, isLoading } = useGetServices();
+  // console.log(data);
+
+  // if (isLoading) return <div className="text-red-600">Loading...</div>;
+  // if (error) return <div className="text-red-600">Error loading services</div>;
 
   return (
     <>
-      {service.services.map((info) => (
+      {/* {data.map((info) => (
         <motion.div
           key={info.id}
           className="flex flex-col w-full bg-[#222] rounded-[20px] mt-[20px] overflow-hidden cursor-pointer font-Nunito"
@@ -87,7 +87,7 @@ const AdminPricesContainer = () => {
             )}
           </AnimatePresence>
         </motion.div>
-      ))}
+      ))} */}
     </>
   );
 };
