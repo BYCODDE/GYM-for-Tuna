@@ -6,7 +6,7 @@ import AdminAddingPage from "../../components/admin/AdminAddingPage";
 import { useState } from "react";
 
 const AdminServices = () => {
-  const { data, isLoading, error } = useGetServices();
+  const { isLoading, error } = useGetServices();
   const [AddingOpen, setAddingOpen] = useState(false);
 
   if (isLoading) {
@@ -30,11 +30,11 @@ const AdminServices = () => {
       </div>
       {/* *TODO: ეს გავასწრო! */}
       <div className="flex flex-col justify-between items-center mt-[30px] ">
-        {data.services.map((serv) => (
-          <div key={serv.id} className="w-full">
-            <AdminPriceContainer />
-          </div>
-        ))}
+        {/* {data.services.map((serv) => ( */}
+        <div className="w-full">
+          <AdminPriceContainer />
+        </div>
+        {/* ))} */}
       </div>
       {AddingOpen && (
         <AdminAddingPage

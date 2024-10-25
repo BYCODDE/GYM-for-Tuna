@@ -1,33 +1,39 @@
-// import { useState } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+import useGetAdminServices from "../../hooks/useGetAdminServices";
 
 // import useGetServices from "../../hooks/useGetServices";
-// import useGetAdminServices from "../../hooks/useGetAdminServices";
-import useGetServices from "../../hooks/useGetServices";
 
 const AdminPricesContainer = () => {
-  // const [visibleServices, setVisibleServices] = useState({});
+  const [visibleServices, setVisibleServices] = useState({});
 
-  const { data, isLoading, isError, error } = useGetServices();
+  // const { data, isLoading, isError, error } = useGetServices();
 
-  console.log(data,"componentshi data");
+  // console.log(data.services, "componentshi data");
 
-  // const toggleShowPrices = (id) => {
-  //   setVisibleServices((prevVisibleServices) => ({
-  //     ...prevVisibleServices,
-  //     [id]: !prevVisibleServices[id],
-  //   }));
-  // };
+  const { data, isLoading, isError, error } = useGetAdminServices();
+  console.log(data, "damatebulishi");
 
-  // const { data, error, isLoading } = useGetServices();
-  // console.log(data);
+  const toggleShowPrices = (id) => {
+    setVisibleServices((prevVisibleServices) => ({
+      ...prevVisibleServices,
+      [id]: !prevVisibleServices[id],
+    }));
+  };
 
-  // if (isLoading) return <div className="text-red-600">Loading...</div>;
-  // if (error) return <div className="text-red-600">Error loading services</div>;
+  if (isLoading) return <div className="text-red-600">Loading...</div>;
+  if (isError)
+    return (
+      <div className="text-red-600">Error loading services {error.message}</div>
+    );
+
+  const services = data?.data || [];
+  console.log(services);
 
   return (
     <>
-      {/* {data.map((info) => (
+      {services.map((info) => (
         <motion.div
           key={info.id}
           className="flex flex-col w-full bg-[#222] rounded-[20px] mt-[20px] overflow-hidden cursor-pointer font-Nunito"
@@ -60,8 +66,7 @@ const AdminPricesContainer = () => {
                 <div className="flex flex-col gap-3 p-4">
                   <div className="flex items-center gap-[10px] justify-between">
                     <div className="flex items-center gap-[10px]">
-                      <div className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></div>
-                      <span className="font-bold text-[20px]">Price</span>
+                      <p className=" w-[800px]">{info.description}</p>
                     </div>
                     <div className="flex gap-[10px] items-center">
                       <motion.img
@@ -77,9 +82,11 @@ const AdminPricesContainer = () => {
                     </div>
                   </div>
 
-                  <div className="text-[#ABABAB] text-[14px]">
+                  <div className="text-[#ABABAB] text-[14px] flex items-center gap-[10px]">
+                    <div className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></div>
+                    <span className="font-bold text-[20px]">Price</span>
                     <ul className="flex flex-col gap-3">
-                      <li>{info.description}</li>
+                      <li></li>
                     </ul>
                   </div>
                 </div>
@@ -87,7 +94,7 @@ const AdminPricesContainer = () => {
             )}
           </AnimatePresence>
         </motion.div>
-      ))} */}
+      ))}
     </>
   );
 };
