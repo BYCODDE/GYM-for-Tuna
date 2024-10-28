@@ -8,7 +8,7 @@ function useAddService() {
     mutationFn: (data) => apiAddService(data),
     onSuccess: (response) => {
       console.log("Service added successfully:", response.data);
-      queryClient.invalidateQueries(["services"]);
+      queryClient.invalidateQueries(["prices"]);
     },
     onError: (error) => {
       console.log(`Error adding service: ${error.message}`);

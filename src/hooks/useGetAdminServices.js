@@ -3,8 +3,8 @@ import { apiGetAddService } from "../services/apiGetAddService";
 
 function useGetAdminServices() {
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["services"],
-    queryFn: apiGetAddService, 
+    queryKey: ["prices"],
+    queryFn: apiGetAddService,
   });
 
   console.log(data, "hook is data");

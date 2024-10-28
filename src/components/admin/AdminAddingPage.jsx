@@ -1,19 +1,9 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import useAddService from "../../hooks/useAddService";
-// import { useQuery } from "@tanstack/react-query";
-// import { GetAddService } from "../../services/apiGetAddService";
 
 function AdminAddingPage({ setAddingOpen, AddingOpen }) {
   const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState(null);
-
-
-  // const { refetch } = useQuery({
-  //   queryKey: ["services"],
-  //   queryFn: GetAddService,
-  // });
 
   const { mutate: addInfo } = useAddService();
 
@@ -21,15 +11,10 @@ function AdminAddingPage({ setAddingOpen, AddingOpen }) {
     addInfo(
       {
         name,
-        description,
-        image,
       },
       {
         onSuccess: () => {
-          // refetch();
           setName("");
-          setDescription("");
-          setImage(null);
         },
       },
       setAddingOpen(false)
@@ -83,29 +68,6 @@ function AdminAddingPage({ setAddingOpen, AddingOpen }) {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="w-full">
-              <h3 className="flex items-center mb-[20px] gap-[10px]">
-                <span className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></span>
-                Type description
-              </h3>
-              <textarea
-                className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
-            </div>
-            <div className="w-full">
-              <h3 className="flex items-center mb-[20px] gap-[10px]">
-                <span className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></span>
-                Choose image
-              </h3>
-              <input
-                type="file"
-                onChange={(e) => setImage(e.target.files[0])}
-                accept="image/*"
-                className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232] cursor-pointer"
               />
             </div>
           </div>

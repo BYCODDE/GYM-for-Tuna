@@ -1,21 +1,9 @@
-import useGetServices from "../../hooks/useGetServices";
-import ErorrDisplay from "../../components/erorr/ErorrDisplay";
-import CertificationSkeleton from "../../components/skeletons/CertificationSkeleton";
 import AdminPriceContainer from "../../components/services/AdminPricesContainer";
 import AdminAddingPage from "../../components/admin/AdminAddingPage";
 import { useState } from "react";
 
 const AdminServices = () => {
-  const { isLoading, error } = useGetServices();
   const [AddingOpen, setAddingOpen] = useState(false);
-
-  if (isLoading) {
-    return <CertificationSkeleton />;
-  }
-
-  if (error) {
-    return <ErorrDisplay error={error.message} />;
-  }
 
   return (
     <div className="text-[#FFF] font-Nunito p-[22px] ">
@@ -28,13 +16,11 @@ const AdminServices = () => {
           +
         </button>
       </div>
-      {/* *TODO: ეს გავასწრო! */}
+
       <div className="flex flex-col justify-between items-center mt-[30px] ">
-        {/* {data.services.map((serv) => ( */}
         <div className="w-full">
           <AdminPriceContainer />
         </div>
-        {/* ))} */}
       </div>
       {AddingOpen && (
         <AdminAddingPage
