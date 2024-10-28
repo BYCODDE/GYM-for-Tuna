@@ -4,6 +4,9 @@ import useAddService from "../../hooks/useAddService";
 
 function AdminAddingPage({ setAddingOpen, AddingOpen }) {
   const [name, setName] = useState("");
+  const [sessions_single, setSessions_single] = useState("");
+  const [sessions_five, setSessions_five] = useState("");
+  const [sessions_ten, setSessions_ten] = useState("");
 
   const { mutate: addInfo } = useAddService();
 
@@ -11,10 +14,16 @@ function AdminAddingPage({ setAddingOpen, AddingOpen }) {
     addInfo(
       {
         name,
+        sessions_single,
+        sessions_five,
+        sessions_ten,
       },
       {
         onSuccess: () => {
           setName("");
+          setSessions_single("");
+          setSessions_five("");
+          setSessions_ten("");
         },
       },
       setAddingOpen(false)
@@ -68,6 +77,42 @@ function AdminAddingPage({ setAddingOpen, AddingOpen }) {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="w-full">
+              <h3 className="flex items-center mb-[20px] gap-[10px]">
+                <span className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></span>
+                Type single session Price
+              </h3>
+              <input
+                className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
+                type="text"
+                value={sessions_single}
+                onChange={(e) => setSessions_single(e.target.value)}
+              />
+            </div>
+            <div className="w-full">
+              <h3 className="flex items-center mb-[20px] gap-[10px]">
+                <span className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></span>
+                Type five session Price
+              </h3>
+              <input
+                className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
+                type="text"
+                value={sessions_five}
+                onChange={(e) => setSessions_five(e.target.value)}
+              />
+            </div>
+            <div className="w-full">
+              <h3 className="flex items-center mb-[20px] gap-[10px]">
+                <span className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></span>
+                Type ten session Price
+              </h3>
+              <input
+                className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
+                type="text"
+                value={sessions_ten}
+                onChange={(e) => setSessions_ten(e.target.value)}
               />
             </div>
           </div>

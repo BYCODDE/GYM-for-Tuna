@@ -5,7 +5,7 @@ import useGetServices from "../../hooks/useGetServices";
 const AdminPricesContainer = () => {
   const [visibleServices, setVisibleServices] = useState({});
   const { data, isLoading, isError, error } = useGetServices();
-console.log(data);
+  console.log(data);
 
   const toggleShowPrices = (id) => {
     setVisibleServices((prevVisibleServices) => ({
@@ -57,9 +57,7 @@ console.log(data);
                 >
                   <div className="flex flex-col gap-3 p-4">
                     <div className="flex items-center gap-[10px] justify-between">
-                      <div className="flex items-center gap-[10px]">
-                        <p className="w-[800px]">{service.description}</p>
-                      </div>
+                      <div className="flex items-center gap-[10px]"></div>
                       <div className="flex gap-[10px] items-center">
                         <motion.img
                           src="/icons/adminTrashcan_svg.svg"
@@ -74,12 +72,51 @@ console.log(data);
                       </div>
                     </div>
 
-                    <div className="text-[#ABABAB] text-[14px] flex items-center gap-[10px]">
-                      <div className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></div>
-                      <span className="font-bold text-[20px]">Price</span>
-                      <ul className="flex flex-col gap-3">
-                        <li>{service.sessions_single}</li>
-                      </ul>
+                    <div className="text-[#ABABAB] text-[14px] flex items-baseline gap-[10px]">
+                      <div className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold mt-[6px]"></div>
+                      <div>
+                        <span className="font-bold text-[20px] block">
+                          Price
+                        </span>
+                        <ul className="flex flex-col gap-3">
+                          <li>
+                            Single Session One-on-one training session (60
+                            minutes){" "}
+                            <span
+                              className="ml-[5px] font-bold
+                            "
+                            >
+                              {service.sessions_single}$
+                            </span>
+                          </li>
+                          <li>
+                            5-Session Package5 one-on-one training sessions
+                            <span
+                              className="ml-[5px] font-bold
+                            "
+                            >
+                              {service.sessions_five}$
+                            </span>
+                            <span
+                              className="ml-[5px] font-bold
+                            "
+                            >{`(${service.sessions_single}$ / session)`}</span>
+                          </li>
+                          <li>
+                            10-Session Package10 one-on-one training sessions
+                            <span
+                              className="ml-[5px] font-bold
+                            "
+                            >
+                              {service.sessions_ten}$
+                            </span>
+                            <span
+                              className="ml-[5px] font-bold
+                            "
+                            >{`(${service.sessions_single}$ / session)`}</span>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
