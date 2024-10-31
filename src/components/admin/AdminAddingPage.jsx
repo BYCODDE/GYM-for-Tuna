@@ -116,13 +116,15 @@ function AdminAddingPage({ setAddingOpen, AddingOpen }) {
               />
             </div>
           </div>
-          <button
-            onClick={handleSubmit}
-            className="text-[#D7FD44] h-[42px] border border-[#D7FD44] rounded-[24px]"
-            type="button"
-          >
-            + Add Service
-          </button>
+          <div className="flex justify-center items-center">
+            <button
+              onClick={handleSubmit}
+              className="max-w-[195px] w-full  text-[#D7FD44] h-[42px] border border-[#D7FD44] rounded-[24px]"
+              type="button"
+            >
+              + Add Service
+            </button>
+          </div>
         </div>
       </motion.div>
     </div>

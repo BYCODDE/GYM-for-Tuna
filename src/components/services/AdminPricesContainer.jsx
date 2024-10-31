@@ -73,7 +73,7 @@ const AdminPricesContainer = () => {
                     </div>
 
                     <div className="text-[#ABABAB] text-[14px] flex items-baseline gap-[10px]">
-                      <div className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold mt-[6px]"></div>
+                      <div className="tiny:w-[18px] smaller:w-[13px]  w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold mt-[6px]"></div>
                       <div>
                         <span className="font-bold text-[20px] block">
                           Price
