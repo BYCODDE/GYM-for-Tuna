@@ -1,33 +1,23 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import useAddService from "../../hooks/useAddService";
 
 function AdminAddingPage({ setAddingOpen, AddingOpen }) {
-  const [name, setName] = useState("");
-  const [sessions_single, setSessions_single] = useState("");
-  const [sessions_five, setSessions_five] = useState("");
-  const [sessions_ten, setSessions_ten] = useState("");
-
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
   const { mutate: addInfo } = useAddService();
 
-  const handleSubmit = () => {
-    addInfo(
-      {
-        name,
-        sessions_single,
-        sessions_five,
-        sessions_ten,
+  const onSubmit = (data) => {
+    addInfo(data, {
+      onSuccess: () => {
+        reset();
+        setAddingOpen(false);
       },
-      {
-        onSuccess: () => {
-          setName("");
-          setSessions_single("");
-          setSessions_five("");
-          setSessions_ten("");
-        },
-      },
-      setAddingOpen(false)
-    );
+    });
   };
 
   const menuVariants = {
@@ -65,7 +55,10 @@ function AdminAddingPage({ setAddingOpen, AddingOpen }) {
           </button>
         </div>
 
-        <div className="text-white w-full text-center mt-[41px] gap-[3.25rem] flex flex-col">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="text-white w-full text-center mt-[41px] gap-[3.25rem] flex flex-col"
+        >
           <div className="flex flex-col gap-[50px]">
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px]">
@@ -75,10 +68,22 @@ function AdminAddingPage({ setAddingOpen, AddingOpen }) {
               <input
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                {...register("name", {
+                  required: "Name is required",
+                  pattern: {
+                    value: /^[a-z]+$/,
+                    message: "Only lowercase letters are allowed",
+                  },
+                  setValueAs: (value) => value.toLowerCase(),
+                })}
               />
+              <div className="flex mt-[10px] font-bold">
+                {errors.name && (
+                  <span className="text-red-500">{errors.name.message}</span>
+                )}
+              </div>
             </div>
+
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px]">
                 <span className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></span>
@@ -86,10 +91,21 @@ function AdminAddingPage({ setAddingOpen, AddingOpen }) {
               </h3>
               <input
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
-                type="text"
-                value={sessions_single}
-                onChange={(e) => setSessions_single(e.target.value)}
+                type="number"
+                {...register("sessions_single", {
+                  required: "Single session price is required",
+                  valueAsNumber: true,
+                  validate: (value) =>
+                    value > 0 || "Price must be greater than zero",
+                })}
               />
+              <div className="flex mt-[10px] font-bold">
+                {errors.sessions_single && (
+                  <span className="text-red-500">
+                    {errors.sessions_single.message}
+                  </span>
+                )}
+              </div>
             </div>
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px]">
@@ -98,10 +114,21 @@ function AdminAddingPage({ setAddingOpen, AddingOpen }) {
               </h3>
               <input
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
-                type="text"
-                value={sessions_five}
-                onChange={(e) => setSessions_five(e.target.value)}
+                type="number"
+                {...register("sessions_five", {
+                  required: "Five session price is required",
+                  valueAsNumber: true,
+                  validate: (value) =>
+                    value > 0 || "Price must be greater than zero",
+                })}
               />
+              <div className="flex mt-[10px] font-bold">
+                {errors.sessions_five && (
+                  <span className="text-red-500">
+                    {errors.sessions_five.message}
+                  </span>
+                )}
+              </div>
             </div>
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px]">
@@ -110,22 +137,32 @@ function AdminAddingPage({ setAddingOpen, AddingOpen }) {
               </h3>
               <input
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
-                type="text"
-                value={sessions_ten}
-                onChange={(e) => setSessions_ten(e.target.value)}
+                type="number"
+                {...register("sessions_ten", {
+                  required: "Ten session price is required",
+                  valueAsNumber: true,
+                  validate: (value) =>
+                    value > 0 || "Price must be greater than zero",
+                })}
               />
+              <div className="flex mt-[10px] font-bold">
+                {errors.sessions_ten && (
+                  <span className="text-red-500">
+                    {errors.sessions_ten.message}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
           <div className="flex justify-center items-center">
             <button
-              onClick={handleSubmit}
-              className="max-w-[195px] w-full  text-[#D7FD44] h-[42px] border border-[#D7FD44] rounded-[24px]"
-              type="button"
+              className="max-w-[195px] w-full text-[#D7FD44] h-[42px] border border-[#D7FD44] rounded-[24px]"
+              type="submit"
             >
               + Add Service
             </button>
           </div>
-        </div>
+        </form>
       </motion.div>
     </div>
   );

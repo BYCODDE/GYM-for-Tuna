@@ -15,9 +15,9 @@ const AdminPricesContainer = () => {
   } = useGetServices();
 
   const handleDeleteService = (id) => {
-    removeService(id); // Call the remove function with the service ID
+    removeService(id);
   };
-console.log(data);
+  console.log(data);
 
   const toggleShowPrices = (id) => {
     setVisibleServices((prevVisibleServices) => ({
@@ -70,14 +70,14 @@ console.log(data);
               >
                 <div className="flex flex-col gap-3 p-4">
                   <div className="flex items-center gap-[10px] justify-between">
-                    <div className="flex items-center gap-[10px]"></div>
+                    {/* <div className="flex items-center gap-[10px]"></div> */}
                     <div className="flex gap-[10px] items-center">
                       <motion.img
                         src="/icons/adminTrashcan_svg.svg"
                         alt="delete"
                         className="cursor-pointer w-[30px] h-[30px] hover:scale-110 transition-transform"
                         onClick={(e) => {
-                          e.stopPropagation(); // Prevent toggling the visibility
+                          e.stopPropagation();
                           handleDeleteService(service.id);
                         }}
                       />
