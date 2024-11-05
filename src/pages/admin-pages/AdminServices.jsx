@@ -1,9 +1,11 @@
 import AdminPriceContainer from "../../components/services/AdminPricesContainer";
 import AdminAddingPage from "../../components/admin/AdminAddingPage";
 import { useState } from "react";
+import AdminEditPage from "../../components/admin/AdminEditPage";
 
 const AdminServices = () => {
   const [AddingOpen, setAddingOpen] = useState(false);
+  const [AddingOpenEditPage, setAddingOpenEditPage] = useState(false);
 
   return (
     <div className="lg:p-[82px]    text-[#FFF] font-Nunito p-[22px] ">
@@ -29,13 +31,22 @@ const AdminServices = () => {
 
       <div className="flex flex-col justify-between items-center mt-[30px] ">
         <div className="w-full">
-          <AdminPriceContainer />
+          <AdminPriceContainer
+            setAddingOpenEditPage={setAddingOpenEditPage}
+            AddingOpenEditPage={AddingOpenEditPage}
+          />
         </div>
       </div>
       {AddingOpen && (
         <AdminAddingPage
           setAddingOpen={setAddingOpen}
           AddingOpen={AddingOpen}
+        />
+      )}
+      {AddingOpenEditPage && (
+        <AdminEditPage
+          setAddingOpenEditPage={setAddingOpenEditPage}
+          AddingOpenEditPage={AddingOpenEditPage}
         />
       )}
     </div>

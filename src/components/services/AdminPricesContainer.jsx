@@ -2,7 +2,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useGetServices from "../../hooks/useGetServices";
 
-const AdminPricesContainer = () => {
+const AdminPricesContainer = ({
+  setAddingOpenEditPage,
+  AddingOpenEditPage,
+}) => {
   const [visibleServices, setVisibleServices] = useState({});
   const {
     data,
@@ -85,6 +88,10 @@ const AdminPricesContainer = () => {
                         src="/icons/adminEdit_svg.svg"
                         alt="edit"
                         className="cursor-pointer w-[30px] h-[30px] hover:scale-110 transition-transform"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setAddingOpenEditPage(!AddingOpenEditPage);
+                        }}
                       />
                     </div>
                   </div>
