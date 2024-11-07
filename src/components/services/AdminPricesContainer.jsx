@@ -5,6 +5,8 @@ import useGetServices from "../../hooks/useGetServices";
 const AdminPricesContainer = ({
   setAddingOpenEditPage,
   AddingOpenEditPage,
+  EditPageId,
+  setEditPageId,
 }) => {
   const [visibleServices, setVisibleServices] = useState({});
   const {
@@ -28,6 +30,13 @@ const AdminPricesContainer = ({
       [id]: !prevVisibleServices[id],
     }));
   };
+
+  const handleEditId = (serviceId) => {
+    setEditPageId(serviceId);
+  };
+
+  console.log(EditPageId);
+  
 
   if (isLoading) return <div className="text-red-600">Loading...</div>;
   if (isError)
@@ -91,6 +100,7 @@ const AdminPricesContainer = ({
                         onClick={(e) => {
                           e.stopPropagation();
                           setAddingOpenEditPage(!AddingOpenEditPage);
+                          handleEditId(service.id);
                         }}
                       />
                     </div>

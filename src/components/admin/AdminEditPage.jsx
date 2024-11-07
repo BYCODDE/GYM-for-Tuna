@@ -2,7 +2,11 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import useAddService from "../../hooks/useAddService";
 
-function AdminEditPage({ setAddingOpenEditPage, AddingOpenEditPage }) {
+function AdminEditPage({
+  setAddingOpenEditPage,
+  AddingOpenEditPage,
+  
+}) {
   const {
     register,
     handleSubmit,
@@ -10,10 +14,7 @@ function AdminEditPage({ setAddingOpenEditPage, AddingOpenEditPage }) {
     reset,
   } = useForm();
 
-// TODO: Editis mutacia unda gavuwero da es damatebis gadavaketo magaze!
-
-
-
+  // TODO: Editis mutacia unda gavuwero da es damatebis gadavaketo magaze!
 
   const { mutate: addInfo } = useAddService();
 
@@ -36,6 +37,7 @@ function AdminEditPage({ setAddingOpenEditPage, AddingOpenEditPage }) {
       transition: { type: "spring", stiffness: 30 },
     },
   };
+
 
   return (
     <div className="relative z-10 font-Nunito text-[#FFF]">

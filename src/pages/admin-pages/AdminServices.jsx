@@ -6,6 +6,7 @@ import AdminEditPage from "../../components/admin/AdminEditPage";
 const AdminServices = () => {
   const [AddingOpen, setAddingOpen] = useState(false);
   const [AddingOpenEditPage, setAddingOpenEditPage] = useState(false);
+  const [EditPageId, setEditPageId] = useState(null);
 
   return (
     <div className="lg:p-[82px]    text-[#FFF] font-Nunito p-[22px] ">
@@ -34,6 +35,8 @@ const AdminServices = () => {
           <AdminPriceContainer
             setAddingOpenEditPage={setAddingOpenEditPage}
             AddingOpenEditPage={AddingOpenEditPage}
+            EditPageId={EditPageId}
+            setEditPageId={setEditPageId}
           />
         </div>
       </div>
