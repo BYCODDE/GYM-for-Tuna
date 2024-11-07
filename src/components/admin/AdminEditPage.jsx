@@ -1,30 +1,31 @@
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import useAddService from "../../hooks/useAddService";
+import useGetServiceById from "../../hooks/useGetServiceById";
+// import useAddService from "../../hooks/useAddService";
 
-function AdminEditPage({
-  setAddingOpenEditPage,
-  AddingOpenEditPage,
-  
-}) {
+function AdminEditPage({ setAddingOpenEditPage, AddingOpenEditPage }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
+    // reset,
   } = useForm();
 
   // TODO: Editis mutacia unda gavuwero da es damatebis gadavaketo magaze!
 
-  const { mutate: addInfo } = useAddService();
+  // const { mutate: addInfo } = useAddService();
+
+  const {data, error, isLoading, isError} = useGetServiceById();
+
+  console.log(data);
 
   const onSubmit = (data) => {
-    addInfo(data, {
-      onSuccess: () => {
-        reset();
-        setAddingOpenEditPage(false);
-      },
-    });
+    // addInfo(data, {
+    //   onSuccess: () => {
+    //     reset();
+    //     setAddingOpenEditPage(false);
+    //   },
+    // });
   };
 
   const menuVariants = {
@@ -37,7 +38,6 @@ function AdminEditPage({
       transition: { type: "spring", stiffness: 30 },
     },
   };
-
 
   return (
     <div className="relative z-10 font-Nunito text-[#FFF]">
