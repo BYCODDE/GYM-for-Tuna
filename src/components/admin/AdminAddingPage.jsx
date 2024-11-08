@@ -9,7 +9,7 @@ function AdminAddingPage({ setAddingOpen, AddingOpen }) {
     formState: { errors },
     reset,
   } = useForm();
-  const { mutate: addInfo } = useAddService();
+  const { mutate: addInfo, error, isPending, isError } = useAddService();
 
   const onSubmit = (data) => {
     addInfo(data, {
@@ -31,6 +31,13 @@ function AdminAddingPage({ setAddingOpen, AddingOpen }) {
     },
   };
 
+  if (isPending) return <div className="text-red-600">Pending...</div>;
+  if (isError)
+    return (
+      <div className="text-red-600">
+        Error loading services: {error.message}
+      </div>
+    );
   return (
     <div className="relative z-10 font-Nunito text-[#FFF]">
       <motion.div
