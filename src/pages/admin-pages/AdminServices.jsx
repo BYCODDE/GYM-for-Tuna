@@ -50,6 +50,7 @@ const AdminServices = () => {
         <AdminEditPage
           setAddingOpenEditPage={setAddingOpenEditPage}
           AddingOpenEditPage={AddingOpenEditPage}
+          EditPageId={EditPageId}
         />
       )}
     </div>

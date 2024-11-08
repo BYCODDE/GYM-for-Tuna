@@ -3,7 +3,11 @@ import { useForm } from "react-hook-form";
 import useGetServiceById from "../../hooks/useGetServiceById";
 // import useAddService from "../../hooks/useAddService";
 
-function AdminEditPage({ setAddingOpenEditPage, AddingOpenEditPage }) {
+function AdminEditPage({
+  setAddingOpenEditPage,
+  AddingOpenEditPage,
+  EditPageId,
+}) {
   const {
     register,
     handleSubmit,
@@ -15,11 +19,11 @@ function AdminEditPage({ setAddingOpenEditPage, AddingOpenEditPage }) {
 
   // const { mutate: addInfo } = useAddService();
 
-  const {data, error, isLoading, isError} = useGetServiceById();
+  const { data, error, isLoading } = useGetServiceById(EditPageId);
 
-  console.log(data);
+  console.log(data, "zustad is data");
 
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     // addInfo(data, {
     //   onSuccess: () => {
     //     reset();
