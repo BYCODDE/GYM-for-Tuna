@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import useGetServiceById from "../../hooks/useGetServiceById";
-// import useAddService from "../../hooks/useAddService";
+import { useEffect } from "react";
+import useAddService from "../../hooks/useAddService";
 
 function AdminEditPage({
   setAddingOpenEditPage,
@@ -12,25 +13,12 @@ function AdminEditPage({
     register,
     handleSubmit,
     formState: { errors },
-    // reset,
+    reset,
   } = useForm();
 
-  // TODO: Editis mutacia unda gavuwero da es damatebis gadavaketo magaze!
-
-  // const { mutate: addInfo } = useAddService();
+  const { mutate: addInfo } = useAddService();
 
   const { data, error, isLoading } = useGetServiceById(EditPageId);
-
-  console.log(data, "zustad is data");
-
-  const onSubmit = () => {
-    // addInfo(data, {
-    //   onSuccess: () => {
-    //     reset();
-    //     setAddingOpenEditPage(false);
-    //   },
-    // });
-  };
 
   const menuVariants = {
     open: {
@@ -41,6 +29,28 @@ function AdminEditPage({
       y: "100%",
       transition: { type: "spring", stiffness: 30 },
     },
+  };
+
+  useEffect(() => {
+    if (data) {
+      reset({
+        name: data.data.name,
+        sessions_single: data.data.sessions_single,
+        sessions_five: data.data.sessions_five,
+        sessions_ten: data.data.sessions_ten,
+      });
+    }
+  }, [data, reset]);
+
+  // TODO: ეხლა მე დამატების მუტაცია დავწერე და უნდა დავწერო შეცვლის მუტაცია!!!ანუ ეს მუტაცია ახალს ქმნის და მე მინდა ის ძველი შევცვალო "დავაედიტო!"
+
+  const onSubmit = (data) => {
+    addInfo(data, {
+      onSuccess: () => {
+        reset();
+        setAddingOpenEditPage(false);
+      },
+    });
   };
 
   return (
