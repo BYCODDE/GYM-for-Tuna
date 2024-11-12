@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import useGetServiceById from "../../hooks/useGetServiceById";
 import { useEffect } from "react";
-import useAddService from "../../hooks/useAddService";
+import useEditService from "../../hooks/useEditService";
 
 function AdminEditPage({
   setAddingOpenEditPage,
@@ -16,7 +16,12 @@ function AdminEditPage({
     reset,
   } = useForm();
 
-  const { mutate: addInfo } = useAddService();
+  const {
+    mutate: editService,
+    isLoading: isMutating,
+    isSuccess,
+    error: mutationError,
+  } = useEditService();
 
   const { data, error, isLoading } = useGetServiceById(EditPageId);
 
@@ -42,17 +47,17 @@ function AdminEditPage({
     }
   }, [data, reset]);
 
-  // TODO: ეხლა მე დამატების მუტაცია დავწერე და უნდა დავწერო შეცვლის მუტაცია!!!ანუ ეს მუტაცია ახალს ქმნის და მე მინდა ის ძველი შევცვალო "დავაედიტო!"
-
-  const onSubmit = (data) => {
-    addInfo(data, {
-      onSuccess: () => {
-        reset();
-        setAddingOpenEditPage(false);
-      },
-    });
+  const onSubmit = (formData) => {
+    editService(
+      { id: EditPageId, updatedService: formData },
+      {
+        onSuccess: () => {
+          reset();
+          setAddingOpenEditPage(false);
+        },
+      }
+    );
   };
-
   return (
     <div className="relative z-10 font-Nunito text-[#FFF]">
       <motion.div

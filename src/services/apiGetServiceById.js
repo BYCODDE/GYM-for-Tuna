@@ -7,7 +7,7 @@ export const apiGetServiceById = async (id) => {
     .eq("id", id)
     .single();
 
-console.log(data,"es is data")
+  console.log(data, "es is data");
 
   return { data, error };
 };
