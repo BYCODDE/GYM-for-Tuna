@@ -81,6 +81,7 @@ function AdminEditPage({
             />
           </button>
         </div>
+        
 
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -98,12 +99,13 @@ function AdminEditPage({
                 {...register("name", {
                   required: "Name is required",
                   pattern: {
-                    value: /^[a-z]+$/,
-                    message: "Only lowercase letters are allowed",
+                    value: /^[a-z\s-]+$/i,
+                    message: "Only letters, spaces, and hyphens are allowed",
                   },
                   setValueAs: (value) => value.toLowerCase(),
                 })}
               />
+
               <div className="flex mt-[10px] font-bold">
                 {errors.name && (
                   <span className="text-red-500">{errors.name.message}</span>
