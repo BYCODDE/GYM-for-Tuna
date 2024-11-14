@@ -49,17 +49,15 @@ function AdminEditPage({
   }, [data, reset]);
 
   const onSubmit = (formData) => {
-    setTimeout(() => {
-      editService(
-        { id: EditPageId, updatedService: formData },
-        {
-          onSuccess: () => {
-            reset();
-            setAddingOpenEditPage(false);
-          },
-        }
-      );
-    }, 2000);
+    editService(
+      { id: EditPageId, updatedService: formData },
+      {
+        onSuccess: () => {
+          reset();
+          setAddingOpenEditPage(false);
+        },
+      }
+    );
   };
 
   if (isLoading) {
