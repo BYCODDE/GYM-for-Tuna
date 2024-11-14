@@ -20,6 +20,7 @@ function AdminEditPage({
     mutate: editService,
     isLoading: isMutating,
     isSuccess,
+    isError,
     error: mutationError,
   } = useEditService();
 
@@ -47,6 +48,14 @@ function AdminEditPage({
     }
   }, [data, reset]);
 
+  if (isLoading) {
+    return <div className="text-yellow-400">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-red-600">Error loading service data!</div>;
+  }
+
   const onSubmit = (formData) => {
     editService(
       { id: EditPageId, updatedService: formData },
@@ -58,6 +67,7 @@ function AdminEditPage({
       }
     );
   };
+
   return (
     <div className="relative z-10 font-Nunito text-[#FFF]">
       <motion.div
@@ -81,7 +91,6 @@ function AdminEditPage({
             />
           </button>
         </div>
-        
 
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -105,12 +114,11 @@ function AdminEditPage({
                   setValueAs: (value) => value.toLowerCase(),
                 })}
               />
-
-              <div className="flex mt-[10px] font-bold">
-                {errors.name && (
-                  <span className="text-red-500">{errors.name.message}</span>
-                )}
-              </div>
+              {errors.name && (
+                <span className="text-red-500 mt-[10px] font-bold">
+                  {errors.name.message}
+                </span>
+              )}
             </div>
 
             <div className="w-full">
@@ -128,14 +136,13 @@ function AdminEditPage({
                     value > 0 || "Price must be greater than zero",
                 })}
               />
-              <div className="flex mt-[10px] font-bold">
-                {errors.sessions_single && (
-                  <span className="text-red-500">
-                    {errors.sessions_single.message}
-                  </span>
-                )}
-              </div>
+              {errors.sessions_single && (
+                <span className="text-red-500 mt-[10px] font-bold">
+                  {errors.sessions_single.message}
+                </span>
+              )}
             </div>
+
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px]">
                 <span className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></span>
@@ -151,14 +158,13 @@ function AdminEditPage({
                     value > 0 || "Price must be greater than zero",
                 })}
               />
-              <div className="flex mt-[10px] font-bold">
-                {errors.sessions_five && (
-                  <span className="text-red-500">
-                    {errors.sessions_five.message}
-                  </span>
-                )}
-              </div>
+              {errors.sessions_five && (
+                <span className="text-red-500 mt-[10px] font-bold">
+                  {errors.sessions_five.message}
+                </span>
+              )}
             </div>
+
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px]">
                 <span className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></span>
@@ -174,21 +180,33 @@ function AdminEditPage({
                     value > 0 || "Price must be greater than zero",
                 })}
               />
-              <div className="flex mt-[10px] font-bold">
-                {errors.sessions_ten && (
-                  <span className="text-red-500">
-                    {errors.sessions_ten.message}
-                  </span>
-                )}
-              </div>
+              {errors.sessions_ten && (
+                <span className="text-red-500 mt-[10px] font-bold">
+                  {errors.sessions_ten.message}
+                </span>
+              )}
             </div>
           </div>
-          <div className="flex justify-center items-center">
+
+          {isSuccess && (
+            <div className="text-green-500 mt-[20px] font-bold">
+              Service edited successfully!
+            </div>
+          )}
+
+          {isError && (
+            <div className="text-red-500 mt-[20px] font-bold">
+              {mutationError?.message || "Error updating service!"}
+            </div>
+          )}
+
+          <div className="flex justify-center items-center mt-[20px]">
             <button
               className="max-w-[195px] w-full text-[#D7FD44] h-[42px] border border-[#D7FD44] rounded-[24px]"
               type="submit"
+              disabled={isMutating}
             >
-              + Edit Service
+              {isMutating ? "Editing..." : "+ Edit Service"}
             </button>
           </div>
         </form>
