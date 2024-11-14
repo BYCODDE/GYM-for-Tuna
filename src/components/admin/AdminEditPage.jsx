@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import useGetServiceById from "../../hooks/useGetServiceById";
 import { useEffect } from "react";
+import useGetServiceById from "../../hooks/useGetServiceById";
 import useEditService from "../../hooks/useEditService";
 
 function AdminEditPage({
@@ -48,6 +48,20 @@ function AdminEditPage({
     }
   }, [data, reset]);
 
+  const onSubmit = (formData) => {
+    setTimeout(() => {
+      editService(
+        { id: EditPageId, updatedService: formData },
+        {
+          onSuccess: () => {
+            reset();
+            setAddingOpenEditPage(false);
+          },
+        }
+      );
+    }, 2000);
+  };
+
   if (isLoading) {
     return <div className="text-yellow-400">Loading...</div>;
   }
@@ -55,18 +69,6 @@ function AdminEditPage({
   if (error) {
     return <div className="text-red-600">Error loading service data!</div>;
   }
-
-  const onSubmit = (formData) => {
-    editService(
-      { id: EditPageId, updatedService: formData },
-      {
-        onSuccess: () => {
-          reset();
-          setAddingOpenEditPage(false);
-        },
-      }
-    );
-  };
 
   return (
     <div className="relative z-10 font-Nunito text-[#FFF]">
@@ -115,9 +117,9 @@ function AdminEditPage({
                 })}
               />
               {errors.name && (
-                <span className="text-red-500 mt-[10px] font-bold">
+                <div className="flex mt-[10px] font-bold text-red-500">
                   {errors.name.message}
-                </span>
+                </div>
               )}
             </div>
 
@@ -132,14 +134,22 @@ function AdminEditPage({
                 {...register("sessions_single", {
                   required: "Single session price is required",
                   valueAsNumber: true,
-                  validate: (value) =>
-                    value > 0 || "Price must be greater than zero",
+                  validate: (value) => {
+                    const maxDigits = 10;
+                    const valueStr = value.toString();
+
+                    if (valueStr.length > maxDigits) {
+                      return `Price cannot exceed ${maxDigits} digits`;
+                    }
+
+                    return value > 0 || "Price must be greater than zero";
+                  },
                 })}
               />
               {errors.sessions_single && (
-                <span className="text-red-500 mt-[10px] font-bold">
+                <div className="flex mt-[10px] font-bold text-red-500">
                   {errors.sessions_single.message}
-                </span>
+                </div>
               )}
             </div>
 
@@ -154,14 +164,22 @@ function AdminEditPage({
                 {...register("sessions_five", {
                   required: "Five session price is required",
                   valueAsNumber: true,
-                  validate: (value) =>
-                    value > 0 || "Price must be greater than zero",
+                  validate: (value) => {
+                    const maxDigits = 10;
+                    const valueStr = value.toString();
+
+                    if (valueStr.length > maxDigits) {
+                      return `Price cannot exceed ${maxDigits} digits`;
+                    }
+
+                    return value > 0 || "Price must be greater than zero";
+                  },
                 })}
               />
               {errors.sessions_five && (
-                <span className="text-red-500 mt-[10px] font-bold">
+                <div className="flex mt-[10px] font-bold text-red-500">
                   {errors.sessions_five.message}
-                </span>
+                </div>
               )}
             </div>
 
@@ -176,39 +194,48 @@ function AdminEditPage({
                 {...register("sessions_ten", {
                   required: "Ten session price is required",
                   valueAsNumber: true,
-                  validate: (value) =>
-                    value > 0 || "Price must be greater than zero",
+                  validate: (value) => {
+                    const maxDigits = 10;
+                    const valueStr = value.toString();
+
+                    if (valueStr.length > maxDigits) {
+                      return `Price cannot exceed ${maxDigits} digits`;
+                    }
+
+                    return value > 0 || "Price must be greater than zero";
+                  },
                 })}
               />
               {errors.sessions_ten && (
-                <span className="text-red-500 mt-[10px] font-bold">
+                <div className="flex mt-[10px] font-bold text-red-500">
                   {errors.sessions_ten.message}
-                </span>
+                </div>
               )}
             </div>
           </div>
 
-          {isSuccess && (
-            <div className="text-green-500 mt-[20px] font-bold">
-              Service edited successfully!
-            </div>
-          )}
-
-          {isError && (
-            <div className="text-red-500 mt-[20px] font-bold">
-              {mutationError?.message || "Error updating service!"}
-            </div>
-          )}
-
-          <div className="flex justify-center items-center mt-[20px]">
+          <div className="flex justify-center items-center">
             <button
               className="max-w-[195px] w-full text-[#D7FD44] h-[42px] border border-[#D7FD44] rounded-[24px]"
               type="submit"
-              disabled={isMutating}
             >
               {isMutating ? "Editing..." : "+ Edit Service"}
             </button>
           </div>
+          {isSuccess && (
+            <div className="font-bold text-green-800 text-[20px]">Success</div>
+          )}
+          {isError && (
+            <div className="font-bold text-red-800 text-[20px]">
+              Error in editing
+            </div>
+          )}
+          {mutationError && (
+            <div className="font-bold text-red-800 text-[20px]">
+              {mutationError.message ||
+                "An error occurred during the service update."}
+            </div>
+          )}
         </form>
       </motion.div>
     </div>
