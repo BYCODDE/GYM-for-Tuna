@@ -3,12 +3,8 @@ import { useEffect, useState } from "react";
 import useGetTrainer from "../../hooks/useGetTrainer";
 
 const AboutMe = () => {
-  const [imagePreview, setImagePreview] = useState(null);
-
+  const [imagePreview, setImagePreview] = useState(null); // Store the image preview URL
   const { data: aboutTrainer, error } = useGetTrainer();
-
-  console.log(aboutTrainer);
-  console.log(error);
 
   const {
     register,
@@ -18,7 +14,7 @@ const AboutMe = () => {
   } = useForm();
 
   const handleImageChange = (event) => {
-    const file = event.target.files[0];
+    const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -31,7 +27,6 @@ const AboutMe = () => {
   useEffect(() => {
     const trainer = aboutTrainer?.aboutTrainer?.[0];
     if (trainer) {
-      console.log(trainer.image);
       setImagePreview(trainer.image);
       reset({
         experience: trainer.experience || "",
@@ -47,6 +42,10 @@ const AboutMe = () => {
     setImagePreview(null);
   };
 
+  if (error) {
+    return <div className="text-red-600 flex text-[20px] justify-center">Error loading service data!</div>;
+  }
+
   return (
     <div className="lg:p-[82px] text-[#FFF] font-Nunito p-[22px]">
       <div className="flex items-center justify-between font-bold">
@@ -57,7 +56,7 @@ const AboutMe = () => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-between items-center ">
+      <div className="flex flex-col justify-between items-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="text-white w-full text-center mt-[41px] gap-[3.25rem] flex flex-col"
@@ -107,7 +106,15 @@ const AboutMe = () => {
                 accept="image/*"
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
                 {...register("image", {
-                  required: "Image is required",
+                  validate: {
+                    imageRequired: (value) => {
+                      if (value) {
+                        return "updated!";
+                      } else {
+                        return "Image is required";
+                      }
+                    },
+                  },
                 })}
                 onChange={handleImageChange}
               />
