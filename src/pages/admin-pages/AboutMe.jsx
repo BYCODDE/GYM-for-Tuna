@@ -25,6 +25,7 @@ const AboutMe = () => {
   const onSubmit = (data) => {
     console.log(data); // Submit form data
     reset(); // Reset form after submission
+    setImagePreview(null); // Clear image preview
   };
 
   return (
@@ -37,7 +38,7 @@ const AboutMe = () => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-between items-center mt-[30px]">
+      <div className="flex flex-col justify-between items-center ">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="text-white w-full text-center mt-[41px] gap-[3.25rem] flex flex-col"
@@ -68,58 +69,18 @@ const AboutMe = () => {
 
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px]">
-                Professional Title
+                Experience
               </h3>
               <input
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
                 type="text"
-                {...register("title", {
-                  required: "Professional title is required",
+                {...register("experience", {
+                  required: "Experience title is required",
                 })}
               />
-              {errors.title && (
+              {errors.experience && (
                 <div className="flex mt-[10px] font-bold text-red-500">
-                  {errors.title.message}
-                </div>
-              )}
-            </div>
-
-            <div className="w-full">
-              <h3 className="flex items-center mb-[20px] gap-[10px]">
-                Location
-              </h3>
-              <input
-                className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
-                type="text"
-                {...register("location", {
-                  required: "Location is required",
-                })}
-              />
-              {errors.location && (
-                <div className="flex mt-[10px] font-bold text-red-500">
-                  {errors.location.message}
-                </div>
-              )}
-            </div>
-
-            <div className="w-full">
-              <h3 className="flex items-center mb-[20px] gap-[10px]">
-                Contact
-              </h3>
-              <input
-                className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
-                type="text"
-                {...register("contact", {
-                  required: "Contact information is required",
-                  pattern: {
-                    value: /^[0-9]+$/,
-                    message: "Only numbers are allowed for contact information",
-                  },
-                })}
-              />
-              {errors.contact && (
-                <div className="flex mt-[10px] font-bold text-red-500">
-                  {errors.contact.message}
+                  {errors.experience.message}
                 </div>
               )}
             </div>
