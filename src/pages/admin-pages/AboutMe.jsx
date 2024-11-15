@@ -1,8 +1,14 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useGetTrainer from "../../hooks/useGetTrainer";
 
 const AboutMe = () => {
-  const [imagePreview, setImagePreview] = useState(null); // For image preview
+  const [imagePreview, setImagePreview] = useState(null);
+
+  const { data: aboutTrainer, error } = useGetTrainer();
+
+  console.log(aboutTrainer);
+  console.log(error);
 
   const {
     register,
@@ -16,16 +22,29 @@ const AboutMe = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result); // Set image preview
+        setImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
     }
   };
 
+  useEffect(() => {
+    const trainer = aboutTrainer?.aboutTrainer?.[0];
+    if (trainer) {
+      console.log(trainer.image);
+      setImagePreview(trainer.image);
+      reset({
+        experience: trainer.experience || "",
+        image: trainer.image || "",
+        story: trainer.story || "",
+      });
+    }
+  }, [aboutTrainer, reset]);
+
   const onSubmit = (data) => {
-    console.log(data); // Submit form data
-    reset(); // Reset form after submission
-    setImagePreview(null); // Clear image preview
+    console.log(data);
+    reset();
+    setImagePreview(null);
   };
 
   return (
@@ -44,29 +63,6 @@ const AboutMe = () => {
           className="text-white w-full text-center mt-[41px] gap-[3.25rem] flex flex-col"
         >
           <div className="flex flex-col gap-[50px]">
-            <div className="w-full">
-              <h3 className="flex items-center mb-[20px] gap-[10px]">
-                Input your name
-              </h3>
-              <input
-                className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
-                type="text"
-                {...register("name", {
-                  required: "Name is required",
-                  pattern: {
-                    value: /^[a-z\s-]+$/i,
-                    message: "Only letters, spaces, and hyphens are allowed",
-                  },
-                  setValueAs: (value) => value.toLowerCase(),
-                })}
-              />
-              {errors.name && (
-                <div className="flex mt-[10px] font-bold text-red-500">
-                  {errors.name.message}
-                </div>
-              )}
-            </div>
-
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px]">
                 Experience
