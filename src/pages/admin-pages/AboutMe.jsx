@@ -43,7 +43,11 @@ const AboutMe = () => {
   };
 
   if (error) {
-    return <div className="text-red-600 flex text-[20px] justify-center">Error loading service data!</div>;
+    return (
+      <div className="text-red-600 flex text-[20px] justify-center">
+        Error loading service data!
+      </div>
+    );
   }
 
   return (
