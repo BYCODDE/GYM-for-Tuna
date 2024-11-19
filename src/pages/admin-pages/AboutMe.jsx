@@ -1,10 +1,14 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import useGetTrainer from "../../hooks/useGetTrainer";
+import useGetCertification from "../../hooks/useGetCertification";
 
 const AboutMe = () => {
-  const [imagePreview, setImagePreview] = useState(null); // Store the image preview URL
+  const [imagePreview, setImagePreview] = useState(null);
   const { data: aboutTrainer, error } = useGetTrainer();
+  const { data: certification, error: certficationError } =
+    useGetCertification();
+  console.log(error); // Check if validation errors are preventing submission
 
   const {
     register,
@@ -26,19 +30,28 @@ const AboutMe = () => {
 
   useEffect(() => {
     const trainer = aboutTrainer?.aboutTrainer?.[0];
-    if (trainer) {
+    const dataCertification = certification?.certification;
+
+    if (trainer && dataCertification) {
       setImagePreview(trainer.image);
+
+      const certifications = dataCertification
+        .map((item) => `* ${item.name}`)
+        .join("\n\n");
+
       reset({
         experience: trainer.experience || "",
         image: trainer.image || "",
         story: trainer.story || "",
+        certification: certifications || "",
       });
     }
-  }, [aboutTrainer, reset]);
+  }, [aboutTrainer, reset, certification]);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data, event) => {
     console.log(data);
-    reset();
+    event.preventDefault();
+    // reset();
     setImagePreview(null);
   };
 
@@ -97,6 +110,22 @@ const AboutMe = () => {
               {errors.story && (
                 <div className="flex mt-[10px] font-bold text-red-500">
                   {errors.story.message}
+                </div>
+              )}
+            </div>
+            <div className="w-full">
+              <h3 className="flex items-center mb-[20px] gap-[10px]">
+                Certification
+              </h3>
+              <textarea
+                className="w-full h-[150px] focus:outline-none focus:border-none flex p-[10px] items-start rounded-[8px] bg-[#323232] text-white whitespace-pre-wrap"
+                {...register("certification", {
+                  required: "Please share your certification",
+                })}
+              />
+              {errors.certification && (
+                <div className="flex mt-[10px] font-bold text-red-500">
+                  {errors.certification.message}
                 </div>
               )}
             </div>
