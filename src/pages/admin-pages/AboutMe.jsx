@@ -49,7 +49,7 @@ const AboutMe = () => {
   }, [aboutTrainer, reset, certification]);
 
   const onSubmit = (data, event) => {
-    console.log(data,"dasabmitda");
+    console.log(data, "dasabmitda");
     event.preventDefault();
     reset();
     // setImagePreview(null);
@@ -63,7 +63,6 @@ const AboutMe = () => {
     );
   }
   console.log(errors);
-
 
   return (
     <div className="lg:p-[82px] text-[#FFF] font-Nunito p-[22px]">
@@ -91,7 +90,6 @@ const AboutMe = () => {
                 {...register("experience", {
                   required: "Experience title is required",
                 })}
-
               />
               {errors.experience && (
                 <div className="flex mt-[10px] font-bold text-red-500">
