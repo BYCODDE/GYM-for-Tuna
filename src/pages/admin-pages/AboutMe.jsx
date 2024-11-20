@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import useGetTrainer from "../../hooks/useGetTrainer";
 import useGetCertification from "../../hooks/useGetCertification";
+import useEditTrainer from "../../hooks/useEditTrainer";
 
 const AboutMe = () => {
   const [imagePreview, setImagePreview] = useState(null);
@@ -9,6 +10,12 @@ const AboutMe = () => {
   const { data: certification, error: certficationError } =
     useGetCertification();
   console.log(certficationError);
+  const {
+    mutate: aboutmeMutation,
+    isLoading,
+    error: editError,
+    isSuccess,
+  } = useEditTrainer();
 
   const {
     register,
@@ -49,10 +56,30 @@ const AboutMe = () => {
   }, [aboutTrainer, reset, certification]);
 
   const onSubmit = (data, event) => {
-    console.log(data, "dasabmitda");
     event.preventDefault();
-    reset();
-    // setImagePreview(null);
+
+    // Prepare the payload to include the trainer ID and updated data
+    const payload = {
+      id: aboutTrainer?.aboutTrainer?.[0]?.id, // Assuming the trainer has an 'id' field
+      updatedTrainer: {
+        experience: data.experience,
+        story: data.story,
+
+        image: imagePreview || data.image, // Ensure image is passed correctly
+      },
+    };
+
+    console.log("Submitting payload:", payload); // Debug log for validation
+
+    aboutmeMutation(payload, {
+      onSuccess: () => {
+        console.log("Mutation was successful!");
+        reset(); // Reset form after successful mutation
+      },
+      onError: (error) => {
+        console.error("Mutation failed:", error.message);
+      },
+    });
   };
 
   if (error) {

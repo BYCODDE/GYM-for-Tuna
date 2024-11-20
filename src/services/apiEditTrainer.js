@@ -1,13 +1,11 @@
 import { supabase } from "./supabase";
 
-export const apiEditTrainer = async (updatedTrainer) => {
-  const { data, error } = await supabase.from("about").update(updatedTrainer);
-
-  if (error) {
-    console.error("Supabase error:", error.message);
-    throw new Error(error.message);
-  }
-
-  console.log("Data returned from Supabase:", data);
-  return data;
+export const apiEditTrainer = async (id, updatedTrainer) => {
+  const { data: editAbout, error } = await supabase
+    .from("about")
+    .update(updatedTrainer)
+    .eq("id", id);
+  console.log(editAbout);
+  if (error) throw new Error(error.message);
+  return editAbout;
 };
