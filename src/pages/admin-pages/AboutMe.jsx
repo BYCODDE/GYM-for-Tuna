@@ -8,7 +8,7 @@ const AboutMe = () => {
   const { data: aboutTrainer, error } = useGetTrainer();
   const { data: certification, error: certficationError } =
     useGetCertification();
-  console.log(error); // Check if validation errors are preventing submission
+  console.log(certficationError);
 
   const {
     register,
@@ -49,10 +49,10 @@ const AboutMe = () => {
   }, [aboutTrainer, reset, certification]);
 
   const onSubmit = (data, event) => {
-    console.log(data);
+    console.log(data,"dasabmitda");
     event.preventDefault();
-    // reset();
-    setImagePreview(null);
+    reset();
+    // setImagePreview(null);
   };
 
   if (error) {
@@ -62,6 +62,8 @@ const AboutMe = () => {
       </div>
     );
   }
+  console.log(errors);
+
 
   return (
     <div className="lg:p-[82px] text-[#FFF] font-Nunito p-[22px]">
@@ -89,6 +91,7 @@ const AboutMe = () => {
                 {...register("experience", {
                   required: "Experience title is required",
                 })}
+
               />
               {errors.experience && (
                 <div className="flex mt-[10px] font-bold text-red-500">
@@ -142,7 +145,7 @@ const AboutMe = () => {
                   validate: {
                     imageRequired: (value) => {
                       if (value) {
-                        return "updated!";
+                        return true;
                       } else {
                         return "Image is required";
                       }
@@ -162,7 +165,7 @@ const AboutMe = () => {
                   <img
                     src={imagePreview}
                     alt="Selected"
-                    className="w-full h-auto rounded-[8px]"
+                    className="w-[150px] h-auto rounded-[8px]"
                   />
                 </div>
               )}
