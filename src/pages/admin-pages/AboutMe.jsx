@@ -7,8 +7,9 @@ import useAddCertification from "../../hooks/useAddCertificaton";
 
 const AboutMe = () => {
   const [imagePreview, setImagePreview] = useState(null);
+  const [newCertifications, setNewCertifications] = useState([]);
   const { data: aboutTrainer, error } = useGetTrainer();
-  const { data: certification, error: certficationError } =
+  const { data: certification, error: certificationError } =
     useGetCertification();
   const {
     mutate: aboutmeMutation,
@@ -17,10 +18,7 @@ const AboutMe = () => {
     isSuccess,
   } = useEditTrainer();
 
-  const { mutate: addCertification, error: certificationError } =
-    useAddCertification();
-
-  console.log(certification);
+  const { mutate: addCertification, error: certError } = useAddCertification();
 
   const {
     register,
@@ -40,6 +38,14 @@ const AboutMe = () => {
     }
   };
 
+  // Update certifications state
+  const handleAddCertification = (e) => {
+    const certificationName = e.target.value;
+    if (certificationName && !newCertifications.includes(certificationName)) {
+      setNewCertifications((prev) => [...prev, certificationName]);
+    }
+  };
+
   useEffect(() => {
     const trainer = aboutTrainer?.aboutTrainer?.[0];
     const dataCertification = certification?.certification;
@@ -55,49 +61,53 @@ const AboutMe = () => {
         experience: trainer.experience || "",
         image: trainer.image || "",
         story: trainer.story || "",
-        certification: certifications || "",
+        certification: certifications || "", 
       });
     }
-  }, [aboutTrainer, reset, certification]);
+  }, [aboutTrainer, certification, reset]);
 
   const onSubmit = (data) => {
-  const payload = {
-    id: aboutTrainer?.aboutTrainer?.[0]?.id,
-    updatedTrainer: {
-      experience: data.experience,
-      story: data.story,
-      image: imagePreview || data.image,
-    },
+    const payload = {
+      id: aboutTrainer?.aboutTrainer?.[0]?.id,
+      updatedTrainer: {
+        experience: data.experience,
+        story: data.story,
+        image: imagePreview || data.image,
+      },
+    };
+
+    aboutmeMutation(payload, {
+      onSuccess: () => {
+        // Add only the new certifications
+        newCertifications.forEach((certification) => {
+          addCertification(
+            { name: certification },
+            {
+              onSuccess: () => {
+                console.log("Certification added successfully!");
+              },
+              onError: (certError) => {
+                console.error("Error adding certification:", certError.message);
+              },
+            }
+          );
+        });
+        reset();
+      },
+      onError: (editError) => {
+        console.error("Error updating trainer:", editError.message);
+      },
+    });
   };
 
-  aboutmeMutation(payload, {
-    onSuccess: () => {
-      addCertification({ name: data.certification }, {
-        onSuccess: () => {
-          console.log("Certification and trainer data updated successfully!");
-          reset();
-        },
-        onError: (certError) => {
-          console.error("Error adding certification:", certError.message);
-        },
-      });
-    },
-    onError: (editError) => {
-      console.error("Error updating trainer:", editError.message);
-    },
-  });
-};
-
-
-  if (error) {
+  // Handle errors in loading data
+  if (error || certificationError) {
     return (
       <div className="text-red-600 flex text-[20px] justify-center">
         Error loading service data!
       </div>
     );
   }
-  console.log(errors);
-
   return (
     <div className="lg:p-[82px] text-[#FFF] font-Nunito p-[22px]">
       <div className="flex items-center justify-between font-bold">
@@ -114,6 +124,7 @@ const AboutMe = () => {
           className="text-white w-full text-center mt-[41px] gap-[3.25rem] flex flex-col"
         >
           <div className="flex flex-col gap-[50px]">
+            {/* Experience Field */}
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px]">
                 Experience
@@ -132,6 +143,7 @@ const AboutMe = () => {
               )}
             </div>
 
+            {/* Story Field */}
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px]">
                 Share your story
@@ -148,6 +160,8 @@ const AboutMe = () => {
                 </div>
               )}
             </div>
+
+            {/* Certification Field */}
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px]">
                 Certification
@@ -157,6 +171,7 @@ const AboutMe = () => {
                 {...register("certification", {
                   required: "Please share your certification",
                 })}
+                onChange={handleAddCertification}
               />
               {errors.certification && (
                 <div className="flex mt-[10px] font-bold text-red-500">
@@ -165,6 +180,7 @@ const AboutMe = () => {
               )}
             </div>
 
+            {/* Image Upload Field */}
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px]">
                 Upload Image
@@ -173,17 +189,7 @@ const AboutMe = () => {
                 type="file"
                 accept="image/*"
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
-                {...register("image", {
-                  validate: {
-                    imageRequired: (value) => {
-                      if (value) {
-                        return true;
-                      } else {
-                        return "Image is required";
-                      }
-                    },
-                  },
-                })}
+                {...register("image")}
                 onChange={handleImageChange}
               />
               {errors.image && (
@@ -192,6 +198,7 @@ const AboutMe = () => {
                 </div>
               )}
 
+              {/* Preview Image */}
               {imagePreview && (
                 <div className="mt-[20px]">
                   <img
@@ -204,6 +211,7 @@ const AboutMe = () => {
             </div>
           </div>
 
+          {/* Submit Button */}
           <div className="flex justify-center items-center">
             <button
               className="max-w-[195px] w-full text-[black] h-[42px] bg-[#D7FD44] rounded-[24px] font-bold"
