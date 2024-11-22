@@ -3,19 +3,24 @@ import { useEffect, useState } from "react";
 import useGetTrainer from "../../hooks/useGetTrainer";
 import useGetCertification from "../../hooks/useGetCertification";
 import useEditTrainer from "../../hooks/useEditTrainer";
+import useAddCertification from "../../hooks/useAddCertificaton";
 
 const AboutMe = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const { data: aboutTrainer, error } = useGetTrainer();
   const { data: certification, error: certficationError } =
     useGetCertification();
-  console.log(certficationError);
   const {
     mutate: aboutmeMutation,
     isLoading,
     error: editError,
     isSuccess,
   } = useEditTrainer();
+
+  const { mutate: addCertification, error: certificationError } =
+    useAddCertification();
+
+  console.log(certification);
 
   const {
     register,
@@ -55,32 +60,34 @@ const AboutMe = () => {
     }
   }, [aboutTrainer, reset, certification]);
 
-  const onSubmit = (data, event) => {
-    event.preventDefault();
-
-    // Prepare the payload to include the trainer ID and updated data
-    const payload = {
-      id: aboutTrainer?.aboutTrainer?.[0]?.id, // Assuming the trainer has an 'id' field
-      updatedTrainer: {
-        experience: data.experience,
-        story: data.story,
-
-        image: imagePreview || data.image, // Ensure image is passed correctly
-      },
-    };
-
-    console.log("Submitting payload:", payload); // Debug log for validation
-
-    aboutmeMutation(payload, {
-      onSuccess: () => {
-        console.log("Mutation was successful!");
-        reset(); // Reset form after successful mutation
-      },
-      onError: (error) => {
-        console.error("Mutation failed:", error.message);
-      },
-    });
+  const onSubmit = (data) => {
+  const payload = {
+    id: aboutTrainer?.aboutTrainer?.[0]?.id,
+    updatedTrainer: {
+      experience: data.experience,
+      story: data.story,
+      image: imagePreview || data.image,
+    },
   };
+
+  aboutmeMutation(payload, {
+    onSuccess: () => {
+      addCertification({ name: data.certification }, {
+        onSuccess: () => {
+          console.log("Certification and trainer data updated successfully!");
+          reset();
+        },
+        onError: (certError) => {
+          console.error("Error adding certification:", certError.message);
+        },
+      });
+    },
+    onError: (editError) => {
+      console.error("Error updating trainer:", editError.message);
+    },
+  });
+};
+
 
   if (error) {
     return (
