@@ -4,6 +4,7 @@ import useGetTrainer from "../../hooks/useGetTrainer";
 import useGetCertification from "../../hooks/useGetCertification";
 import useEditTrainer from "../../hooks/useEditTrainer";
 import useAddCertification from "../../hooks/useAddCertificaton";
+import useRemoveCertification from "../../hooks/useRemoveCertification";
 
 const AboutMe = () => {
   const [imagePreview, setImagePreview] = useState(null);
@@ -19,6 +20,12 @@ const AboutMe = () => {
   } = useEditTrainer();
 
   const { mutate: addCertification, error: certError } = useAddCertification();
+
+  const { removeCertification, isRemoving, removeError } = useRemoveCertification();
+
+console.log(certification?.certification);
+
+
 
   const {
     register,
@@ -38,14 +45,6 @@ const AboutMe = () => {
     }
   };
 
-  // Update certifications state
-  const handleAddCertification = (e) => {
-    const certificationName = e.target.value;
-    if (certificationName && !newCertifications.includes(certificationName)) {
-      setNewCertifications((prev) => [...prev, certificationName]);
-    }
-  };
-
   useEffect(() => {
     const trainer = aboutTrainer?.aboutTrainer?.[0];
     const dataCertification = certification?.certification;
@@ -61,7 +60,7 @@ const AboutMe = () => {
         experience: trainer.experience || "",
         image: trainer.image || "",
         story: trainer.story || "",
-        certification: certifications || "", 
+        certification: certifications || "",
       });
     }
   }, [aboutTrainer, certification, reset]);
@@ -171,7 +170,6 @@ const AboutMe = () => {
                 {...register("certification", {
                   required: "Please share your certification",
                 })}
-                onChange={handleAddCertification}
               />
               {errors.certification && (
                 <div className="flex mt-[10px] font-bold text-red-500">
@@ -218,6 +216,16 @@ const AboutMe = () => {
               type="submit"
             >
               Update Profile
+            </button>
+          </div>
+
+          <div className="flex justify-center items-center">
+            <button
+              className="max-w-[195px] w-full text-[black] h-[42px] bg-[#D7FD44] rounded-[24px] font-bold"
+              type="button"
+              onClick={() => removeCertification(certification?.certification)}
+            >
+              Remove Profile
             </button>
           </div>
         </form>
