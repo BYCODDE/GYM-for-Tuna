@@ -10,6 +10,8 @@ const AboutMe = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [selectedCertificationId, setSelectedCertificationId] = useState(null); // Add this state
   const { data: aboutTrainer, error } = useGetTrainer();
+  console.log(aboutTrainer);
+
   const { data: certification, error: certificationError } =
     useGetCertification();
   const {
@@ -79,6 +81,7 @@ const AboutMe = () => {
         console.error("Error updating trainer:", editError.message);
       },
     });
+    // reset();
   };
 
   // Handle errors in loading data
