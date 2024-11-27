@@ -3,12 +3,11 @@ import { useEffect, useState } from "react";
 import useGetTrainer from "../../hooks/useGetTrainer";
 import useGetCertification from "../../hooks/useGetCertification";
 import useEditTrainer from "../../hooks/useEditTrainer";
-import useAddCertification from "../../hooks/useAddCertificaton";
+// import useAddCertification from "../../hooks/useAddCertificaton";
 import useRemoveCertification from "../../hooks/useRemoveCertification";
 
 const AboutMe = () => {
   const [imagePreview, setImagePreview] = useState(null);
-  const [newCertifications, setNewCertifications] = useState([]);
   const [selectedCertificationId, setSelectedCertificationId] = useState(null); // Add this state
   const { data: aboutTrainer, error } = useGetTrainer();
   const { data: certification, error: certificationError } =
@@ -20,7 +19,6 @@ const AboutMe = () => {
     isSuccess,
   } = useEditTrainer();
 
-  const { mutate: addCertification, error: certError } = useAddCertification();
   const { removeCertification, isRemoving, removeError } =
     useRemoveCertification();
 
@@ -75,20 +73,6 @@ const AboutMe = () => {
 
     aboutmeMutation(payload, {
       onSuccess: () => {
-        // Add only the new certifications
-        newCertifications.forEach((certification) => {
-          addCertification(
-            { name: certification },
-            {
-              onSuccess: () => {
-                console.log("Certification added successfully!");
-              },
-              onError: (certError) => {
-                console.error("Error adding certification:", certError.message);
-              },
-            }
-          );
-        });
         reset();
       },
       onError: (editError) => {
