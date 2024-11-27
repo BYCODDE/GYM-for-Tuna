@@ -9,6 +9,7 @@ import useRemoveCertification from "../../hooks/useRemoveCertification";
 const AboutMe = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [newCertifications, setNewCertifications] = useState([]);
+  const [selectedCertificationId, setSelectedCertificationId] = useState(null); // Add this state
   const { data: aboutTrainer, error } = useGetTrainer();
   const { data: certification, error: certificationError } =
     useGetCertification();
@@ -20,12 +21,8 @@ const AboutMe = () => {
   } = useEditTrainer();
 
   const { mutate: addCertification, error: certError } = useAddCertification();
-
-  const { removeCertification, isRemoving, removeError } = useRemoveCertification();
-
-console.log(certification?.certification);
-
-
+  const { removeCertification, isRemoving, removeError } =
+    useRemoveCertification();
 
   const {
     register,
@@ -44,6 +41,7 @@ console.log(certification?.certification);
       reader.readAsDataURL(file);
     }
   };
+  console.log(certification?.certification);
 
   useEffect(() => {
     const trainer = aboutTrainer?.aboutTrainer?.[0];
@@ -107,6 +105,14 @@ console.log(certification?.certification);
       </div>
     );
   }
+
+  // Function to handle selecting a certification to delete
+  const handleDelete = (certificationId) => {
+    certificationId = 53;
+    setSelectedCertificationId(certificationId); // Set the selected certification ID
+    removeCertification(certificationId); // Pass the certification ID to remove
+  };
+
   return (
     <div className="lg:p-[82px] text-[#FFF] font-Nunito p-[22px]">
       <div className="flex items-center justify-between font-bold">
@@ -219,13 +225,14 @@ console.log(certification?.certification);
             </button>
           </div>
 
+          {/* Remove Certification Button */}
           <div className="flex justify-center items-center">
             <button
               className="max-w-[195px] w-full text-[black] h-[42px] bg-[#D7FD44] rounded-[24px] font-bold"
               type="button"
-              onClick={() => removeCertification(certification?.certification)}
+              onClick={() => handleDelete(selectedCertificationId)} // Update with the selected certification ID
             >
-              Remove Profile
+              Remove Certification
             </button>
           </div>
         </form>
