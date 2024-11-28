@@ -9,10 +9,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const AboutMe = () => {
   const [imagePreview, setImagePreview] = useState(null);
-  const [selectedCertificationId, setSelectedCertificationId] = useState(null); // Add this state
+  const [selectedCertificationId, setSelectedCertificationId] = useState(null);
   const { data: aboutTrainer, error } = useGetTrainer();
-  const [addingOpen, setAddingOpen] = useState(true);
-  console.log(addingOpen);
+  // const [addingOpen, setAddingOpen] = useState(true);
+  const [visibleCertifications, setVisibleCertifications] = useState({});
 
   const { data: certification, error: certificationError } =
     useGetCertification();
@@ -25,8 +25,6 @@ const AboutMe = () => {
 
   const { removeCertification, isRemoving, removeError } =
     useRemoveCertification();
-
-  const [visibleCertifications, setVisibleCertifications] = useState({});
 
   const toggleShowCertification = (id) => {
     setVisibleCertifications((prev) => ({
@@ -101,6 +99,7 @@ const AboutMe = () => {
   }
 
   // Function to handle selecting a certification to delete
+  // TODO: კონკრეტულ აიდიზე უნდა მოვიყვანო დაჭერისას როგორც სერვისში!
   const handleDelete = (certificationId) => {
     certificationId = 53;
     setSelectedCertificationId(certificationId); // Set the selected certification ID
@@ -200,7 +199,6 @@ const AboutMe = () => {
                         transition={{ duration: 0.3 }}
                         onClick={(e) => {
                           e.stopPropagation();
-                          setAddingOpen(!addingOpen);
                         }}
                       />
                     </div>
@@ -231,7 +229,7 @@ const AboutMe = () => {
                                   className="cursor-pointer w-[30px] h-[30px] hover:scale-110 transition-transform"
                                   onClick={(e) => {
                                     e.stopPropagation();
-                                    setAddingOpen(!addingOpen);
+                                    // TODO:აქ დაედითებისას უნდა!
                                     // handleDelete(item.id); // Changed to `item.id`
                                   }}
                                 />
