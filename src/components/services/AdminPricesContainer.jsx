@@ -79,7 +79,6 @@ const AdminPricesContainer = ({
               >
                 <div className="flex flex-col gap-3 p-4">
                   <div className="flex items-center gap-[10px] justify-between">
-                    {/* <div className="flex items-center gap-[10px]"></div> */}
                     <div className="flex gap-[10px] items-center">
                       <motion.img
                         src="/icons/adminTrashcan_svg.svg"

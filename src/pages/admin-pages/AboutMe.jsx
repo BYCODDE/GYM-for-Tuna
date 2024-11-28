@@ -5,12 +5,14 @@ import useGetCertification from "../../hooks/useGetCertification";
 import useEditTrainer from "../../hooks/useEditTrainer";
 // import useAddCertification from "../../hooks/useAddCertificaton";
 import useRemoveCertification from "../../hooks/useRemoveCertification";
+import { motion, AnimatePresence } from "framer-motion";
 
 const AboutMe = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [selectedCertificationId, setSelectedCertificationId] = useState(null); // Add this state
   const { data: aboutTrainer, error } = useGetTrainer();
-  console.log(aboutTrainer);
+  const [addingOpen, setAddingOpen] = useState(true);
+  console.log(addingOpen);
 
   const { data: certification, error: certificationError } =
     useGetCertification();
@@ -23,6 +25,15 @@ const AboutMe = () => {
 
   const { removeCertification, isRemoving, removeError } =
     useRemoveCertification();
+
+  const [visibleCertifications, setVisibleCertifications] = useState({});
+
+  const toggleShowCertification = (id) => {
+    setVisibleCertifications((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   const {
     register,
@@ -43,22 +54,19 @@ const AboutMe = () => {
   };
   console.log(certification?.certification);
 
+  const dataCertification = certification?.certification || [];
+
   useEffect(() => {
     const trainer = aboutTrainer?.aboutTrainer?.[0];
-    const dataCertification = certification?.certification;
 
-    if (trainer && dataCertification) {
+    if (trainer) {
       setImagePreview(trainer.image);
-
-      const certifications = dataCertification
-        .map((item) => `* ${item.name}`)
-        .join("\n\n");
 
       reset({
         experience: trainer.experience || "",
         image: trainer.image || "",
         story: trainer.story || "",
-        certification: certifications || "",
+        // certification: certifications || "", //TODO: ეს უნდა ამოვიღო,დიზაინიდან და ლოგიკიდან გამომდინარე!
       });
     }
   }, [aboutTrainer, certification, reset]);
@@ -81,7 +89,6 @@ const AboutMe = () => {
         console.error("Error updating trainer:", editError.message);
       },
     });
-    // reset();
   };
 
   // Handle errors in loading data
@@ -158,7 +165,8 @@ const AboutMe = () => {
               <h3 className="flex items-center mb-[20px] gap-[10px]">
                 Certification
               </h3>
-              <textarea
+
+              {/* <textarea
                 className="w-full h-[150px] focus:outline-none focus:border-none flex p-[10px] items-start rounded-[8px] bg-[#323232] text-white whitespace-pre-wrap"
                 {...register("certification", {
                   required: "Please share your certification",
@@ -168,7 +176,74 @@ const AboutMe = () => {
                 <div className="flex mt-[10px] font-bold text-red-500">
                   {errors.certification.message}
                 </div>
-              )}
+              )} */}
+              <div className="flex flex-col gap-[20px]">
+                {dataCertification.map((item) => (
+                  <motion.div
+                    key={item.id}
+                    className="flex flex-col w-full bg-[#222] rounded-[20px] mt-[20px] overflow-hidden cursor-pointer"
+                    animate={{
+                      height: visibleCertifications[item.id] ? "auto" : "70px",
+                    }}
+                    transition={{ duration: 0.3 }}
+                    onClick={() => toggleShowCertification(item.id)} // Assuming you will add a function to toggle visibility
+                  >
+                    <div className="flex h-[70px] py-[8px] px-[16px] items-center gap-[10px] justify-between w-full">
+                      <h3 className="text-white">{item.name}</h3>
+                      <motion.img
+                        src="/icons/service-arrow.svg"
+                        alt="Close"
+                        className="w-[40px] h-[40px] cursor-pointer transition-transform"
+                        animate={{
+                          rotate: visibleCertifications[item.id] ? -79 : 0,
+                        }}
+                        transition={{ duration: 0.3 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setAddingOpen(!addingOpen);
+                        }}
+                      />
+                    </div>
+                    <AnimatePresence>
+                      {visibleCertifications[item.id] && (
+                        <motion.div
+                          className="flex flex-col gap-[10px] mt-4 overflow-hidden"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <div className="flex flex-col gap-3 p-4">
+                            <div className="flex items-center gap-[10px] justify-between">
+                              <div className="flex gap-[10px] items-center">
+                                <motion.img
+                                  src="/icons/adminTrashcan_svg.svg"
+                                  alt="delete"
+                                  className="cursor-pointer w-[30px] h-[30px] hover:scale-110 transition-transform"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDelete(item.id);
+                                  }}
+                                />
+                                <motion.img
+                                  src="/icons/adminEdit_svg.svg"
+                                  alt="edit"
+                                  className="cursor-pointer w-[30px] h-[30px] hover:scale-110 transition-transform"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setAddingOpen(!addingOpen);
+                                    // handleDelete(item.id); // Changed to `item.id`
+                                  }}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
             {/* Image Upload Field */}
