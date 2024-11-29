@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import useGetTrainer from "../../hooks/useGetTrainer";
 import useGetCertification from "../../hooks/useGetCertification";
 import useEditTrainer from "../../hooks/useEditTrainer";
-// import useAddCertification from "../../hooks/useAddCertificaton";
 import useRemoveCertification from "../../hooks/useRemoveCertification";
 import { motion, AnimatePresence } from "framer-motion";
 import useAddCertification from "../../hooks/useAddCertificaton";
@@ -56,13 +55,9 @@ const AboutMe = () => {
       reader.readAsDataURL(file);
     }
   };
-  // console.log(certification?.certification);
 
   let dataCertification = certification?.certification || [];
 
-  // dataCertification.map((item) => {
-  //   console.log(item.name);
-  // });
   useEffect(() => {
     const trainer = aboutTrainer?.aboutTrainer?.[0];
     if (trainer) {
@@ -72,7 +67,9 @@ const AboutMe = () => {
         experience: trainer.experience || "",
         image: trainer.image || "",
         story: trainer.story || "",
-        certificationName: "", //TODO: ეს უნდა ამოვიღო,დიზაინიდან და ლოგიკიდან გამომდინარე!
+        certificationName: "",
+        startDate: "",
+        endDate: "",
       });
     }
   }, [aboutTrainer, certification, reset]);
@@ -82,7 +79,7 @@ const AboutMe = () => {
 
     // Payload for updating the trainer (aboutMe section)
     const trainerPayload = {
-      id: aboutTrainer?.aboutTrainer?.[0]?.id, // Assuming this is an existing trainer ID
+      id: aboutTrainer?.aboutTrainer?.[0]?.id,
       updatedTrainer: {
         experience: data.experience,
         story: data.story,
@@ -100,7 +97,7 @@ const AboutMe = () => {
     aboutmeMutation(trainerPayload, {
       onSuccess: () => {
         console.log("Trainer details updated successfully");
-        reset(); // Reset the form fields related to trainer after success
+        reset();
       },
       onError: (editError) => {
         console.error("Error updating trainer:", editError.message);
@@ -111,7 +108,7 @@ const AboutMe = () => {
     insertedData(certificationPayload, {
       onSuccess: () => {
         console.log("Certification added successfully");
-        reset(); // Reset the form fields related to certification after success
+        reset();
       },
       onError: (certError) => {
         console.error("Error adding certification:", certError.message);
@@ -129,10 +126,9 @@ const AboutMe = () => {
   }
 
   // Function to handle selecting a certification to delete
-  // TODO: კონკრეტულ აიდიზე უნდა მოვიყვანო დაჭერისას როგორც სერვისში!
   const handleDelete = (certificationId) => {
-    setSelectedCertificationId(certificationId); // Set the selected certification ID
-    removeCertification(certificationId); // Pass the certification ID to remove
+    setSelectedCertificationId(certificationId);
+    removeCertification(certificationId);
   };
 
   return (
@@ -200,6 +196,20 @@ const AboutMe = () => {
                   required: "Please share your certification",
                 })}
               />
+              <span className="flex">Type certification startDate here:</span>
+              <input
+                className="w-full h-[auto ] focus:outline-none focus:border-none flex p-[10px] items-start rounded-[8px] bg-[#323232] text-white whitespace-pre-wrap"
+                {...register("startDate", {
+                  required: "Please share your startDate",
+                })}
+              />
+              <span className="flex">Type certification endDate here:</span>
+              <input
+                className="w-full h-[auto ] focus:outline-none focus:border-none flex p-[10px] items-start rounded-[8px] bg-[#323232] text-white whitespace-pre-wrap"
+                {...register("endDate", {
+                  required: "Please share your endDate",
+                })}
+              />
               {errors.certification && (
                 <div className="flex mt-[10px] font-bold text-red-500">
                   {errors.certification.message}
@@ -214,7 +224,7 @@ const AboutMe = () => {
                       height: visibleCertifications[item.id] ? "auto" : "70px",
                     }}
                     transition={{ duration: 0.3 }}
-                    onClick={() => toggleShowCertification(item.id)} // Assuming you will add a function to toggle visibility
+                    onClick={() => toggleShowCertification(item.id)}
                   >
                     <div className="flex h-[70px] py-[8px] px-[16px] items-center gap-[10px] justify-between w-full">
                       <h3 className="text-white">{item.name}</h3>
@@ -333,17 +343,6 @@ const AboutMe = () => {
               Update Profile
             </button>
           </div>
-
-          {/* Remove Certification Button */}
-            {/* <div className="flex justify-center items-center">
-              <button
-                className="max-w-[195px] w-full text-[black] h-[42px] bg-[#D7FD44] rounded-[24px] font-bold"
-                type="button"
-                onClick={() => handleDelete(selectedCertificationId)} // Update with the selected certification ID
-              >
-                Remove Certification
-              </button>
-            </div> */}
         </form>
       </div>
     </div>
