@@ -16,6 +16,7 @@ const AboutMe = () => {
 
   const { data: certification, error: certificationError } =
     useGetCertification();
+
   const {
     mutate: aboutmeMutation,
     isLoading,
@@ -233,6 +234,26 @@ const AboutMe = () => {
                                     // handleDelete(item.id); // Changed to `item.id`
                                   }}
                                 />
+                              </div>
+                            </div>
+                            <div className="flex flex-col">
+                              <div className="text-[#ABABAB] text-[14px] flex items-baseline gap-[10px]">
+                                <div>
+                                  <ul className="flex gap-3 flex-col">
+                                    <li className="flex items-baseline gap-[10px]">
+                                      <div className="tiny:w-[18px] smaller:w-[13px] w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold mt-[6px]"></div>
+                                      <span>
+                                        The start date is {item.startDate}
+                                      </span>
+                                    </li>
+                                    <li className="flex items-baseline gap-[10px]">
+                                      <div className="tiny:w-[18px] smaller:w-[13px] w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold mt-[6px]"></div>
+                                      <span>
+                                        The end date is {item.endDate}
+                                      </span>
+                                    </li>
+                                  </ul>
+                                </div>
                               </div>
                             </div>
                           </div>
