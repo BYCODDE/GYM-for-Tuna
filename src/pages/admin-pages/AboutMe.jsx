@@ -153,7 +153,7 @@ const AboutMe = () => {
           <div className="flex flex-col gap-[50px]">
             {/* Experience Field */}
             <div className="w-full">
-              <h3 className="flex items-center mb-[20px] gap-[10px]">
+              <h3 className="flex items-center mb-[20px] gap-[10px] text-[20px]">
                 Experience
               </h3>
               <input
@@ -172,7 +172,7 @@ const AboutMe = () => {
 
             {/* Story Field */}
             <div className="w-full">
-              <h3 className="flex items-center mb-[20px] gap-[10px]">
+              <h3 className="flex items-center mb-[20px] gap-[10px] text-[20px]">
                 Share your story
               </h3>
               <textarea
@@ -189,13 +189,13 @@ const AboutMe = () => {
             </div>
 
             {/* Certification Field */}
-            <div className="w-full">
-              <h3 className="flex items-center mb-[20px] gap-[10px]">
+            <div className="w-full flex flex-col gap-[10px]">
+              <h3 className="flex items-center mb-[20px] gap-[10px] text-[20px]">
                 Certification
               </h3>
-
-              <textarea
-                className="w-full h-[150px] focus:outline-none focus:border-none flex p-[10px] items-start rounded-[8px] bg-[#323232] text-white whitespace-pre-wrap"
+              <span className="flex">Type certification name here:</span>
+              <input
+                className="w-full h-[auto ] focus:outline-none focus:border-none flex p-[10px] items-start rounded-[8px] bg-[#323232] text-white whitespace-pre-wrap"
                 {...register("certificationName", {
                   required: "Please share your certification",
                 })}
@@ -269,13 +269,13 @@ const AboutMe = () => {
                                 <div>
                                   <ul className="flex gap-3 flex-col">
                                     <li className="flex items-baseline gap-[10px]">
-                                      <div className="tiny:w-[18px] smaller:w-[13px] w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold mt-[6px]"></div>
+                                      <div className=" w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold mt-[6px]"></div>
                                       <span>
                                         The start date is {item.startDate}
                                       </span>
                                     </li>
                                     <li className="flex items-baseline gap-[10px]">
-                                      <div className="tiny:w-[18px] smaller:w-[13px] w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold mt-[6px]"></div>
+                                      <div className=" w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold mt-[6px]"></div>
                                       <span>
                                         The end date is {item.endDate}
                                       </span>
@@ -295,7 +295,7 @@ const AboutMe = () => {
 
             {/* Image Upload Field */}
             <div className="w-full">
-              <h3 className="flex items-center mb-[20px] gap-[10px]">
+              <h3 className="flex items-center mb-[20px] gap-[10px] text-[20px]">
                 Upload Image
               </h3>
               <input
@@ -335,15 +335,15 @@ const AboutMe = () => {
           </div>
 
           {/* Remove Certification Button */}
-          <div className="flex justify-center items-center">
-            <button
-              className="max-w-[195px] w-full text-[black] h-[42px] bg-[#D7FD44] rounded-[24px] font-bold"
-              type="button"
-              onClick={() => handleDelete(selectedCertificationId)} // Update with the selected certification ID
-            >
-              Remove Certification
-            </button>
-          </div>
+            {/* <div className="flex justify-center items-center">
+              <button
+                className="max-w-[195px] w-full text-[black] h-[42px] bg-[#D7FD44] rounded-[24px] font-bold"
+                type="button"
+                onClick={() => handleDelete(selectedCertificationId)} // Update with the selected certification ID
+              >
+                Remove Certification
+              </button>
+            </div> */}
         </form>
       </div>
     </div>
