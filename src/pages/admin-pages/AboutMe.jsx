@@ -18,6 +18,8 @@ const AboutMe = () => {
   const { data: certification, error: certificationError } =
     useGetCertification();
 
+  console.log(certification);
+
   const { mutate: insertedData, error: addingError } = useAddCertification();
 
   const {
@@ -54,13 +56,15 @@ const AboutMe = () => {
       reader.readAsDataURL(file);
     }
   };
-  console.log(certification?.certification);
+  // console.log(certification?.certification);
 
-  const dataCertification = certification?.certification || [];
+  let dataCertification = certification?.certification || [];
 
+  // dataCertification.map((item) => {
+  //   console.log(item.name);
+  // });
   useEffect(() => {
     const trainer = aboutTrainer?.aboutTrainer?.[0];
-
     if (trainer) {
       setImagePreview(trainer.image);
 
@@ -68,12 +72,14 @@ const AboutMe = () => {
         experience: trainer.experience || "",
         image: trainer.image || "",
         story: trainer.story || "",
-        certification: "", //TODO: ეს უნდა ამოვიღო,დიზაინიდან და ლოგიკიდან გამომდინარე!
+        certificationName: "", //TODO: ეს უნდა ამოვიღო,დიზაინიდან და ლოგიკიდან გამომდინარე!
       });
     }
   }, [aboutTrainer, certification, reset]);
 
   const onSubmit = (data) => {
+    console.log(data);
+
     // Payload for updating the trainer (aboutMe section)
     const trainerPayload = {
       id: aboutTrainer?.aboutTrainer?.[0]?.id, // Assuming this is an existing trainer ID
@@ -86,7 +92,7 @@ const AboutMe = () => {
 
     const certificationPayload = {
       endDate: data.endDate,
-      name: data.name,
+      name: data.certificationName,
       startDate: data.startDate,
     };
 
@@ -125,7 +131,6 @@ const AboutMe = () => {
   // Function to handle selecting a certification to delete
   // TODO: კონკრეტულ აიდიზე უნდა მოვიყვანო დაჭერისას როგორც სერვისში!
   const handleDelete = (certificationId) => {
-    certificationId = 94;
     setSelectedCertificationId(certificationId); // Set the selected certification ID
     removeCertification(certificationId); // Pass the certification ID to remove
   };
@@ -191,7 +196,7 @@ const AboutMe = () => {
 
               <textarea
                 className="w-full h-[150px] focus:outline-none focus:border-none flex p-[10px] items-start rounded-[8px] bg-[#323232] text-white whitespace-pre-wrap"
-                {...register("certification", {
+                {...register("certificationName", {
                   required: "Please share your certification",
                 })}
               />
