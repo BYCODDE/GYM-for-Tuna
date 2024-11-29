@@ -6,6 +6,7 @@ import useEditTrainer from "../../hooks/useEditTrainer";
 // import useAddCertification from "../../hooks/useAddCertificaton";
 import useRemoveCertification from "../../hooks/useRemoveCertification";
 import { motion, AnimatePresence } from "framer-motion";
+import useAddCertification from "../../hooks/useAddCertificaton";
 
 const AboutMe = () => {
   const [imagePreview, setImagePreview] = useState(null);
@@ -16,6 +17,8 @@ const AboutMe = () => {
 
   const { data: certification, error: certificationError } =
     useGetCertification();
+
+  const { mutate: insertedData, error: addingError } = useAddCertification();
 
   const {
     mutate: aboutmeMutation,
@@ -65,14 +68,15 @@ const AboutMe = () => {
         experience: trainer.experience || "",
         image: trainer.image || "",
         story: trainer.story || "",
-        // certification: certifications || "", //TODO: ეს უნდა ამოვიღო,დიზაინიდან და ლოგიკიდან გამომდინარე!
+        certification: "", //TODO: ეს უნდა ამოვიღო,დიზაინიდან და ლოგიკიდან გამომდინარე!
       });
     }
   }, [aboutTrainer, certification, reset]);
 
   const onSubmit = (data) => {
-    const payload = {
-      id: aboutTrainer?.aboutTrainer?.[0]?.id,
+    // Payload for updating the trainer (aboutMe section)
+    const trainerPayload = {
+      id: aboutTrainer?.aboutTrainer?.[0]?.id, // Assuming this is an existing trainer ID
       updatedTrainer: {
         experience: data.experience,
         story: data.story,
@@ -80,12 +84,31 @@ const AboutMe = () => {
       },
     };
 
-    aboutmeMutation(payload, {
+    const certificationPayload = {
+      endDate: data.endDate,
+      name: data.name,
+      startDate: data.startDate,
+    };
+
+    // 1. Update trainer details first (aboutMe)
+    aboutmeMutation(trainerPayload, {
       onSuccess: () => {
-        reset();
+        console.log("Trainer details updated successfully");
+        reset(); // Reset the form fields related to trainer after success
       },
       onError: (editError) => {
         console.error("Error updating trainer:", editError.message);
+      },
+    });
+
+    // 2. Add new certification (no id)
+    insertedData(certificationPayload, {
+      onSuccess: () => {
+        console.log("Certification added successfully");
+        reset(); // Reset the form fields related to certification after success
+      },
+      onError: (certError) => {
+        console.error("Error adding certification:", certError.message);
       },
     });
   };
@@ -102,7 +125,7 @@ const AboutMe = () => {
   // Function to handle selecting a certification to delete
   // TODO: კონკრეტულ აიდიზე უნდა მოვიყვანო დაჭერისას როგორც სერვისში!
   const handleDelete = (certificationId) => {
-    certificationId = 53;
+    certificationId = 94;
     setSelectedCertificationId(certificationId); // Set the selected certification ID
     removeCertification(certificationId); // Pass the certification ID to remove
   };
@@ -166,7 +189,7 @@ const AboutMe = () => {
                 Certification
               </h3>
 
-              {/* <textarea
+              <textarea
                 className="w-full h-[150px] focus:outline-none focus:border-none flex p-[10px] items-start rounded-[8px] bg-[#323232] text-white whitespace-pre-wrap"
                 {...register("certification", {
                   required: "Please share your certification",
@@ -176,7 +199,7 @@ const AboutMe = () => {
                 <div className="flex mt-[10px] font-bold text-red-500">
                   {errors.certification.message}
                 </div>
-              )} */}
+              )}
               <div className="flex flex-col gap-[20px]">
                 {dataCertification.map((item) => (
                   <motion.div
