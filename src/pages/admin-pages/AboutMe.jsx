@@ -6,12 +6,13 @@ import useEditTrainer from "../../hooks/useEditTrainer";
 import useRemoveCertification from "../../hooks/useRemoveCertification";
 import { motion, AnimatePresence } from "framer-motion";
 import useAddCertification from "../../hooks/useAddCertificaton";
+import AdminAboutMeEditPage from "../../components/admin/AdminAboutMeEditPage";
 
 const AboutMe = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [selectedCertificationId, setSelectedCertificationId] = useState(null);
   const { data: aboutTrainer, error } = useGetTrainer();
-  // const [addingOpen, setAddingOpen] = useState(true);
+  const [openEditPage, setOpenEditPage] = useState(false);
   const [visibleCertifications, setVisibleCertifications] = useState({});
 
   const { data: certification, error: certificationError } =
@@ -268,8 +269,7 @@ const AboutMe = () => {
                                   className="cursor-pointer w-[30px] h-[30px] hover:scale-110 transition-transform"
                                   onClick={(e) => {
                                     e.stopPropagation();
-                                    // TODO:აქ დაედითებისას უნდა!
-                                    // handleDelete(item.id); // Changed to `item.id`
+                                    setOpenEditPage(!openEditPage);
                                   }}
                                 />
                               </div>
@@ -345,6 +345,12 @@ const AboutMe = () => {
           </div>
         </form>
       </div>
+      {openEditPage && (
+        <AdminAboutMeEditPage
+          setOpenEditPage={setOpenEditPage}
+          openEditPage={openEditPage}
+        />
+      )}
     </div>
   );
 };
