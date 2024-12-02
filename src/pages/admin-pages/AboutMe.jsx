@@ -11,9 +11,12 @@ import AdminAboutMeEditPage from "../../components/admin/AdminAboutMeEditPage";
 const AboutMe = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [selectedCertificationId, setSelectedCertificationId] = useState(null);
+
   const { data: aboutTrainer, error } = useGetTrainer();
   const [openEditPage, setOpenEditPage] = useState(false);
   const [visibleCertifications, setVisibleCertifications] = useState({});
+  const [EditCertificationId, setEditCertificationId] = useState(null);
+  console.log(EditCertificationId);
 
   const { data: certification, error: certificationError } =
     useGetCertification();
@@ -37,6 +40,7 @@ const AboutMe = () => {
       ...prev,
       [id]: !prev[id],
     }));
+    setEditCertificationId(id);
   };
 
   const {
@@ -76,8 +80,6 @@ const AboutMe = () => {
   }, [aboutTrainer, certification, reset]);
 
   const onSubmit = (data) => {
-    console.log(data);
-
     // Payload for updating the trainer (aboutMe section)
     const trainerPayload = {
       id: aboutTrainer?.aboutTrainer?.[0]?.id,
@@ -270,6 +272,7 @@ const AboutMe = () => {
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     setOpenEditPage(!openEditPage);
+                                    toggleShowCertification(item.id);
                                   }}
                                 />
                               </div>
@@ -349,6 +352,8 @@ const AboutMe = () => {
         <AdminAboutMeEditPage
           setOpenEditPage={setOpenEditPage}
           openEditPage={openEditPage}
+          EditCertificationId={EditCertificationId}
+          setEditCertificationId={EditCertificationId}
         />
       )}
     </div>

@@ -1,13 +1,45 @@
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
+import useGetCertification from "../../hooks/useGetCertification";
+import useGetAboutMeId from "../../hooks/useGetAboutMeId";
+import { useEffect } from "react";
 
-function AdminAboutMeEditPage({ setOpenEditPage, openEditPage }) {
+function AdminAboutMeEditPage({
+  setOpenEditPage,
+  openEditPage,
+  EditCertificationId,
+}) {
   const {
     register,
-    // handleSubmit,
+    handleSubmit,
     formState: { errors },
-    // reset,
+    reset,
   } = useForm();
+
+  const { data: certification, error: certificationError } =
+    useGetCertification();
+  const { data, error, isLoading } = useGetAboutMeId(EditCertificationId);
+
+  let dataCertification = data?.data || [];
+
+  useEffect(() => {
+    if (data) {
+      reset({
+        certificationName: dataCertification.name,
+        startDate: dataCertification.startDate,
+        endDate: dataCertification.endDate,
+      });
+    }
+  }, [data, reset]);
+
+  console.log(data);
+
+  const onSubmit = (data) => {
+    console.log(data);
+    reset();
+  };
+
+  console.log(EditCertificationId);
 
   return (
     <div className="relative z-10 font-Nunito text-[#FFF]">
@@ -31,7 +63,7 @@ function AdminAboutMeEditPage({ setOpenEditPage, openEditPage }) {
         </div>
 
         <form
-          onSubmit
+          onSubmit={handleSubmit(onSubmit)}
           className="text-white w-full text-center mt-[50px] gap-[3.25rem] flex flex-col"
         >
           <div className="flex flex-col gap-[50px]">
