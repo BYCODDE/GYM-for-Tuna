@@ -43,13 +43,8 @@ function AdminAboutMeEditPage({ setOpenEditPage, openEditPage }) {
               <input
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
                 type="text"
-                {...register("name", {
-                  required: "Name is required",
-                  pattern: {
-                    value: /^[a-z\s-]+$/i,
-                    message: "Only letters, spaces, and hyphens are allowed",
-                  },
-                  setValueAs: (value) => value.toLowerCase(),
+                {...register("certificationName", {
+                  required: "Please share your certification",
                 })}
               />
               {errors.name && (
@@ -66,20 +61,9 @@ function AdminAboutMeEditPage({ setOpenEditPage, openEditPage }) {
               </h3>
               <input
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
-                type="number"
-                {...register("sessions_single", {
-                  required: "Single session price is required",
-                  valueAsNumber: true,
-                  validate: (value) => {
-                    const maxDigits = 10;
-                    const valueStr = value.toString();
-
-                    if (valueStr.length > maxDigits) {
-                      return `Price cannot exceed ${maxDigits} digits`;
-                    }
-
-                    return value > 0 || "Price must be greater than zero";
-                  },
+                type="text"
+                {...register("startDate", {
+                  required: "Please share your startDate",
                 })}
               />
               {errors.sessions_single && (
@@ -96,20 +80,9 @@ function AdminAboutMeEditPage({ setOpenEditPage, openEditPage }) {
               </h3>
               <input
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
-                type="number"
-                {...register("sessions_five", {
-                  required: "Five session price is required",
-                  valueAsNumber: true,
-                  validate: (value) => {
-                    const maxDigits = 10;
-                    const valueStr = value.toString();
-
-                    if (valueStr.length > maxDigits) {
-                      return `Price cannot exceed ${maxDigits} digits`;
-                    }
-
-                    return value > 0 || "Price must be greater than zero";
-                  },
+                type="text"
+                {...register("endDate", {
+                  required: "Please share your endDate",
                 })}
               />
               {errors.sessions_five && (
