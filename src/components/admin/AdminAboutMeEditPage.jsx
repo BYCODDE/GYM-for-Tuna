@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import useGetAboutMeId from "../../hooks/useGetAboutMeId";
 import { useEffect } from "react";
+import useEditAboutMe from "../../hooks/useEditAboutMe";
 
 function AdminAboutMeEditPage({
   setOpenEditPage,
@@ -21,6 +22,14 @@ function AdminAboutMeEditPage({
     ? data?.data[0]
     : data?.data;
 
+  const {
+    mutate: editAboutMe,
+    isLoading: isMutating,
+    isSuccess,
+    isError,
+    error: mutationError,
+  } = useEditAboutMe();
+
   useEffect(() => {
     if (dataCertification) {
       reset({
@@ -32,8 +41,21 @@ function AdminAboutMeEditPage({
   }, [data, reset, dataCertification]);
 
   const onSubmit = (data) => {
-    console.log(data);
-    reset();
+    console.log(data, "dasabmitebisas data");
+    const updatedCertification = {
+      name: data.certificationName,
+      startDate: data.startDate,
+      endDate: data.endDate,
+    };
+    editAboutMe(
+      { id: EditCertificationId, updatedAboutMe: updatedCertification },
+      {
+        onSuccess: () => {
+          reset();
+          setOpenEditPage(false);
+        },
+      }
+    );
   };
 
   if (isLoading) {
