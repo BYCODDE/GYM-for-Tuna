@@ -1,10 +1,15 @@
-import React from 'react'
-
+import FitnessJourney from "../components/home/FitnessJourney";
+import ScrollToTopButton from "../components/ScrollToTopButton/ScrollToTopButton";
+import Prices from "../components/services/Prices";
 
 const Services = () => {
   return (
-    <h1>services</h1>
-  )
-}
+    <section className="bg-primary-bg">
+      <FitnessJourney title={"my services"} />
+      <Prices />
+      <ScrollToTopButton />
+    </section>
+  );
+};
 
-export default Services
+export default Services;
