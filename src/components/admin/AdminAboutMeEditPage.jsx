@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import useGetCertification from "../../hooks/useGetCertification";
 import useGetAboutMeId from "../../hooks/useGetAboutMeId";
 import { useEffect } from "react";
 
@@ -12,34 +11,38 @@ function AdminAboutMeEditPage({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm();
 
-  const { data: certification, error: certificationError } =
-    useGetCertification();
   const { data, error, isLoading } = useGetAboutMeId(EditCertificationId);
 
-  let dataCertification = data?.data || [];
+  let dataCertification = Array.isArray(data?.data)
+    ? data?.data[0]
+    : data?.data;
 
   useEffect(() => {
-    if (data) {
+    if (dataCertification) {
       reset({
-        certificationName: dataCertification.name,
-        startDate: dataCertification.startDate,
-        endDate: dataCertification.endDate,
+        certificationName: dataCertification?.name || "",
+        startDate: dataCertification?.startDate || "",
+        endDate: dataCertification?.endDate || "",
       });
     }
-  }, [data, reset]);
-
-  console.log(data);
+  }, [data, reset, dataCertification]);
 
   const onSubmit = (data) => {
     console.log(data);
     reset();
   };
 
-  console.log(EditCertificationId);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading data: {error.message}</div>;
+  }
 
   return (
     <div className="relative z-10 font-Nunito text-[#FFF]">
@@ -76,12 +79,12 @@ function AdminAboutMeEditPage({
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
                 type="text"
                 {...register("certificationName", {
-                  required: "Please share your certification",
+                  required: "Please share your certification name",
                 })}
               />
-              {errors.name && (
+              {errors.certificationName && (
                 <div className="flex mt-[10px] font-bold text-red-500">
-                  {errors.name.message}
+                  {errors.certificationName.message}
                 </div>
               )}
             </div>
@@ -95,12 +98,16 @@ function AdminAboutMeEditPage({
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
                 type="text"
                 {...register("startDate", {
-                  required: "Please share your startDate",
+                  required: "Please share your start date",
+                  pattern: {
+                    value: /^\d{4}-\d{2}-\d{2}$/,
+                    message: "Date must be in YYYY-MM-DD format",
+                  },
                 })}
               />
-              {errors.sessions_single && (
+              {errors.startDate && (
                 <div className="flex mt-[10px] font-bold text-red-500">
-                  {errors.sessions_single.message}
+                  {errors.startDate.message}
                 </div>
               )}
             </div>
@@ -114,39 +121,28 @@ function AdminAboutMeEditPage({
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
                 type="text"
                 {...register("endDate", {
-                  required: "Please share your endDate",
+                  required: "Please share your end date",
+                  pattern: {
+                    value: /^\d{4}-\d{2}-\d{2}$/,
+                    message: "Date must be in YYYY-MM-DD format",
+                  },
                 })}
               />
-              {errors.sessions_five && (
+              {errors.endDate && (
                 <div className="flex mt-[10px] font-bold text-red-500">
-                  {errors.sessions_five.message}
+                  {errors.endDate.message}
                 </div>
               )}
             </div>
-          </div>
 
-          <div className="flex justify-center items-center">
             <button
               className="max-w-[195px] w-full text-[#D7FD44] h-[42px] border border-[#D7FD44] rounded-[24px]"
               type="submit"
+              disabled={isSubmitting}
             >
-              + Edit Certification
+              {isSubmitting ? "Editing..." : "+ Edit Certification"}
             </button>
           </div>
-          {/* {isSuccess && (
-            <div className="font-bold text-green-800 text-[20px]">Success</div>
-          )} */}
-          {/* {isError && (
-            <div className="font-bold text-red-800 text-[20px]">
-              Error in editing
-            </div>
-          )} */}
-          {/* {mutationError && (
-            <div className="font-bold text-red-800 text-[20px]">
-              {mutationError.message ||
-                "An error occurred during the service update."}
-            </div>
-          )} */}
         </form>
       </motion.div>
     </div>
