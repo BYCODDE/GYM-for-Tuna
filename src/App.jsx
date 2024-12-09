@@ -10,6 +10,7 @@ import Dashboard from "./pages/admin-pages/Dashboard";
 import AdminServices from "./pages/admin-pages/AdminServices";
 import AboutMe from "./pages/admin-pages/AboutMe";
 import AddBlogs from "./pages/admin-pages/AddBlogs";
+import Blogs from "./pages/Blogs";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="/stories" element={<Stories />} />
+        <Route path="/blogs" element={<Blogs />} />
         <Route path="/services" element={<Service />} />
         <Route path="/contact" element={<Contact />} />
       </Route>
