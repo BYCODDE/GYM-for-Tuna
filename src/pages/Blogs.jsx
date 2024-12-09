@@ -25,6 +25,23 @@ function Blogs() {
             Nutrition and diet
           </button>
         </div>
+        <div className="mt-[40px] ">
+          <img
+            src="\home\desktop\blogMainImage.jpeg"
+            alt="blogMainImage"
+            className="rounded-[12px] w-100% max-h-[650px]"
+          />
+        </div>
+
+        {/* <div>
+          <div>
+            <h2>Contributor</h2>
+            <div>
+              <img src="/admin/profile.svg" alt="" />
+            </div>
+          </div>
+          <div></div>
+        </div> */}
       </div>
     </div>
   );
