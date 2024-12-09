@@ -7,8 +7,8 @@ function Blogs() {
 
   return (
     <div className="flex flex-col   font-Nunito bg-[#121212] ">
-      <div className="flex flex-col justify-center items-center">
-        <h1 className="text-[20px] md:text-[40px] text-[#C4C4C4] font-bold uppercase">
+      <div className="flex flex-col justify-center text-center">
+        <h1 className=" mt-[20px]  text-[20px] md:text-[40px] text-[#C4C4C4] font-bold uppercase">
           Private personal training
         </h1>
         <div className=" flex flex-col  gap-[15px]  mt-[20px] font-normal">
@@ -33,15 +33,25 @@ function Blogs() {
           />
         </div>
 
-        {/* <div>
-          <div>
-            <h2>Contributor</h2>
-            <div>
+        <div className="flex p-[1.5rem] flex-col w-[60%]">
+          <div className="border-b border-b-[##737373]  text-[#737373] text-start min-w-[140px]">
+            <h3 className="text-[#FFF] font-[600]">Contributor</h3>
+            <div className="flex text-start mt-[20px] gap-[15px] mb-[10px]">
               <img src="/admin/profile.svg" alt="" />
+              <div className="flex flex-col">
+                <h4 className="text-[#FFF] font-bold">Tuna</h4>
+                <span className="font-[500]">1 Month ago</span>
+              </div>
             </div>
           </div>
-          <div></div>
-        </div> */}
+          <div className="flex flex-col text-start  mt-[15px] text-[#C4C4C4] gap-[10px]">
+            <h3>Reading time</h3>
+            <div className=" flex gap-[10px]">
+              <img src="\icons\Vector.svg" alt="Vector" />
+              <span>5 minutes</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
