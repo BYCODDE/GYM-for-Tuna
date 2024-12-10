@@ -5,6 +5,8 @@ function Blogs() {
 
   console.log(blogs, error);
 
+  const blog = blogs?.blogs || [];
+
   return (
     <div className="flex flex-col   font-Nunito bg-[#121212] ">
       <div className="flex flex-col justify-center text-center">
@@ -52,6 +54,14 @@ function Blogs() {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        {blog.map((item, index) => (
+          <div key={index}>
+            <h3 className="text-white">{item.author}</h3>
+            <p className="text-gray-400">{item.title}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
