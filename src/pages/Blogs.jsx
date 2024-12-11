@@ -1,3 +1,4 @@
+import FitnessJourney from "../components/home/FitnessJourney";
 import useGetBlogs from "../hooks/useGetBlogs";
 
 function Blogs() {
@@ -13,29 +14,30 @@ function Blogs() {
         <h1 className=" mt-[20px]  text-[20px] md:text-[40px] text-[#C4C4C4] font-bold uppercase">
           Private personal training
         </h1>
-        <div className=" flex flex-col  gap-[15px]  mt-[20px] font-normal">
+        <div className="md:justify-center md:flex-row flex flex-col  gap-[15px]  mt-[20px] font-normal items-center">
           <button
             type="button"
-            className=" md:w-[195px] w-[auto] h-[42px] cursor-pointer text-[#D7FD44]  rounded-[24px] font-bold text-[15px] p-[10px] border border-[#D7FD44] pr-[25px] pl-[25px] "
+            className=" w-[195px] h-[42px] cursor-pointer text-[#D7FD44]  rounded-[24px] font-bold text-[15px] p-[10px] border border-[#D7FD44] pr-[25px] pl-[25px] "
           >
             Workout Routines
           </button>
           <button
             type="button"
-            className="md:w-[195px]  w-[auto] h-[42px] cursor-pointer text-[#D7FD44]  rounded-[24px] font-bold text-[15px] p-[10px] border border-[#D7FD44] pr-[25px] pl-[25px]"
+            className="w-[195px]   h-[42px] cursor-pointer text-[#D7FD44]  rounded-[24px] font-bold text-[15px] p-[10px] border border-[#D7FD44] pr-[25px] pl-[25px]"
           >
             Nutrition and diet
           </button>
         </div>
-        <div className="mt-[40px] ">
+        <div className="flex justify-center  mt-[40px] ">
           <img
             src="\home\desktop\blogMainImage.jpeg"
             alt="blogMainImage"
-            className="rounded-[12px] w-100% max-h-[650px]"
+            className=" w-[90%] rounded-[12px]  max-h-[650px]"
           />
         </div>
-
-        <div className="flex p-[1.5rem] flex-col w-[60%]">
+      </div>
+      <div className="lg:flex lg:gap-[5rem] md:mt-[5rem]">
+        <div className=" md:w-[30%]  flex p-[1.5rem] flex-col w-[60%]">
           <div className="border-b border-b-[##737373]  text-[#737373] text-start min-w-[140px]">
             <h3 className="text-[#FFF] font-[600]">Contributor</h3>
             <div className="flex text-start mt-[20px] gap-[15px] mb-[10px]">
@@ -54,14 +56,24 @@ function Blogs() {
             </div>
           </div>
         </div>
+        <div>
+          {blog.map((item, index) => (
+            <div
+              key={index}
+              className="font-bold text-[#FFF] border-b border-b-[##737373] pb-6 mb-[20px] pl-[37px] pr-[37px] gap-[15px] flex flex-col"
+            >
+              <h3 className="text-[#D7FD44] text-[20px] ">{item.author}</h3>
+              <h4 className=" text-[25px]">{item.title}</h4>
+              <p>{item.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
-      <div>
-        {blog.map((item, index) => (
-          <div key={index}>
-            <h3 className="text-white">{item.author}</h3>
-            <p className="text-gray-400">{item.title}</p>
-          </div>
-        ))}
+      <div className=" text-center pl-[37px] pr-[37px] ">
+        <h3 className="lg:text-[25px] md:text-[20px]   text-[#C4C4C4] text-[18px]">
+          YOUR FITNESS JOURNEY STARTS HERE
+        </h3>
+        <FitnessJourney />
       </div>
     </div>
   );
