@@ -1,3 +1,4 @@
+import FitnessJourney from "../components/home/FitnessJourney";
 import useGetBlogs from "../hooks/useGetBlogs";
 
 function Blogs() {
@@ -66,6 +67,12 @@ function Blogs() {
             <p>{item.description}</p>
           </div>
         ))}
+      </div>
+      <div className="text-center ">
+        <h3 className="text-[#C4C4C4] text-[18px]">
+          YOUR FITNESS JOURNEY STARTS HERE
+        </h3>
+        <FitnessJourney />
       </div>
     </div>
   );
