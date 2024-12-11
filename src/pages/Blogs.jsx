@@ -13,16 +13,16 @@ function Blogs() {
         <h1 className=" mt-[20px]  text-[20px] md:text-[40px] text-[#C4C4C4] font-bold uppercase">
           Private personal training
         </h1>
-        <div className=" flex flex-col  gap-[15px]  mt-[20px] font-normal">
+        <div className=" flex flex-col  gap-[15px]  mt-[20px] font-normal items-center">
           <button
             type="button"
-            className=" md:w-[195px] w-[auto] h-[42px] cursor-pointer text-[#D7FD44]  rounded-[24px] font-bold text-[15px] p-[10px] border border-[#D7FD44] pr-[25px] pl-[25px] "
+            className=" w-[195px] h-[42px] cursor-pointer text-[#D7FD44]  rounded-[24px] font-bold text-[15px] p-[10px] border border-[#D7FD44] pr-[25px] pl-[25px] "
           >
             Workout Routines
           </button>
           <button
             type="button"
-            className="md:w-[195px]  w-[auto] h-[42px] cursor-pointer text-[#D7FD44]  rounded-[24px] font-bold text-[15px] p-[10px] border border-[#D7FD44] pr-[25px] pl-[25px]"
+            className="w-[195px]   h-[42px] cursor-pointer text-[#D7FD44]  rounded-[24px] font-bold text-[15px] p-[10px] border border-[#D7FD44] pr-[25px] pl-[25px]"
           >
             Nutrition and diet
           </button>
@@ -57,9 +57,13 @@ function Blogs() {
       </div>
       <div>
         {blog.map((item, index) => (
-          <div key={index}>
-            <h3 className="text-white">{item.author}</h3>
-            <p className="text-gray-400">{item.title}</p>
+          <div
+            key={index}
+            className="font-bold text-[#FFF] border-b border-b-[##737373] pb-6 mb-[20px] pl-[37px] pr-[37px] gap-[15px] flex flex-col"
+          >
+            <h3 className="text-[#D7FD44] text-[20px] ">{item.author}</h3>
+            <h4 className="text-[25px]">{item.title}</h4>
+            <p>{item.description}</p>
           </div>
         ))}
       </div>
