@@ -4,7 +4,7 @@ import useGetBlogs from "../hooks/useGetBlogs";
 function Blogs() {
   let { data: blogs, error } = useGetBlogs();
 
-  console.log(blogs, error);
+  console.log(error);
 
   const blog = blogs?.blogs || [];
 

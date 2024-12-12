@@ -5,7 +5,6 @@ import useGetServices from "../../hooks/useGetServices";
 const AdminPricesContainer = ({
   setAddingOpenEditPage,
   AddingOpenEditPage,
-
   setEditPageId,
 }) => {
   const [visibleServices, setVisibleServices] = useState({});

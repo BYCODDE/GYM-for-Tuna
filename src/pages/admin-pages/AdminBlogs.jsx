@@ -1,4 +1,10 @@
-const AddBlogs = () => {
+import AdminBlogsContainer from "../../blogs/AdminBlogsContainer";
+import useGetBlogs from "../../hooks/useGetBlogs";
+
+const AdminBlogs = () => {
+  let { data: blogs, error } = useGetBlogs();
+
+  console.log(blogs, error);
   return (
     <div className="lg:p-[82px]    text-[#FFF] font-Nunito p-[22px] ">
       <div className="flex items-center justify-between font-bold">
@@ -22,14 +28,9 @@ const AddBlogs = () => {
       </div>
 
       <div className="flex flex-col justify-between items-center mt-[30px] ">
-        {/* <div className="w-full">
-          <AdminPriceContainer
-            setAddingOpenEditPage={setAddingOpenEditPage}
-            AddingOpenEditPage={AddingOpenEditPage}
-            EditPageId={EditPageId}
-            setEditPageId={setEditPageId}
-          />
-        </div> */}
+        <div className="w-full ">
+          <AdminBlogsContainer />
+        </div>
       </div>
       {/* {AddingOpen && (
         <AdminAddingPage
@@ -48,4 +49,4 @@ const AddBlogs = () => {
   );
 };
 
-export default AddBlogs;
+export default AdminBlogs;
