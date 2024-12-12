@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useGetBlogs from "../hooks/useGetBlogs";
+import useGetBlogsById from "../hooks/useGetBlogsById";
 
 function AdminBlogsContainer() {
   let { data: blogs } = useGetBlogs();
   const blogList = blogs?.blogs || [];
-
   const [visibleBlogs, setVisibleBlogs] = useState({});
+  let { data: blogsId, error: blogsIdError } = useGetBlogsById();
+  console.log(blogsId, blogsIdError);
 
   const toggleShowContent = (id) => {
     setVisibleBlogs((prev) => ({
