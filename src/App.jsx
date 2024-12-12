@@ -9,7 +9,7 @@ import AdminLayout from "./ui/AdminLayout";
 import Dashboard from "./pages/admin-pages/Dashboard";
 import AdminServices from "./pages/admin-pages/AdminServices";
 import AboutMe from "./pages/admin-pages/AboutMe";
-import AddBlogs from "./pages/admin-pages/AddBlogs";
+import AdminBlogs from "./pages/admin-pages/AdminBlogs";
 import Blogs from "./pages/Blogs";
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
         <Route index element={<Dashboard />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="admin-about" element={<AboutMe />} />
-        <Route path="admin-blogs" element={<AddBlogs />} />
+        <Route path="admin-blogs" element={<AdminBlogs />} />
         <Route path="admin-services" element={<AdminServices />} />
       </Route>
       <Route path="*" element={<NoPage />} />
