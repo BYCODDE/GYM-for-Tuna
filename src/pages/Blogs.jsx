@@ -10,7 +10,7 @@ function Blogs() {
 
   return (
     <div className="flex flex-col   font-Nunito bg-[#121212] ">
-      <div className="flex flex-col justify-center text-center">
+      <div className="flex flex-col justify-center text-center items-center">
         <h1 className=" mt-[20px]  text-[20px] md:text-[40px] text-[#C4C4C4] font-bold uppercase">
           Private personal training
         </h1>
@@ -28,11 +28,10 @@ function Blogs() {
             Nutrition and diet
           </button>
         </div>
-        <div className="flex justify-center  mt-[40px] ">
+        <div>
           <img
-            src="\home\desktop\blogMainImage.jpeg"
-            alt="blogMainImage"
-            className=" w-[90%] rounded-[12px]  max-h-[650px]"
+            src="/home/desktop/blogMainImage.jpeg"
+            className=" max-h-[1100px] w-[90%]  flex justify-center items-center mx-auto mt-[40px] rounded-[20px]"
           />
         </div>
       </div>
