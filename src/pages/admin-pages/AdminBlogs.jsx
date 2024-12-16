@@ -1,8 +1,11 @@
+import { useState } from "react";
+import AdminBlogsAddingContainer from "../../blogs/AdminBlogsAddingContainer";
 import AdminBlogsContainer from "../../blogs/AdminBlogsContainer";
 import useGetBlogs from "../../hooks/useGetBlogs";
 
 const AdminBlogs = () => {
   let { data: blogs, error } = useGetBlogs();
+  const [openPage, setOpenPage] = useState(false);
 
   console.log(blogs, error);
   return (
@@ -15,7 +18,7 @@ const AdminBlogs = () => {
         </div>
         <button
           className="md:hidden block w-[30px] h-[30px] cursor-pointer text-black bg-[#D7FD44] rounded-[50%] font-bold text-[20px] "
-          // onClick={() => setAddingOpen(true)}
+          onClick={() => setOpenPage(true)}
         >
           +
         </button>
@@ -32,12 +35,12 @@ const AdminBlogs = () => {
           <AdminBlogsContainer />
         </div>
       </div>
-      {/* {AddingOpen && (
-        <AdminAddingPage
-          setAddingOpen={setAddingOpen}
-          AddingOpen={AddingOpen}
+      {openPage && (
+        <AdminBlogsAddingContainer
+          openPage={openPage}
+          setOpenPage={setOpenPage}
         />
-      )} */}
+      )}
       {/* {AddingOpenEditPage && (
         <AdminEditPage
           setAddingOpenEditPage={setAddingOpenEditPage}
