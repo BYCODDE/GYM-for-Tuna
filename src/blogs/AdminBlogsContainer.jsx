@@ -1,20 +1,31 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useGetBlogs from "../hooks/useGetBlogs";
-import useGetBlogsById from "../hooks/useGetBlogsById";
+import useRemoveBlogs from "../hooks/useRemoveBlogs";
+import useGetServiceById from "../hooks/useGetBlogById";
 
 function AdminBlogsContainer() {
   let { data: blogs } = useGetBlogs();
   const blogList = blogs?.blogs || [];
   const [visibleBlogs, setVisibleBlogs] = useState({});
-  let { data: blogsId, error: blogsIdError } = useGetBlogsById();
-  console.log(blogsId, blogsIdError);
+  let { removeBlog } = useRemoveBlogs();
+  const { data: BlogId, error: BlogError } = useGetServiceById();
+  console.log(BlogId, BlogError);
 
   const toggleShowContent = (id) => {
     setVisibleBlogs((prev) => ({
       ...prev,
       [id]: !prev[id],
     }));
+  };
+
+  const handleDeleteBlog = (id) => {
+    removeBlog(id);
+  };
+
+  const handleEditBlog = (id) => {
+    console.log("Editing blog with ID:", id);
+    // Here you can trigger your edit logic, such as opening an edit form
   };
 
   return (
@@ -28,7 +39,7 @@ function AdminBlogsContainer() {
           onClick={() => toggleShowContent(blog.id)}
         >
           <div className="flex h-[70px] py-[8px] px-[16px] items-center gap-[10px] justify-between w-full">
-            <h3 className=" text-[#C4C4C4] font-Nunito text-sm font-bold leading-normal uppercase ">
+            <h3 className="text-[#C4C4C4] font-Nunito text-sm font-bold leading-normal uppercase ">
               {blog.title}
             </h3>
             <motion.img
@@ -58,7 +69,7 @@ function AdminBlogsContainer() {
                         className="cursor-pointer w-[30px] h-[30px] hover:scale-110 transition-transform"
                         onClick={(e) => {
                           e.stopPropagation();
-                          // handleDeleteService(service.id);
+                          handleDeleteBlog(blog.id); // Pass blog id to delete handler
                         }}
                       />
                       <motion.img
@@ -67,8 +78,7 @@ function AdminBlogsContainer() {
                         className="cursor-pointer w-[30px] h-[30px] hover:scale-110 transition-transform"
                         onClick={(e) => {
                           e.stopPropagation();
-                          // setAddingOpenEditPage(!AddingOpenEditPage);
-                          // handleEditId(service.id);
+                          handleEditBlog(blog.id); // Pass blog id to edit handler
                         }}
                       />
                     </div>
