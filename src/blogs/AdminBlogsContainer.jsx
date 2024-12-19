@@ -5,10 +5,10 @@ import useRemoveBlogs from "../hooks/useRemoveBlogs";
 // import useGetServiceById from "../hooks/useGetBlogById";
 
 function AdminBlogsContainer() {
-  let { data: blogs } = useGetBlogs();
+  const { data: blogs } = useGetBlogs();
   const blogList = blogs?.blogs || [];
   const [visibleBlogs, setVisibleBlogs] = useState({});
-  let { removeBlog } = useRemoveBlogs();
+  const { removeBlog } = useRemoveBlogs();
   // const { data: BlogId, error: BlogError } = useGetServiceById();
   console.log(blogs);
 

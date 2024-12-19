@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
+import useAddBlogs from "../hooks/useAddBlogs";
 
 function AdminBlogsAddingContainer({ openPage, setOpenPage }) {
-  console.log(openPage);
   const {
     register,
     handleSubmit,
@@ -10,13 +10,9 @@ function AdminBlogsAddingContainer({ openPage, setOpenPage }) {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    // onSuccess: () => {
-    console.log(data);
+  const { mutate: insertedBlogs, error: BlogError } = useAddBlogs();
 
-    reset();
-    setOpenPage(false);
-  };
+  // This was moved outside the `onSubmit` function
   const menuVariants = {
     open: {
       y: 0,
@@ -26,6 +22,31 @@ function AdminBlogsAddingContainer({ openPage, setOpenPage }) {
       y: "100%",
       transition: { type: "spring", stiffness: 30 },
     },
+  };
+
+  const onSubmit = (data) => {
+    console.log(data);
+
+    const blogPayload = {
+      author: data.author,
+      description: data.description,
+      title: data.title,
+    };
+
+    insertedBlogs(blogPayload, {
+      onSuccess: () => {
+        console.log("Blogs successfully added!");
+        reset();
+        setOpenPage(false);
+      },
+      onError: () => {
+        if (BlogError) {
+          console.log(`Error in adding blogs: ${BlogError.message}`);
+        } else {
+          console.log("Error in adding blogs.");
+        }
+      },
+    });
   };
 
   return (
@@ -60,24 +81,23 @@ function AdminBlogsAddingContainer({ openPage, setOpenPage }) {
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px]">
                 <span className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></span>
-                Type tittle
+                Type author
               </h3>
               <input
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
                 type="text"
-                {...register("name", {
-                  required: "Name is required",
+                {...register("author", {
+                  required: "Author name is required",
                   pattern: {
-                    value: /^[a-z\s-]+$/i,
+                    value: /^[a-zA-Z\s-]+$/i,
                     message: "Only letters, spaces, and hyphens are allowed",
                   },
-                  setValueAs: (value) => value.toLowerCase(),
                 })}
               />
 
               <div className="flex mt-[10px] font-bold">
-                {errors.name && (
-                  <span className="text-red-500">{errors.name.message}</span>
+                {errors.author && (
+                  <span className="text-red-500">{errors.author.message}</span>
                 )}
               </div>
             </div>
@@ -89,28 +109,52 @@ function AdminBlogsAddingContainer({ openPage, setOpenPage }) {
               </h3>
               <input
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
-                type="number"
-                {...register("sessions_single", {
-                  required: "Single session price is required",
-                  valueAsNumber: true,
-                  validate: (value) =>
-                    value > 0 || "Price must be greater than zero",
+                type="text"
+                {...register("description", {
+                  required: "Description is required",
+                  minLength: {
+                    value: 10,
+                    message: "Description must be at least 10 characters",
+                  },
                 })}
               />
               <div className="flex mt-[10px] font-bold">
-                {errors.sessions_single && (
+                {errors.description && (
                   <span className="text-red-500">
-                    {errors.sessions_single.message}
+                    {errors.description.message}
                   </span>
                 )}
               </div>
             </div>
+
+            <div className="w-full">
+              <h3 className="flex items-center mb-[20px] gap-[10px]">
+                <span className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></span>
+                Type title
+              </h3>
+              <input
+                className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
+                type="text"
+                {...register("title", {
+                  required: "Title is required",
+                  minLength: {
+                    value: 5,
+                    message: "Title must be at least 5 characters",
+                  },
+                })}
+              />
+              <div className="flex mt-[10px] font-bold">
+                {errors.title && (
+                  <span className="text-red-500">{errors.title.message}</span>
+                )}
+              </div>
+            </div>
           </div>
+
           <div className="flex justify-center items-center">
             <button
               className="max-w-[195px] w-full text-[#D7FD44] h-[42px] border border-[#D7FD44] rounded-[24px]"
               type="submit"
-
             >
               + Add Blogs
             </button>
