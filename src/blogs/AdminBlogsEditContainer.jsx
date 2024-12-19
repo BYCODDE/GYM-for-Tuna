@@ -17,6 +17,11 @@ function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage }) {
       transition: { type: "spring", stiffness: 30 },
     },
   };
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <div className="relative z-10 font-Nunito text-[#FFF]">
       <motion.div
@@ -29,7 +34,7 @@ function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage }) {
           <div className="flex flex-col gap-[10px]">
             <h1 className="text-[25px] font-bold">Add Blogs</h1>
             <h3 className="text-[15px] font-[500] mb-[10px]">
-              Add Blogs you want
+              Edit Blogs you want
             </h3>
           </div>
           <button onClick={() => setEditOpenPage(false)}>
@@ -42,7 +47,7 @@ function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage }) {
         </div>
 
         <form
-          // onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmit)}
           className="text-white w-full text-center mt-[41px] gap-[3.25rem] flex flex-col"
         >
           <div className="flex flex-col gap-[50px]">
@@ -124,7 +129,7 @@ function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage }) {
               className="max-w-[195px] w-full text-[#D7FD44] h-[42px] border border-[#D7FD44] rounded-[24px]"
               type="submit"
             >
-              + Add Blogs
+              + Edit Blogs
             </button>
           </div>
         </form>
