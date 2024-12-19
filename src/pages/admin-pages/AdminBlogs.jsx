@@ -24,7 +24,7 @@ const AdminBlogs = () => {
         </button>
         <button
           className="md:block hidden w-[195px] h-[42px] cursor-pointer text-[#D7FD44]  rounded-[24px] font-bold text-[15px] p-[10px] border border-[#D7FD44] "
-          // onClick={() => setAddingOpen(true)}
+          onClick={() => setOpenPage(true)}
         >
           + Add Blogs
         </button>
