@@ -1,16 +1,11 @@
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import useAddBlogs from "../hooks/useAddBlogs";
-
-function AdminBlogsAddingContainer({ openPage, setOpenPage }) {
+function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm();
-
-  const { mutate: insertedBlogs, error: BlogError } = useAddBlogs();
 
   const menuVariants = {
     open: {
@@ -22,38 +17,12 @@ function AdminBlogsAddingContainer({ openPage, setOpenPage }) {
       transition: { type: "spring", stiffness: 30 },
     },
   };
-
-  const onSubmit = (data) => {
-    console.log(data);
-
-    const blogPayload = {
-      author: data.author,
-      description: data.description,
-      title: data.title,
-    };
-
-    insertedBlogs(blogPayload, {
-      onSuccess: () => {
-        console.log("Blogs successfully added!");
-        reset();
-        setOpenPage(false);
-      },
-      onError: () => {
-        if (BlogError) {
-          console.log(`Error in adding blogs: ${BlogError.message}`);
-        } else {
-          console.log("Error in adding blogs.");
-        }
-      },
-    });
-  };
-
   return (
     <div className="relative z-10 font-Nunito text-[#FFF]">
       <motion.div
         className="fixed bottom-0 left-0 w-full h-[100vh] bg-[#121212] z-50 p-[24px] flex flex-col items-start overflow-y-auto"
         initial="closed"
-        animate={openPage ? "open" : "closed"}
+        animate={editOpenPage ? "open" : "closed"}
         variants={menuVariants}
       >
         <div className="flex justify-between w-full border-b border-[#6F6F6F] mb-[10px]">
@@ -63,7 +32,7 @@ function AdminBlogsAddingContainer({ openPage, setOpenPage }) {
               Add Blogs you want
             </h3>
           </div>
-          <button onClick={() => setOpenPage(false)}>
+          <button onClick={() => setEditOpenPage(false)}>
             <img
               src="/icons/adminRemove_svg.svg"
               alt="Close"
@@ -73,7 +42,7 @@ function AdminBlogsAddingContainer({ openPage, setOpenPage }) {
         </div>
 
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          // onSubmit={handleSubmit(onSubmit)}
           className="text-white w-full text-center mt-[41px] gap-[3.25rem] flex flex-col"
         >
           <div className="flex flex-col gap-[50px]">
@@ -164,4 +133,4 @@ function AdminBlogsAddingContainer({ openPage, setOpenPage }) {
   );
 }
 
-export default AdminBlogsAddingContainer;
+export default AdminBlogsEditContainer;

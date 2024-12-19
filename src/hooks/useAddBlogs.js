@@ -7,7 +7,7 @@ function useAddBlogs() {
   return useMutation({
     mutationFn: (data) => apiAddBlogs(data),
     onSuccess: (response) => {
-      console.log("blog added successfully:", response.insertedData);
+      console.log("blog added successfully:", response.insertedBlogs);
       queryClient.invalidateQueries(["blog"]);
     },
     onError: (error) => {

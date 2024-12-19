@@ -4,7 +4,7 @@ import useGetBlogs from "../hooks/useGetBlogs";
 import useRemoveBlogs from "../hooks/useRemoveBlogs";
 // import useGetServiceById from "../hooks/useGetBlogById";
 
-function AdminBlogsContainer() {
+function AdminBlogsContainer({ setEditOpenPage }) {
   const { data: blogs } = useGetBlogs();
   const blogList = blogs?.blogs || [];
   const [visibleBlogs, setVisibleBlogs] = useState({});
@@ -78,7 +78,8 @@ function AdminBlogsContainer() {
                         className="cursor-pointer w-[30px] h-[30px] hover:scale-110 transition-transform"
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleEditBlog(blog.id); // Pass blog id to edit handler
+                          handleEditBlog(blog.id);
+                          setEditOpenPage(true); // Pass blog id to edit handler
                         }}
                       />
                     </div>

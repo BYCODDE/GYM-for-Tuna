@@ -1,13 +1,14 @@
 import { useState } from "react";
 import AdminBlogsAddingContainer from "../../blogs/AdminBlogsAddingContainer";
 import AdminBlogsContainer from "../../blogs/AdminBlogsContainer";
-import useGetBlogs from "../../hooks/useGetBlogs";
+// import useGetBlogs from "../../hooks/useGetBlogs";
+import AdminBlogsEditContainer from "../../blogs/AdminBlogsEditContainer";
 
 const AdminBlogs = () => {
-  let { data: blogs, error } = useGetBlogs();
+  // let { data: blogs, error } = useGetBlogs();
   const [openPage, setOpenPage] = useState(false);
-
-  console.log(blogs, error);
+  const [editOpenPage, setEditOpenPage] = useState(false);
+  console.log(editOpenPage);
   return (
     <div className="lg:p-[82px]    text-[#FFF] font-Nunito p-[22px] ">
       <div className="flex items-center justify-between font-bold">
@@ -32,7 +33,10 @@ const AdminBlogs = () => {
 
       <div className="flex flex-col justify-between items-center mt-[30px] ">
         <div className="w-full ">
-          <AdminBlogsContainer />
+          <AdminBlogsContainer
+            editOpenPage={editOpenPage}
+            setEditOpenPage={setEditOpenPage}
+          />
         </div>
       </div>
       {openPage && (
@@ -41,13 +45,12 @@ const AdminBlogs = () => {
           setOpenPage={setOpenPage}
         />
       )}
-      {/* {AddingOpenEditPage && (
-        <AdminEditPage
-          setAddingOpenEditPage={setAddingOpenEditPage}
-          AddingOpenEditPage={AddingOpenEditPage}
-          EditPageId={EditPageId}
+      {editOpenPage && (
+        <AdminBlogsEditContainer
+          editOpenPage={editOpenPage}
+          setEditOpenPage={setEditOpenPage}
         />
-      )} */}
+      )}
     </div>
   );
 };
