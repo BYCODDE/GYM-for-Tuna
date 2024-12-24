@@ -6,7 +6,6 @@ import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
 import Layout from "./ui/Layout";
 import AdminLayout from "./ui/AdminLayout";
-import Dashboard from "./pages/admin-pages/Dashboard";
 import AdminServices from "./pages/admin-pages/AdminServices";
 import AboutMe from "./pages/admin-pages/AboutMe";
 import AdminBlogs from "./pages/admin-pages/AdminBlogs";
@@ -23,8 +22,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
       </Route>
       <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route index element={<AboutMe />} />
         <Route path="admin-about" element={<AboutMe />} />
         <Route path="admin-blogs" element={<AdminBlogs />} />
         <Route path="admin-services" element={<AdminServices />} />

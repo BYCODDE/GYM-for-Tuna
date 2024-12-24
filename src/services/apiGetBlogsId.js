@@ -7,6 +7,5 @@ export const apiGetBlogById = async (id) => {
     .eq("id", id)
     .single();
 
-
   return { data, error };
 };

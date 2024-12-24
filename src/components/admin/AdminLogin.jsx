@@ -29,7 +29,7 @@ const AdminLogin = ({ onLogin }) => {
 
       localStorage.setItem("adminCredentials", encryptedCredentials);
       onLogin();
-      navigate("/admin/dashboard");
+      navigate("/admin/admin-about");
     } else {
       setLoginError("Incorrect username or password.");
     }

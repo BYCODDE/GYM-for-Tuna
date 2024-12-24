@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage }) {
+import useGetBlogById from "../hooks/useGetBlogById";
+import { useEffect } from "react";
+function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage, blogsId }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const menuVariants = {
@@ -17,6 +20,24 @@ function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage }) {
       transition: { type: "spring", stiffness: 30 },
     },
   };
+
+  const { data, error, isLoading, isError } = useGetBlogById(blogsId);
+  useEffect(() => {
+    if (data) {
+      reset({
+        author: data.data.author,
+        description: data.data.description,
+        title: data.data.title,
+      });
+    }
+  }, [data, reset]);
+  console.log(data, "data based on ID");
+  if (isLoading) {
+    return <p>loading</p>;
+  }
+  if (isError) {
+    return <p>{error.message}</p>;
+  }
 
   const onSubmit = (data) => {
     console.log(data);
@@ -80,7 +101,7 @@ function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage }) {
                 <span className="w-[8px] h-[8px] rounded-full bg-[#FFF] font-bold"></span>
                 Type description
               </h3>
-              <input
+              <textarea
                 className="w-full focus:outline-none focus:border-none flex p-[10px] items-center rounded-[8px] bg-[#323232]"
                 type="text"
                 {...register("description", {
