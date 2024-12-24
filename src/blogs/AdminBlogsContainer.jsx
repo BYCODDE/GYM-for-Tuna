@@ -4,7 +4,7 @@ import useGetBlogs from "../hooks/useGetBlogs";
 import useRemoveBlogs from "../hooks/useRemoveBlogs";
 // import useGetServiceById from "../hooks/useGetBlogById";
 
-function AdminBlogsContainer({ setEditOpenPage }) {
+function AdminBlogsContainer({ setEditOpenPage, setBlogsId }) {
   const { data: blogs } = useGetBlogs();
   const blogList = blogs?.blogs || [];
   const [visibleBlogs, setVisibleBlogs] = useState({});
@@ -25,6 +25,7 @@ function AdminBlogsContainer({ setEditOpenPage }) {
 
   const handleEditBlog = (id) => {
     console.log("Editing blog with ID:", id);
+    setBlogsId(id);
     // Here you can trigger your edit logic, such as opening an edit form
   };
 
