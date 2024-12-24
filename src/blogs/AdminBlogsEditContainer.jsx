@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import useGetBlogById from "../hooks/useGetBlogById";
 import { useEffect } from "react";
+import useEditBlogs from "../hooks/useEditBlogs";
 function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage, blogsId }) {
   const {
     register,
@@ -9,6 +10,15 @@ function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage, blogsId }) {
     formState: { errors },
     reset,
   } = useForm();
+
+  const { data, error, isLoading, isError } = useGetBlogById(blogsId);
+
+  const {
+    mutate: editBlog,
+    isLoading: editLoading,
+    error: editError,
+    isSuccess,
+  } = useEditBlogs();
 
   const menuVariants = {
     open: {
@@ -21,7 +31,6 @@ function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage, blogsId }) {
     },
   };
 
-  const { data, error, isLoading, isError } = useGetBlogById(blogsId);
   useEffect(() => {
     if (data) {
       reset({
@@ -40,7 +49,18 @@ function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage, blogsId }) {
   }
 
   const onSubmit = (data) => {
-    console.log(data);
+    editBlog(
+      {
+        id: blogsId, 
+        editedBlogs: data,
+      },
+      {
+        onSuccess: () => {
+          reset();
+          setEditOpenPage(false);
+        },
+      }
+    );
   };
 
   return (
