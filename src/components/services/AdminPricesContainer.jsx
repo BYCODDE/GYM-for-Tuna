@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useGetServices from "../../hooks/useGetServices";
+import StoryAboutSkeleton from "../skeletons/StoryAboutSkeleton";
+import ErorrDisplay from "../erorr/ErorrDisplay";
 
 const AdminPricesContainer = ({
   setAddingOpenEditPage,
@@ -34,13 +36,13 @@ const AdminPricesContainer = ({
     setEditPageId(serviceId);
   };
 
-  if (isLoading) return <div className="text-red-600">Loading...</div>;
-  if (isError)
-    return (
-      <div className="text-red-600">
-        Error loading services: {error.message}
-      </div>
-    );
+  if (isLoading) {
+    return <StoryAboutSkeleton />;
+  }
+
+  if (isError) {
+    return <ErorrDisplay error={error.message} />;
+  }
 
   const servicesData = data?.services || [];
 

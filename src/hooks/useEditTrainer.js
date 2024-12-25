@@ -4,7 +4,7 @@ import { apiEditTrainer } from "../services/apiEditTrainer";
 function useEditTrainer() {
   const queryClient = useQueryClient();
 
-  const { mutate, isLoading, error, isSuccess } = useMutation({
+  const { mutate, isLoading, error, isSuccess,isError } = useMutation({
     mutationFn: ({ id, updatedTrainer }) => apiEditTrainer(id, updatedTrainer),
     onSuccess: () => {
       console.log("Trainer updated successfully!");
@@ -14,7 +14,7 @@ function useEditTrainer() {
       console.error("Error updating Trainer:", error.message);
     },
   });
-  return { mutate, isLoading, error, isSuccess };
+  return { mutate, isLoading, error, isSuccess, };
 }
 
 export default useEditTrainer;

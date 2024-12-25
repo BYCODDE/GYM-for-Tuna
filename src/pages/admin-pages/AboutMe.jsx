@@ -7,6 +7,8 @@ import useRemoveCertification from "../../hooks/useRemoveCertification";
 import { motion, AnimatePresence } from "framer-motion";
 import useAddCertification from "../../hooks/useAddCertificaton";
 import AdminAboutMeEditPage from "../../components/admin/AdminAboutMeEditPage";
+import StoryAboutSkeleton from "../../components/skeletons/StoryAboutSkeleton";
+import ErorrDisplay from "../../components/erorr/ErorrDisplay";
 
 const AboutMe = () => {
   const [imagePreview, setImagePreview] = useState(null);
@@ -16,12 +18,9 @@ const AboutMe = () => {
   const [openEditPage, setOpenEditPage] = useState(false);
   const [visibleCertifications, setVisibleCertifications] = useState({});
   const [EditCertificationId, setEditCertificationId] = useState(null);
-  console.log(EditCertificationId);
 
   const { data: certification, error: certificationError } =
     useGetCertification();
-
-  console.log(certification);
 
   const { mutate: insertedData, error: addingError } = useAddCertification();
 
@@ -29,11 +28,10 @@ const AboutMe = () => {
     mutate: aboutmeMutation,
     isLoading,
     error: editError,
-    isSuccess,
+    isError,
   } = useEditTrainer();
 
-  const { removeCertification, isRemoving, removeError } =
-    useRemoveCertification();
+  const { removeCertification, removeError } = useRemoveCertification();
 
   const toggleShowCertification = (id) => {
     setVisibleCertifications((prev) => ({
@@ -42,7 +40,6 @@ const AboutMe = () => {
     }));
     setEditCertificationId(id);
   };
-
   const {
     register,
     handleSubmit,
@@ -63,6 +60,8 @@ const AboutMe = () => {
 
   let dataCertification = certification?.certification || [];
 
+  console.log(aboutTrainer?.aboutTrainer);
+
   useEffect(() => {
     const trainer = aboutTrainer?.aboutTrainer?.[0];
     if (trainer) {
@@ -80,7 +79,6 @@ const AboutMe = () => {
   }, [aboutTrainer, certification, reset]);
 
   const onSubmit = (data) => {
-    // Payload for updating the trainer (aboutMe section)
     const trainerPayload = {
       id: aboutTrainer?.aboutTrainer?.[0]?.id,
       updatedTrainer: {
@@ -96,7 +94,6 @@ const AboutMe = () => {
       startDate: data.startDate,
     };
 
-    // 1. Update trainer details first (aboutMe)
     aboutmeMutation(trainerPayload, {
       onSuccess: () => {
         console.log("Trainer details updated successfully");
@@ -107,7 +104,6 @@ const AboutMe = () => {
       },
     });
 
-    // 2. Add new certification (no id)
     insertedData(certificationPayload, {
       onSuccess: () => {
         console.log("Certification added successfully");
@@ -119,7 +115,6 @@ const AboutMe = () => {
     });
   };
 
-  // Handle errors in loading data
   if (error || certificationError) {
     return (
       <div className="text-red-600 flex text-[20px] justify-center">
@@ -128,12 +123,27 @@ const AboutMe = () => {
     );
   }
 
-  // Function to handle selecting a certification to delete
   const handleDelete = (certificationId) => {
     setSelectedCertificationId(certificationId);
     removeCertification(certificationId);
   };
+  if (isLoading) {
+    return <StoryAboutSkeleton />;
+  }
 
+  if (isError) {
+    return <ErorrDisplay error={error.message} />;
+  }
+
+  if (removeError) {
+    return <ErorrDisplay error={error.message} />;
+  }
+  if (addingError) {
+    return <ErorrDisplay error={error.message} />;
+  }
+  if (editError) {
+    return <ErorrDisplay error={error.message} />;
+  }
   return (
     <div className="lg:p-[82px] text-[#FFF] font-Nunito p-[22px]">
       <div className="flex items-center justify-between font-bold">
@@ -150,7 +160,6 @@ const AboutMe = () => {
           className="text-white w-full text-center mt-[41px] gap-[3.25rem] flex flex-col"
         >
           <div className="flex flex-col gap-[50px]">
-            {/* Experience Field */}
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px] text-[20px]">
                 Experience
@@ -169,7 +178,6 @@ const AboutMe = () => {
               )}
             </div>
 
-            {/* Story Field */}
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px] text-[20px]">
                 Share your story
@@ -187,7 +195,6 @@ const AboutMe = () => {
               )}
             </div>
 
-            {/* Certification Field */}
             <div className="w-full flex flex-col gap-[10px]">
               <h3 className="flex items-center mb-[20px] gap-[10px] text-[20px]">
                 Certification
@@ -306,7 +313,6 @@ const AboutMe = () => {
               </div>
             </div>
 
-            {/* Image Upload Field */}
             <div className="w-full">
               <h3 className="flex items-center mb-[20px] gap-[10px] text-[20px]">
                 Upload Image
@@ -324,7 +330,6 @@ const AboutMe = () => {
                 </div>
               )}
 
-              {/* Preview Image */}
               {imagePreview && (
                 <div className="mt-[20px]">
                   <img
@@ -337,7 +342,6 @@ const AboutMe = () => {
             </div>
           </div>
 
-          {/* Submit Button */}
           <div className="flex justify-center items-center">
             <button
               className="max-w-[195px] w-full text-[black] h-[42px] bg-[#D7FD44] rounded-[24px] font-bold"

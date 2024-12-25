@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import useGetServiceById from "../../hooks/useGetServiceById";
 import useEditService from "../../hooks/useEditService";
+import StoryAboutSkeleton from "../skeletons/StoryAboutSkeleton";
+import ErorrDisplay from "../erorr/ErorrDisplay";
 
 function AdminEditPage({
   setAddingOpenEditPage,
@@ -61,13 +63,12 @@ function AdminEditPage({
   };
 
   if (isLoading) {
-    return <div className="text-yellow-400">Loading...</div>;
+    return <StoryAboutSkeleton />;
   }
 
-  if (error) {
-    return <div className="text-red-600">Error loading service data!</div>;
+  if (isError) {
+    return <ErorrDisplay error={error.message} />;
   }
-
   return (
     <div className="relative z-10 font-Nunito text-[#FFF]">
       <motion.div

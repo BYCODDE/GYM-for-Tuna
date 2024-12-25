@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import useGetBlogById from "../hooks/useGetBlogById";
 import { useEffect } from "react";
 import useEditBlogs from "../hooks/useEditBlogs";
+import StoryAboutSkeleton from "../components/skeletons/StoryAboutSkeleton";
+import ErorrDisplay from "../components/erorr/ErorrDisplay";
 function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage, blogsId }) {
   const {
     register,
@@ -11,13 +13,12 @@ function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage, blogsId }) {
     reset,
   } = useForm();
 
-  const { data, error, isLoading, isError } = useGetBlogById(blogsId);
+  const { data, isError } = useGetBlogById(blogsId);
 
   const {
     mutate: editBlog,
     isLoading: editLoading,
     error: editError,
-    isSuccess,
   } = useEditBlogs();
 
   const menuVariants = {
@@ -41,17 +42,17 @@ function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage, blogsId }) {
     }
   }, [data, reset]);
   console.log(data, "data based on ID");
-  if (isLoading) {
-    return <p>loading</p>;
+  if (editLoading) {
+    return <StoryAboutSkeleton />;
   }
   if (isError) {
-    return <p>{error.message}</p>;
+    return <ErorrDisplay error={editError.message} />;
   }
 
   const onSubmit = (data) => {
     editBlog(
       {
-        id: blogsId, 
+        id: blogsId,
         editedBlogs: data,
       },
       {

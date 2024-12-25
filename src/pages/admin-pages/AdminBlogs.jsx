@@ -1,11 +1,9 @@
 import { useState } from "react";
 import AdminBlogsAddingContainer from "../../blogs/AdminBlogsAddingContainer";
 import AdminBlogsContainer from "../../blogs/AdminBlogsContainer";
-// import useGetBlogs from "../../hooks/useGetBlogs";
 import AdminBlogsEditContainer from "../../blogs/AdminBlogsEditContainer";
 
 const AdminBlogs = () => {
-  // let { data: blogs, error } = useGetBlogs();
   const [openPage, setOpenPage] = useState(false);
   const [editOpenPage, setEditOpenPage] = useState(false);
   const [blogsId, setBlogsId] = useState(null);

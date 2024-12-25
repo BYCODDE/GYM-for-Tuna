@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Function to handle scrolling
   const handleScroll = () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     setIsVisible(scrollTop > 300);

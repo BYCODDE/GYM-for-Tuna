@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import useGetAboutMeId from "../../hooks/useGetAboutMeId";
 import { useEffect } from "react";
 import useEditAboutMe from "../../hooks/useEditAboutMe";
+import StoryAboutSkeleton from "../skeletons/StoryAboutSkeleton";
+import ErorrDisplay from "../erorr/ErorrDisplay";
 
 function AdminAboutMeEditPage({
   setOpenEditPage,
@@ -16,7 +18,7 @@ function AdminAboutMeEditPage({
     reset,
   } = useForm();
 
-  const { data, error, isLoading } = useGetAboutMeId(EditCertificationId);
+  const { data } = useGetAboutMeId(EditCertificationId);
 
   let dataCertification = Array.isArray(data?.data)
     ? data?.data[0]
@@ -25,7 +27,7 @@ function AdminAboutMeEditPage({
   const {
     mutate: editAboutMe,
     isLoading: isMutating,
-    isSuccess,
+
     isError,
     error: mutationError,
   } = useEditAboutMe();
@@ -58,12 +60,12 @@ function AdminAboutMeEditPage({
     );
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (isMutating) {
+    return <StoryAboutSkeleton />;
   }
 
-  if (error) {
-    return <div>Error loading data: {error.message}</div>;
+  if (isError) {
+    return <ErorrDisplay error={mutationError.message} />;
   }
 
   return (
