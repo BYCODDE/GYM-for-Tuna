@@ -2,14 +2,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useGetBlogs from "../hooks/useGetBlogs";
 import useRemoveBlogs from "../hooks/useRemoveBlogs";
-// import useGetServiceById from "../hooks/useGetBlogById";
 
 function AdminBlogsContainer({ setEditOpenPage, setBlogsId }) {
   const { data: blogs } = useGetBlogs();
   const blogList = blogs?.blogs || [];
   const [visibleBlogs, setVisibleBlogs] = useState({});
   const { removeBlog } = useRemoveBlogs();
-  // const { data: BlogId, error: BlogError } = useGetServiceById();
   console.log(blogs);
 
   const toggleShowContent = (id) => {
@@ -26,7 +24,6 @@ function AdminBlogsContainer({ setEditOpenPage, setBlogsId }) {
   const handleEditBlog = (id) => {
     console.log("Editing blog with ID:", id);
     setBlogsId(id);
-    // Here you can trigger your edit logic, such as opening an edit form
   };
 
   return (
@@ -70,7 +67,7 @@ function AdminBlogsContainer({ setEditOpenPage, setBlogsId }) {
                         className="cursor-pointer w-[30px] h-[30px] hover:scale-110 transition-transform"
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleDeleteBlog(blog.id); // Pass blog id to delete handler
+                          handleDeleteBlog(blog.id);
                         }}
                       />
                       <motion.img
@@ -80,7 +77,7 @@ function AdminBlogsContainer({ setEditOpenPage, setBlogsId }) {
                         onClick={(e) => {
                           e.stopPropagation();
                           handleEditBlog(blog.id);
-                          setEditOpenPage(true); // Pass blog id to edit handler
+                          setEditOpenPage(true);
                         }}
                       />
                     </div>
