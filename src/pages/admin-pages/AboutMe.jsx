@@ -63,7 +63,8 @@ const AboutMe = () => {
   console.log(aboutTrainer?.aboutTrainer);
 
   useEffect(() => {
-    const trainer = aboutTrainer?.aboutTrainer?.[0];
+    const trainer =
+      aboutTrainer?.aboutTrainer?.[aboutTrainer?.aboutTrainer.length - 1];
     if (trainer) {
       setImagePreview(trainer.image);
 
@@ -79,8 +80,11 @@ const AboutMe = () => {
   }, [aboutTrainer, certification, reset]);
 
   const onSubmit = (data) => {
+    console.log(data);
+
     const trainerPayload = {
-      id: aboutTrainer?.aboutTrainer?.[0]?.id,
+      id: aboutTrainer?.aboutTrainer?.[aboutTrainer?.aboutTrainer.length - 1]
+        ?.id,
       updatedTrainer: {
         experience: data.experience,
         story: data.story,
