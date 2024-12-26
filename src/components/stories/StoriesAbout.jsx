@@ -5,8 +5,8 @@ import StoryAboutSkeleton from "../skeletons/StoryAboutSkeleton";
 
 const StoriesAbout = () => {
   const { data, isLoading, error } = useGetTrainer();
-  // const lastData = data?.aboutTrainer[data.aboutTrainer.length - 1];
-  const firstData = data?.aboutTrainer[0];
+  const lastData = data?.aboutTrainer[data.aboutTrainer.length - 1];
+  // const firstData = data?.aboutTrainer[0];
 
   if (isLoading) {
     return <StoryAboutSkeleton />;
@@ -28,10 +28,10 @@ const StoriesAbout = () => {
 
         <div
           className="font-nunito sm:flex sm:flex-row sm:justify-between sm:items-center pb-10"
-          key={firstData.id}
+          key={lastData.id}
         >
           <div className="text-[#C4C4C4] text-sm leading-normal max-w-xs md:text-[20px] md:max-w-md xl:max-w-2xl">
-            {firstData.story}
+            {lastData.story}
           </div>
           <div className="flex justify-center items-center flex-col gap-[14px] py-10 sm:py-0">
             <div className="relative inline-block">
@@ -49,7 +49,7 @@ const StoriesAbout = () => {
                 className="absolute inset-0 flex items-center
                 justify-center text-[#000] text-2xl font-bold tracking-wider md:text-[40px]"
               >
-                {firstData.experience}
+                {lastData.experience}
               </h2>
             </div>
           </div>
