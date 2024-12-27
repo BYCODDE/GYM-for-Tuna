@@ -7,7 +7,7 @@ const AdminBlogs = () => {
   const [openPage, setOpenPage] = useState(false);
   const [editOpenPage, setEditOpenPage] = useState(false);
   const [blogsId, setBlogsId] = useState(null);
-  console.log(blogsId);
+
   return (
     <div className="lg:p-[82px]    text-[#FFF] font-Nunito p-[22px] ">
       <div className="flex items-center justify-between font-bold">

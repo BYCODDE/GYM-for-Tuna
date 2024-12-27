@@ -1,12 +1,6 @@
 import { NavLink } from "react-router-dom";
+import navItemsList from "../features/navItems";
 
-const navItems = [
-  { path: "/", label: "Home" },
-  { path: "/about", label: "About" },
-  { path: "/stories", label: "Success Story" },
-  { path: "/services", label: "Services" },
-  { path: "/contact", label: "Contact" },
-];
 const Footer = () => {
   return (
     <footer className="xl:justify-around md:gap-[50px]  md:justify-between md:flex-row bg-[#242424] p-[40px] flex flex-col justify-center  font-Nunito text-[#C4C4C4] h-full">
@@ -18,7 +12,7 @@ const Footer = () => {
       </div>
       <div className="md:flex md:flex-col md:justify-center md:items-center mt-[50px]">
         <nav className="xl:text-[20px] xl:gap-[41px] md:gap-[22px] md:flex-row tiny:text-[12px] smaller:text-[14px] flex flex-col justify-center items-start  gap-2">
-          {navItems.map((item) => (
+          {navItemsList.map((item) => (
             <NavLink key={item.path} to={item.path} className={`text-`}>
               {item.label}
             </NavLink>

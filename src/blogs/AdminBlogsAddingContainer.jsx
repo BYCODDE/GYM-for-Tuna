@@ -24,7 +24,7 @@ function AdminBlogsAddingContainer({ openPage, setOpenPage }) {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
+
 
     const blogPayload = {
       author: data.author,
@@ -34,7 +34,6 @@ function AdminBlogsAddingContainer({ openPage, setOpenPage }) {
 
     insertedBlogs(blogPayload, {
       onSuccess: () => {
-        console.log("Blogs successfully added!");
         reset();
         setOpenPage(false);
       },

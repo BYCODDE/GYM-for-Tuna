@@ -41,7 +41,6 @@ function AdminBlogsEditContainer({ editOpenPage, setEditOpenPage, blogsId }) {
       });
     }
   }, [data, reset]);
-  console.log(data, "data based on ID");
   if (editLoading) {
     return <StoryAboutSkeleton />;
   }

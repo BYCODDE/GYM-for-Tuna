@@ -43,7 +43,6 @@ function AdminAboutMeEditPage({
   }, [data, reset, dataCertification]);
 
   const onSubmit = (data) => {
-    console.log(data, "dasabmitebisas data");
     const updatedCertification = {
       name: data.certificationName,
       startDate: data.startDate,
