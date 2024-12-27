@@ -8,7 +8,6 @@ function AdminBlogsContainer({ setEditOpenPage, setBlogsId }) {
   const blogList = blogs?.blogs || [];
   const [visibleBlogs, setVisibleBlogs] = useState({});
   const { removeBlog } = useRemoveBlogs();
-  console.log(blogs);
 
   const toggleShowContent = (id) => {
     setVisibleBlogs((prev) => ({
@@ -22,7 +21,6 @@ function AdminBlogsContainer({ setEditOpenPage, setBlogsId }) {
   };
 
   const handleEditBlog = (id) => {
-    console.log("Editing blog with ID:", id);
     setBlogsId(id);
   };
 

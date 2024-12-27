@@ -1,4 +1,5 @@
 import FitnessJourney from "../components/home/FitnessJourney";
+import ScrollToTopButton from "../components/ScrollToTopButton/ScrollToTopButton";
 import useGetBlogs from "../hooks/useGetBlogs";
 
 function Blogs() {
@@ -73,6 +74,7 @@ function Blogs() {
           YOUR FITNESS JOURNEY STARTS HERE
         </h3>
         <FitnessJourney />
+        <ScrollToTopButton />
       </div>
     </div>
   );
