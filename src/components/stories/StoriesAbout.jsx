@@ -5,8 +5,7 @@ import StoryAboutSkeleton from "../skeletons/StoryAboutSkeleton";
 
 const StoriesAbout = () => {
   const { data, isLoading, error } = useGetTrainer();
-  const lastData = data?.aboutTrainer[data.aboutTrainer.length - 1];
-  // const firstData = data?.aboutTrainer[0];
+  const lastData = data?.aboutTrainer[data?.aboutTrainer.length - 1];
 
   if (isLoading) {
     return <StoryAboutSkeleton />;
