@@ -4,9 +4,7 @@ import AboutTrainerSkeleton from "../skeletons/AboutTrainerSkeleton";
 import ErorrDisplay from "../erorr/ErorrDisplay";
 const AboutTrainer = () => {
   const { data, error, isLoading } = useGetTrainer();
-  console.log(data);
   const lastData = data?.aboutTrainer[data?.aboutTrainer.length - 1];
-  // const firstData = data?.aboutTrainer[0];
 
 
 
