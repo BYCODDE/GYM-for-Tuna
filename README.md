@@ -21,6 +21,8 @@ A modern, user-friendly, and responsive website designed to promote a fitness tr
 - **Contact Forms** for user inquiries 📬.
 
 ### Admin Panel:
+Login:admin
+Password:admin
 - Allows the client to manage:
   - Class schedules 🗓️.
   - Service offerings 📦.
